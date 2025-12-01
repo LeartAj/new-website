@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writings - Leart Ajvazaj</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Articles and writings by Leart Ajvazaj on mathematics, machine learning, and research. Explore insights on mathematical thinking and computational theory.">
+    <meta name="keywords" content="Leart Ajvazaj, writings, articles, mathematics, machine learning, research, blog, mathematical thinking">
+    <meta name="author" content="Leart Ajvazaj">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:title" content="Writings - Leart Ajvazaj">
+    <meta property="og:description" content="Articles and writings on mathematics, machine learning, and research by Leart Ajvazaj.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/writings.html">
+    <meta property="og:site_name" content="Leart Ajvazaj">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Writings - Leart Ajvazaj">
+    <meta name="twitter:description" content="Articles and writings on mathematics, machine learning, and research.">
+    <meta name="twitter:creator" content="@LeartAjvazaj">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/writings.html">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="medium-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Typewriter Loading Animation */
+        #writings-loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #writings-loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .typewriter {
+            --blue: #5C86FF;
+            --blue-dark: #275EFE;
+            --key: #fff;
+            --paper: #EEF0FD;
+            --text: #D3D4EC;
+            --tool: #FBC56C;
+            --duration: 3s;
+            position: relative;
+            animation: bounce var(--duration) linear infinite;
+        }
+
+        .typewriter .slide {
+            width: 92px;
+            height: 20px;
+            border-radius: 3px;
+            margin-left: 14px;
+            transform: translateX(14px);
+            background: linear-gradient(var(--blue), var(--blue-dark));
+            animation: slide var(--duration) ease infinite;
+        }
+
+        .typewriter .slide:before,
+        .typewriter .slide:after,
+        .typewriter .slide i:before {
+            content: '';
+            position: absolute;
+            background: var(--tool);
+        }
+
+        .typewriter .slide:before {
+            width: 2px;
+            height: 8px;
+            top: 6px;
+            left: 100%;
+        }
+
+        .typewriter .slide:after {
+            left: 94px;
+            top: 3px;
+            height: 14px;
+            width: 6px;
+            border-radius: 3px;
+        }
+
+        .typewriter .slide i {
+            display: block;
+            position: absolute;
+            right: 100%;
+            width: 6px;
+            height: 4px;
+            top: 4px;
+            background: var(--tool);
+        }
+
+        .typewriter .slide i:before {
+            right: 100%;
+            top: -2px;
+            width: 4px;
+            border-radius: 2px;
+            height: 14px;
+        }
+
+        .typewriter .paper {
+            position: absolute;
+            left: 24px;
+            top: -26px;
+            width: 40px;
+            height: 46px;
+            border-radius: 5px;
+            background: var(--paper);
+            transform: translateY(46px);
+            animation: paper var(--duration) linear infinite;
+        }
+
+        .typewriter .paper:before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            top: 7px;
+            border-radius: 2px;
+            height: 4px;
+            transform: scaleY(.8);
+            background: var(--text);
+            box-shadow: 0 12px 0 var(--text), 0 24px 0 var(--text), 0 36px 0 var(--text);
+        }
+
+        .typewriter .keyboard {
+            width: 120px;
+            height: 56px;
+            margin-top: -10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .typewriter .keyboard:before,
+        .typewriter .keyboard:after {
+            content: '';
+            position: absolute;
+        }
+
+        .typewriter .keyboard:before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 7px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            transform: perspective(10px) rotateX(2deg);
+            transform-origin: 50% 100%;
+        }
+
+        .typewriter .keyboard:after {
+            left: 2px;
+            top: 25px;
+            width: 11px;
+            height: 4px;
+            border-radius: 2px;
+            box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                        75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                        52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            animation: keyboard var(--duration) linear infinite;
+        }
+
+        @keyframes bounce {
+            85%, 92%, 100% {
+                transform: translateY(0);
+            }
+            89% {
+                transform: translateY(-4px);
+            }
+            95% {
+                transform: translateY(2px);
+            }
+        }
+
+        @keyframes slide {
+            5% {
+                transform: translateX(14px);
+            }
+            15%, 30% {
+                transform: translateX(6px);
+            }
+            40%, 55% {
+                transform: translateX(0);
+            }
+            65%, 70% {
+                transform: translateX(-4px);
+            }
+            80%, 89% {
+                transform: translateX(-12px);
+            }
+            100% {
+                transform: translateX(14px);
+            }
+        }
+
+        @keyframes paper {
+            5% {
+                transform: translateY(46px);
+            }
+            20%, 30% {
+                transform: translateY(34px);
+            }
+            40%, 55% {
+                transform: translateY(22px);
+            }
+            65%, 70% {
+                transform: translateY(10px);
+            }
+            80%, 85% {
+                transform: translateY(0);
+            }
+            92%, 100% {
+                transform: translateY(46px);
+            }
+        }
+
+        @keyframes keyboard {
+            5%, 12%, 21%, 30%, 39%, 48%, 57%, 66%, 75%, 84% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            9% {
+                box-shadow: 15px 2px 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            18% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 2px 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            27% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 12px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            36% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 12px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            45% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 2px 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            54% {
+                box-shadow: 15px 0 0 var(--key), 30px 2px 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            63% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 12px 0 var(--key);
+            }
+            72% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 2px 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+            81% {
+                box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key),
+                            75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 12px 0 var(--key),
+                            52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Typewriter Loading Screen -->
+    <div id="writings-loading-screen">
+        <div class="typewriter">
+            <div class="slide"><i></i></div>
+            <div class="paper"></div>
+            <div class="keyboard"></div>
+        </div>
+    </div>
+
+    <script>
+        // Immediately hide loading screen if already shown this session
+        if (sessionStorage.getItem('writingsLoadingShown')) {
+            document.getElementById('writings-loading-screen').style.display = 'none';
+        }
+    </script>
+
+</body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Leart Ajvazaj</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="writings.html" class="nav-link active">Writings</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+                <a href="faq-recommendations.html" class="nav-link">Recommendations</a>
+
+                <a href="write.html" class="nav-link">Write</a>
+                <a href="index.html#about" class="nav-link">About</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 70px;">
+        <!-- Header Section -->
+        <section class="section">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">My Writings</h1>
+                    <p class="page-subtitle">
+                        Thoughts on machine learning, mathematics, and the intersection of technology and humanity.
+                    </p>
+                </div>
+
+                <!-- Filter buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="mathematics">Mathematics</button>
+                    <button class="filter-btn" data-filter="philosophy">Philosophy</button>
+                    <button class="filter-btn" data-filter="politics">Politics</button>
+                    <button class="filter-btn" data-filter="technology">Technology</button>
+                </div>
+
+                <!-- Writings Grid -->
+                <div class="writings-grid">
+                    <!-- Albanian Politics Article - Always visible, content in Albanian -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">April 4, 2022</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="mos-e-lexo-kete-shkrim.html">Mos e lexo këtë shkrim—Është për politikë</a>
+                        </h3>
+                        <p class="card-excerpt">
+
+                        </p>
+                        <a href="mos-e-lexo-kete-shkrim.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- New Albanian Article -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">June 4, 2022</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="i-korruptuar-ideologjikisht.html">I korruptuar ideologjikisht</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Ka kohë që në kritikat për politikanët kosovarë përmenden shtëpitë në lagje private, veturat luksoze ose reflektime të tjera të kapitalit të tyre ekonomik. Dekonstruktimi ideologjik i mënyrës se si jetojnë politikanë të caktuar është larg më i rëndësishëm.
+                        </p>
+                        <a href="i-korruptuar-ideologjikisht.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Heronjtë i bën qëllimi -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">June 15, 2025</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="heronjt-i-bn-qllimi.html">Heronjtë i bën qëllimi</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Rastësisht pashë disa klipe nga debati në Pressing, ku flitej për "armëzimin" e viktimësisë nga Saranda Bogujevci për të mbrojtur shefin e saj. U intrigova mjaftueshëm për ta parë episodin e plotë.
+                        </p>
+                        <a href="heronjt-i-bn-qllimi.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Nuk ka fitues. Ka veç numra -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">February 24, 2025</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="nuk-ka-fitues-ka-ve-numra.html">Nuk ka fitues. Ka veç numra</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Kur ende presim për rezultatet përfundimtare të zgjedhjeve të 9 shkurtit, këmbësoria e vetëvendosjes ka filluar betejën e saj të radhës lidhur me legjitimitetin e një qeverie pa vetëvendosjen.
+                        </p>
+                        <a href="nuk-ka-fitues-ka-ve-numra.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Dështimi nuk shpërblehet -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">February 8, 2025</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="dshtimi-nuk-shprblehet.html">Dështimi nuk shpërblehet</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Partia personale e Albin Kurtit qeverisi për katër vite me 58 deputetë dhe me të gjitha postet e rëndësishme shtetërore. A i dha kjo parti mjaftueshëm Kosovës për të mos u skuqur kur kërkon 500 mijë vota?
+                        </p>
+                        <a href="dshtimi-nuk-shprblehet.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Problemi im me Programin e LDK-së për Teknologji -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">December 13, 2024</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="problemi-im-me-programin-e-ldk-s-pr-teknologji.html">Problemi im me Programin e LDK-së për Teknologji</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Po bëhet thuajse një vit nga publikimi i programit qeverisës të Lidhjes Demokratike të Kosovës i titulluar "Rruga e Re". Publikimi i programit qeverisës është hap shumë i mirë.
+                        </p>
+                        <a href="problemi-im-me-programin-e-ldk-s-pr-teknologji.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Ura e Pamundur -->
+                    <article class="writing-card" data-category="personal">
+                        <div class="card-meta">
+                            <span class="date">July 12, 2024</span>
+                            <span class="category">Personal</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="ura-e-pamundur.html">Ura e Pamundur</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Në zemër të Ballkanit, ku historia pëshpëritë përmes maleve të lashtë dhe lumenjve të thyer kishte rënë një mort i zi. Brenda kësaj toke të gjallë, të vendosur ndërmjet kodrave dhe luginave.
+                        </p>
+                        <a href="ura-e-pamundur.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- Ata që vallëzojnë mbi varre -->
+                    <article class="writing-card" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">January 22, 2024</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="ata-q-vallzojn-mbi-varre.html">Ata që vallëzojnë mbi varre</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Kur lexova për vrasjen e një tetëmbëdhjetëvjeçari në Podujevë, mbylla sytë. Kështu bëj zakonisht me lajme të tilla. E di se me të mësuar detajet, dhimbja për jetën e humbur dhe ato të shkatërruara si pasojë, veç sa mund të rritet.
+                        </p>
+                        <a href="ata-q-vallzojn-mbi-varre.html" class="read-more">Read More</a>
+                    </article>
+
+                    <article class="writing-card" data-category="machine-learning">
+                        <div class="card-meta">
+                            <span class="date">March 15, 2024</span>
+                            <span class="category">Machine Learning</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="article.html">Understanding Neural Network Optimization: A Geometric Perspective</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            An exploration of the geometry of neural network loss landscapes and how it influences training dynamics. 
+                            Discover why certain optimization techniques work better than others through the lens of geometric analysis.
+                        </p>
+                        <a href="article.html" class="read-more">Read More</a>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/leart-ajvazaj/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://www.facebook.com/learti.a/" class="footer-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+                                                    <a href="https://x.com/LeartAjvazaj" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+                        <a href="mailto:ajvazaj.leart@gmail.com" class="footer-link">Email</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="writings.html" class="footer-link">Writings</a>
+                        <a href="technical.html" class="footer-link">Technical</a>
+                        <a href="faq-recommendations.html" class="footer-link">Recommendations</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin-auth.js"></script>
+    <script src="script.js"></script>
+    <script src="writings.js"></script>
+    <script src="medium-integration.js"></script>
+
+    <!-- Typewriter Loading Screen Script -->
+    <script>
+        // Only handle the fade-out animation on first load
+        if (!sessionStorage.getItem('writingsLoadingShown')) {
+            window.addEventListener('load', function() {
+                const loadingScreen = document.getElementById('writings-loading-screen');
+                setTimeout(function() {
+                    loadingScreen.classList.add('hidden');
+                    // Mark as shown for this session
+                    sessionStorage.setItem('writingsLoadingShown', 'true');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html> 

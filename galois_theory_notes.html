@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galois Theory Notes - PDF | Leart Ajvazaj</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        .pdf-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .pdf-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: transparent;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+        }
+
+        .pdf-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-meta {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+        }
+
+        .pdf-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .pdf-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-primary);
+        }
+
+        .pdf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pdf-btn.secondary {
+            background: transparent;
+            color: var(--color-primary);
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 80vh;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-top: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--color-primary);
+            transform: translateX(-4px);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-title {
+                font-size: 2rem;
+            }
+
+            .pdf-container {
+                padding: 100px 15px 40px;
+            }
+
+            .pdf-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .pdf-viewer {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill is-active" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="faq-recommendations.html" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link is-active">Technical</a>
+                </li>
+                <li>
+                    <a href="faq-recommendations.html" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pdf-container">
+        <a href="technical.html" class="back-link">
+            ← Back to Technical Work
+        </a>
+
+        <div class="pdf-header">
+                <h1 class="pdf-title">Galois Theory Notes</h1>
+                <div class="pdf-meta">
+                    <strong>Leart Ajvazaj</strong> • January 2021 • Yale University
+                </div>
+                <p style="max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                    Notes from a Fields and Galois Theory class at Yale. Covers field extensions, construction problems, problems of solvability, cyclotomic extensions, etc.
+                </p>
+                <div class="pdf-actions">
+                    <a href="papers/Galois_theory_notes.pdf" download class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </a>
+                    <a href="papers/Galois_theory_notes.tex" download class="btn-secondary">
+                        <i class="fas fa-file-alt"></i>
+                        Download TeX
+                    </a>
+                    <a href="#pdf-viewer" class="btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        View Below
+                    </a>
+                </div>
+            </div>
+
+            <div id="pdf-viewer">
+                <embed 
+                    src="papers/Galois_theory_notes.pdf" 
+                    type="application/pdf" 
+                    class="pdf-viewer"
+                    title="Galois Theory Notes PDF">
+                </embed>
+                
+                <!-- Fallback for browsers that don't support embed (hidden by default) -->
+                <div class="pdf-fallback" id="pdf-fallback" style="display: none;">
+                    <h3><i class="fas fa-file-pdf"></i> PDF Viewer Not Supported</h3>
+                    <p>Your browser doesn't support embedded PDFs. Please download the file to view it.</p>
+                    <a href="papers/Galois_theory_notes.pdf" download class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

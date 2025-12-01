@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - Leart Ajvazaj</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Curated recommendations by Leart Ajvazaj for mathematics, machine learning, reading, and other educational resources.">
+    <meta name="keywords" content="Leart Ajvazaj, recommendations, mathematics, machine learning, reading, educational resources, book recommendations, study guidance">
+    <meta name="author" content="Leart Ajvazaj">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:title" content="Recommendations - Leart Ajvazaj">
+    <meta property="og:description" content="Curated recommendations for mathematics, machine learning, reading, and other educational resources.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/faq-recommendations.html">
+    <meta property="og:site_name" content="Leart Ajvazaj">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Recommendations - Leart Ajvazaj">
+    <meta name="twitter:description" content="Curated recommendations for mathematics, machine learning, reading, and other educational resources.">
+    <meta name="twitter:creator" content="@LeartAjvazaj">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/faq-recommendations.html">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .recommendations-main {
+            padding-top: 70px;
+            min-height: 100vh;
+        }
+        
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .recommendation-category {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .recommendation-category h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .recommendation-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .recommendation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommendation-author {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommendation-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .recommendation-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .recommendation-link:hover {
+            color: #5a67d8;
+        }
+
+        /* Book list styling for reading section */
+        .book-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .book-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f3f4;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .book-list li:last-child {
+            border-bottom: none;
+        }
+
+        .book-list li:before {
+            content: "📚";
+            margin-right: 0.75rem;
+        }
+
+        /* Hide admin-only elements by default */
+        a[href="write.html"] {
+            display: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .recommendation-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .recommendation-category {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Leart Ajvazaj</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="writings.html" class="nav-link">Writings</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+                <a href="faq-recommendations.html" class="nav-link active">Recommendations</a>
+                <a href="write.html" class="nav-link">Write</a>
+                <a href="index.html#about" class="nav-link">About</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="recommendations-main">
+        <section class="section">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Recommendations</h1>
+                    <p class="page-subtitle">
+                        My curated recommendations for learning mathematics, machine learning, and other subjects.
+                    </p>
+                </div>
+
+                <div class="recommendation-grid">
+                    <!-- Mathematics -->
+                    <div class="recommendation-category">
+                        <h3><i class="fas fa-calculator"></i> Mathematics</h3>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Olimpiadat e Matematikës (për garuesit me përvojë)</div>
+                            <div class="recommendation-author"></div>
+                            <div class="recommendation-description">
+                                OTIS Excerpts për algjebër, teori numrash dhe kombinatorike <br>
+                                <a href="https://web.evanchen.cc/textbooks/OTIS-Excerpts.pdf" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>
+                                Justin Stevens - Olympiad Number Theory Through Challenging Problems <br>
+                                <a href="https://numbertheoryguy.com/publications/olympiad-number-theory-book/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>                                
+                                Evan Chen - Euclidean Geometry in Mathematical Olympiad <br>
+                                <a href="https://web.evanchen.cc/geombook.html" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>                                       
+                                Andreescu, Korsky, Pohoata - Lemmas in Olympiad Geometry <br>
+                                <a href="https://bookstore.ams.org/xyz-19/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                                Aditya Khurmi - Modern Olympiad Number Theory<br>
+                                <a href="https://www.academia.edu/44512122/Modern_Olympiad_Number_Theory" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                                Pablo Soberón - Problem Solving Methods in Combinatorics <br>
+                                <a href="https://link.springer.com/book/10.1007/978-3-0348-0597-1" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                                Canada winter camp handouts<br>
+                                <a href="https://sites.google.com/site/imocanada/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                                Evan Chen handouts<br>
+                                <a href="https://web.evanchen.cc/olympiad.html" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                                Yufei Zhao handouts<br>
+                                <a href="https://yufeizhao.com/olympiad/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i> Visit Site
+                                </a>
+                            <br>       
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Olimpiadat e Matematikës (për garuesit pa përvojë)</div>
+                            <div class="recommendation-author"></div>
+                            <div class="recommendation-description">
+                                Shënimet e mija në teori të numrave <br>
+                                101 Problems in algebra, 104 problems in number theory, dhe librat e tjere te Andreescut <br>
+                                AOPS books
+                            </div>
+                        </div>
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">YouTube</div>
+                            <div class="recommendation-author"></div>
+                            <div class="recommendation-description">
+                                3Blue1Brown
+                            </div>
+                            <a href="https://www.3blue1brown.com" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                            <br>
+                            <div class="recommendation-description">
+                                Veritasium
+                            </div>        
+                            <a href="https://www.veritasium.com/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                            </div>
+                            
+                            <div class="recommendation-item">
+                            <div class="recommendation-title">Blogs</div>
+                            <div class="recommendation-author"></div>
+                            <div class="recommendation-description">
+                                Terence Tao
+                            </div>
+                            <a href="https://terrytao.wordpress.com/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                            <br>
+                            <div class="recommendation-description">
+                                Matt Baker
+                            </div>        
+                            <a href="https://mattbaker.blog/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                            <div class="recommendation-description">
+                                Scott Aaronson
+                            </div>        
+                            <a href="https://scottaaronson.blog/" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                            </div>
+                        </div>
+
+                    <!-- Machine Learning -->
+                    <div class="recommendation-category">
+                        <h3><i class="fas fa-robot"></i> Machine Learning</h3>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Machine Learning an Applied Mathematics Introduction</div>
+                            <div class="recommendation-author">by Paul Wilmott</div>
+                            <div class="recommendation-description">
+                                Good introductory text in machine learning.
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Deep Learning</div>
+                            <div class="recommendation-author">by Ian Goodfellow, Yoshua Bengio, Aaron Courville</div>
+                            <div class="recommendation-description">
+                                Good introductory text on deep neural networks. A little outdatet, but does the job.
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">MIT OpenCourseWare</div>
+                            <div class="recommendation-author">MIT</div>
+                            <div class="recommendation-description">
+                                You can find some good courses in machine learning, computer science, and math.
+                            </div>
+                            <a href="https://ocw.mit.edu" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Fast.ai Practical Deep Learning</div>
+                            <div class="recommendation-author">Jeremy Howard</div>
+                            <div class="recommendation-description">
+                                Top-down approach to deep learning. Start building models quickly, then dive into the theory. Excellent for practitioners.
+                            </div>
+                            <a href="https://course.fast.ai" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Course Website
+                            </a>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Distill.pub</div>
+                            <div class="recommendation-author">Interactive ML Explanations</div>
+                            <div class="recommendation-description">
+                                Beautiful, interactive explanations of machine learning concepts. Excellent visual intuitions for complex topics.
+                            </div>
+                            <a href="https://distill.pub" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="recommendation-title">Christopher Olah's Blog</div>
+                            <div class="recommendation-author">Christopher Olah</div>
+                            <div class="recommendation-description">
+                                Deep insights into neural networks and machine learning. Particularly strong on understanding the inner workings of deep learning models.
+                            </div>
+                            <a href="https://colah.github.io" class="recommendation-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Reading -->
+                    <div class="recommendation-category">
+                        <h3><i class="fas fa-book"></i> Reading</h3>
+
+                        <ul class="book-list">
+                            <li>Fooled by Randomness - Nassim Nicholas Taleb</li>
+                            <li>Antifragile - Nassim Nicholas Taleb</li>
+                            <li>Skin in the Game - Nassim Nicholas Taleb</li>
+                            <li>On Grand Strategy - John Lewis Gaddis</li>
+                            <li>Barbarians at the Gate - Bryan Burrough & John Helyar</li>
+                            <li>Infinite Powers - Steven Strogatz</li>
+                            <li>Twenty Years of Balkan Tangle - Edith Durham </li>
+                            <li>Social Justice Fallacies - Thomas Sowell</li>
+                            <li>Kujtime te Kosoves - John Hodgson </li>
+                            <li>How to Win the Premier League - Ian Graham</li>
+                            <li>Liar's Poker - Michael Lewis</li>
+                            <li>Pallati i Endrrave - Ismail Kadare</li>
+                            <li>Zero to One - Peter Thiel</li>
+                            <li> - </li>
+                            <li> - </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/leart-ajvazaj/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://www.facebook.com/learti.a/" class="footer-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        <a href="https://x.com/LeartAjvazaj" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+                        <a href="mailto:ajvazaj.leart@gmail.com" class="footer-link">Email</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="writings.html" class="footer-link">Writings</a>
+                        <a href="technical.html" class="footer-link">Technical</a>
+                        <a href="faq-recommendations.html" class="footer-link">Recommendations</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin-auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

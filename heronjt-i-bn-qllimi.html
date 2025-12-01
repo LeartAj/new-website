@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heronjtë i bën qëllimi - Leart Ajvazaj</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--color-primary);
+            transform: translateX(-4px);
+        }
+
+        .article-meta {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-date {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 1rem 0;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            line-height: 1.7;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            font-weight: 700;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--color-primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        .article-content a {
+            color: var(--color-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--color-primary);
+        }
+
+        .article-content code {
+            background: var(--color-border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--color-border);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            border: 2px solid var(--color-border);
+        }
+
+        .article-content em {
+            text-align: center;
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-container {
+                padding: 100px 15px 40px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .article-excerpt {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill is-active" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="faq-recommendations.html" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link is-active">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link">Technical</a>
+                </li>
+                <li>
+                    <a href="faq-recommendations.html" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="article-container">
+        <a href="writings.html" class="back-link">
+            ← Back to Writings
+        </a>
+        
+        <div class="article-meta">
+            <span class="article-date">June 15, 2025</span>
+            <span class="article-category">Politics</span>
+        </div>
+        
+        <h1 class="article-title">Heronjtë i bën qëllimi</h1>
+        
+        <div class="article-excerpt">Rastësisht pashë disa klipe nga debati në Pressing, ku flitej për “armëzimin” e viktimësisë nga Saranda Bogujevci për të mbrojtur shefin e saj. U intrigova mjaftueshëm për ta parë episodin e plotë. Për zonjën Bogujevci nuk kam interes të shkruaj. Jam shumë pak në dijeni për punën e saj, ndonëse ka qenë pjesë e tre legjislaturave para kësaj; pra e kam një ide për mos-punën e saj.</div>
+        
+        <div class="article-content">
+            <p><img src="https://miro.medium.com/v2/resize:fit:700/0*bDZWOfIUDm8uUhIT.jpg" height="541" width="700"></p><p class="ql-align-center"><em>“The Third of May 1808” — Francisco Goya</em></p><p>Rastësisht pashë disa klipe nga debati në Pressing, ku flitej për “armëzimin” e viktimësisë nga Saranda Bogujevci për të mbrojtur shefin e saj. U intrigova mjaftueshëm për ta parë episodin e plotë. Për zonjën Bogujevci nuk kam interes të shkruaj. Jam shumë pak në dijeni për punën e saj, ndonëse ka qenë pjesë e tre legjislaturave para kësaj; pra e kam një ide për mos-punën e saj.</p><p>Në Pressing, çka filloi si një diskutim për një postim konkret, u shndërrua në diçka shumë më të rëndësishme: statusin e viktimës dhe heroit. Unë them se viktima nuk është, si rregull, hero. Heroizmi kërkon agjenci morale, jo thjesht fatkeqësi.</p><p>Fillimisht, duke parë hutimin e Zana Avdiut mbi termin “hero”, po ndaj përkufizimin nga Merriam-Webster, që thotë se fjala&nbsp;<em>hero</em>&nbsp;përshkruan:</p><blockquote><strong><em>a</em></strong><em>: një figurë mitologjike apo legjendare, shpesh me prejardhje hyjnore, e pajisur me forcë apo aftësi të jashtëzakonshme</em></blockquote><blockquote><strong><em>b</em></strong><em>: një luftëtar i lavdishëm</em></blockquote><blockquote><strong><em>c</em></strong><em>: një person i admiruar për arritjet dhe cilësitë e tij fisnike</em></blockquote><blockquote><strong><em>d</em></strong><em>: dikush që tregon guxim të madh</em></blockquote><p>Ndërkaq, fjala&nbsp;<em>viktimë</em>&nbsp;përkufizohet si:</p><blockquote><strong><em>a</em></strong><em>: ai që është dëmtuar, shkatërruar ose sakrifikuar nën rrethana të ndryshme</em></blockquote><blockquote><strong><em>b:&nbsp;</em></strong><em>ai që i nënshtrohet shtypjes, vështirësive ose keqtrajtimit</em></blockquote><blockquote><strong><em>c</em></strong><em>: ai që mashtrohet ose gënjehet</em></blockquote><p>Në asnjë prej këtyre përkufizimeve nuk sugjerohet që viktimësia implikon heroizëm, siç deklaronte me britma Zana Avdiu. Një digresion: për Zana Avdiun dhe atë që ajo përfaqëson, pata shkruar në Express një artikull me titullin&nbsp;<a href="https://www.gazetaexpress.com/ata-qe-vallezojne-mbi-varre/" target="_blank" style="color: inherit;">“Ata qe vallezojne mbi varre”</a>. Ekziston njëfarë meta-kritike që përfshin atë që kam thënë aty dhe atë që do them këtu, por për njëherë tjetër. Problemi thelbësor i zonjës Avdiu është paaftësia analitike për të operuar me cilësitë e një objekti, sidomos kur është abstrakt, deri në një përfundim logjik. Ajo mendon në sllogane që tingëllojnë bukur por shpesh janë të privuara nga kuptimi. Ti kujton ditët e GPT-2. Një sallatë probabilistike.</p><p>Për t’u kthyer te konkretja, përveç përkufizimeve që mund t’i marrim (në fakt, përbrenda tyre), ekziston një kuptim i përbrendësuar në kulturë i fjalëve “hero” dhe “viktimë”.</p><p>Si kundërshtim ndaj cilësimeve si “madhështore është [viktima]” dhe “viktimat janë heronj”, po paraqes një argument mbi superioritetin moral të atij që lufton.</p><p>Para shtypjes shfaqen dy vdekje: ajo e luftëtarit dhe ajo e viktimës së pafajshme. Ndonëse të dyja janë jetë të çmuara, sakrifica e luftëtarit paraqet vlerë morale që tejkalon fatkeqësinë e viktimës. Ky pabarazim nuk rrjedh nga ndonjë zhvlerësim i jetës së viktimës, por nga parimi bazë se vlera morale buron para së gjithash nga ushtrimi i zgjedhjes dhe vullnetit të lirë, dhe së dyti, nga dinjiteti i mishëruar në veprimin e qëllimshëm drejt qëllimeve morale.</p><p>Në konceptin deontologjik Kantian, vlera morale i përshkruhet qëllimeve, jo pasojave të tyre. Në këtë prizëm, dallimi mes luftëtarit (edhe atij që nuk vritet) dhe viktimës është i qartë. Luftëtari merr një rrezik të vetëdijshëm për të sakrifikuar jetën për një kauzë morale; kjo agjenci i mungon viktimës.</p><p>Luftëtari bën një varg zgjedhjesh: duke njohur padrejtësinë, refuzuar pranimin (ose, për aq sa mund të refuzohen gjërat në pasivitet, refuzimin pasiv), marrë armën përkundër rrezikut, dhe përfundimisht, duke vazhduar luftën deri në fund. Secila pikë në këtë proces vendimmarrës dëshmon kapacitetin fundamental që i dallon njerëzit si qenie morale. Vdekja përfundimtare e luftëtarit është, pra, terminimi i kësaj serie — përfundim që ka shkak besimin në liri dhe drejtësi, jo rastësinë fatkeqe.</p><p>Dikush mund të thotë se ky botëkuptim mbivlerëson ata që kanë kapacitetin dhe mundësinë për të luftuar, në krahasim me ata që nuk kanë këto alternativa. Dikush mund të thotë se shuarja e viktimës është, në fakt, një tragjedi më e madhe, dhe për këtë arsye ka vlerë më të madhe morale. Me premisën e kësaj pajtohem. Fatkeqësia e viktimës është tragjedi më e madhe në kuptimin që ajo përfaqëson shuarje pa kompensim. Megjithatë, vlera morale duhet matur me agjencinë morale, jo tragjedinë e humbjes.</p><p>Dikush tjetër mund të thotë se rezultatet, jo qëllimet, përcaktojnë vlerën morale. Kjo do t’i barazonte të gjitha revoltat e pasuksesshme të kombeve të shtypura me zero në kalkulimin moral.</p><p>Pa dashur të futem shumë thellë në filozofi, për të shmangur dukjen si palaco, po ngre edhe një pikë që bazohet në idenë e intuitizmit moral (moral intuitionism), që thotë se disa të vërteta morale mund të njihen në mënyrë jo-inferenciale. Pra ndjenja e parë është përafrimi më i mirë i vlerës morale të diçkaje. Le të krahasojmë dy figura të luftës: një civil që vritet në gjumë nga një granatë, dhe një ushtar që vdes duke mbrojtur një fshat. Të dy janë të ndjerë, por vetëm i dyti mishëron atë që kultura jonë e quan heroizëm: zgjedhje, veprim, qëllim moral. Kur dikush flet për heronjtë Adem Jashari, Fehmi Lladrovci apo Luan Haradinaj, intuitivisht ndiejmë zili për ta. Kur dikush flet për viktimat e luftës, ne renkojmë për fatkeqësinë e tyre.</p><p>Viktimat meritojnë dhemshurinë maksimale, por duhet pasur kujdes që të mos zhvlerësojmë sakrificën aktive, të ngatërrojmë fatkeqësinë me virtytin.</p>
+        </div>
+        
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

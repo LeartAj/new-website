@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leart Ajvazaj - Machine Learning Researcher & Mathematical Thinker</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Leart Ajvazaj - Machine Learning Researcher and Mathematical Thinker. Exploring the intersection of mathematics, machine learning, and theoretical computer science.">
+    <meta name="keywords" content="Leart Ajvazaj, machine learning, mathematics, research, Yale University, Galois theory, additive combinatorics, statistical learning theory">
+    <meta name="author" content="Leart Ajvazaj">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:title" content="Leart Ajvazaj - Machine Learning Researcher & Mathematical Thinker">
+    <meta property="og:description" content="Exploring the intersection of mathematics, machine learning, and theoretical computer science.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:site_name" content="Leart Ajvazaj">
+    <meta property="og:image" content="https://yourdomain.com/leart_picture.jpg">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Leart Ajvazaj - Machine Learning Researcher & Mathematical Thinker">
+    <meta name="twitter:description" content="Exploring the intersection of mathematics, machine learning, and theoretical computer science.">
+    <meta name="twitter:image" content="https://yourdomain.com/leart_picture.jpg">
+    <meta name="twitter:creator" content="@LeartAjvazaj">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="medium-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Chess Board Styles -->
+    <style>
+        .custom-chess-board {
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            border: 3px solid #8b4513;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin: 0 auto;
+        }
+        
+        .chess-square {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+            line-height: 1;
+            position: relative;
+        }
+        
+        /* White pieces styling */
+        .chess-square .white-piece {
+            color: #000;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: none;
+        }
+        
+        /* Black pieces styling */
+        .chess-square .black-piece {
+            color: #fff;
+            background: #000;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: none;
+        }
+        
+        .chess-square.light {
+            background-color: #f0d9b5;
+        }
+        
+        .chess-square.dark {
+            background-color: #b58863;
+        }
+        
+        .chess-square:hover {
+            opacity: 0.8;
+        }
+        
+        .chess-square.selected {
+            box-shadow: inset 0 0 0 4px #ff6b6b;
+        }
+        
+        .chess-square.possible-move {
+            box-shadow: inset 0 0 0 4px #51cf66;
+        }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sphere {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: visible;
+            border-radius: 100%;
+            transform-style: preserve-3d;
+            animation: rotate 8s linear infinite;
+            position: relative;
+        }
+
+        .meridian {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 100%;
+            transform-style: preserve-3d;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .meridian:nth-child(1) { transform: rotateX(10deg); }
+        .meridian:nth-child(2) { transform: rotateX(20deg); }
+        .meridian:nth-child(3) { transform: rotateX(30deg); }
+        .meridian:nth-child(4) { transform: rotateX(40deg); }
+        .meridian:nth-child(5) { transform: rotateX(50deg); }
+        .meridian:nth-child(6) { transform: rotateX(60deg); }
+        .meridian:nth-child(7) { transform: rotateX(70deg); }
+        .meridian:nth-child(8) { transform: rotateX(80deg); }
+        .meridian:nth-child(9) { transform: rotateX(90deg); }
+        .meridian:nth-child(10) { transform: rotateX(100deg); }
+        .meridian:nth-child(11) { transform: rotateX(110deg); }
+        .meridian:nth-child(12) { transform: rotateX(120deg); }
+        .meridian:nth-child(13) { transform: rotateX(130deg); }
+        .meridian:nth-child(14) { transform: rotateX(140deg); }
+        .meridian:nth-child(15) { transform: rotateX(150deg); }
+        .meridian:nth-child(16) { transform: rotateX(160deg); }
+        .meridian:nth-child(17) { transform: rotateX(170deg); }
+        .meridian:nth-child(18) { transform: rotateX(180deg); }
+        .meridian:nth-child(19) { transform: rotateX(190deg); }
+        .meridian:nth-child(20) { transform: rotateX(200deg); }
+        .meridian:nth-child(21) { transform: rotateX(210deg); }
+        .meridian:nth-child(22) { transform: rotateX(220deg); }
+        .meridian:nth-child(23) { transform: rotateX(230deg); }
+        .meridian:nth-child(24) { transform: rotateX(240deg); }
+        .meridian:nth-child(25) { transform: rotateX(250deg); }
+        .meridian:nth-child(26) { transform: rotateX(260deg); }
+        .meridian:nth-child(27) { transform: rotateX(270deg); }
+        .meridian:nth-child(28) { transform: rotateX(280deg); }
+        .meridian:nth-child(29) { transform: rotateX(290deg); }
+        .meridian:nth-child(30) { transform: rotateX(300deg); }
+        .meridian:nth-child(31) { transform: rotateX(310deg); }
+        .meridian:nth-child(32) { transform: rotateX(320deg); }
+        .meridian:nth-child(33) { transform: rotateX(330deg); }
+        .meridian:nth-child(34) { transform: rotateX(340deg); }
+        .meridian:nth-child(35) { transform: rotateX(350deg); }
+        .meridian:nth-child(36) { transform: rotateX(360deg); }
+
+        .latitude {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transform: rotateY(90deg);
+            border-radius: 100%;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.15);
+        }
+
+        .latitude:nth-child(37) { width: 296px; height: 296px; top: 2px; left: 2px; transform: rotateY(90deg) translateZ(-25px); }
+        .latitude:nth-child(38) { width: 280px; height: 280px; top: 10px; left: 10px; transform: rotateY(90deg) translateZ(-50px); }
+        .latitude:nth-child(39) { width: 260px; height: 260px; top: 20px; left: 20px; transform: rotateY(90deg) translateZ(-75px); }
+        .latitude:nth-child(40) { width: 220px; height: 220px; top: 40px; left: 40px; transform: rotateY(90deg) translateZ(-100px); }
+        .latitude:nth-child(41) { width: 160px; height: 160px; top: 70px; left: 70px; transform: rotateY(90deg) translateZ(-125px); }
+        .latitude:nth-child(42) { width: 20px; height: 20px; top: 140px; left: 140px; border: 10px solid rgba(255, 255, 255, 0.8); transform: rotateY(90deg) translateZ(-150px); }
+        .latitude:nth-child(43) { width: 296px; height: 296px; top: 2px; left: 2px; transform: rotateY(90deg) translateZ(25px); }
+        .latitude:nth-child(44) { width: 280px; height: 280px; top: 10px; left: 10px; transform: rotateY(90deg) translateZ(50px); }
+        .latitude:nth-child(45) { width: 260px; height: 260px; top: 20px; left: 20px; transform: rotateY(90deg) translateZ(75px); }
+        .latitude:nth-child(46) { width: 220px; height: 220px; top: 40px; left: 40px; transform: rotateY(90deg) translateZ(100px); }
+        .latitude:nth-child(47) { width: 160px; height: 160px; top: 70px; left: 70px; transform: rotateY(90deg) translateZ(125px); }
+        .latitude:nth-child(48) { width: 20px; height: 20px; top: 140px; left: 140px; transform: rotateY(90deg) translateZ(150px); border: 10px solid rgba(255, 255, 255, 0.8); }
+
+        .axis {
+            position: absolute;
+            width: calc(300px + 300px);
+            height: 2px;
+            top: calc(50% - 1px);
+            background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .axis + .axis {
+            transform: rotateX(90deg);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateX(30deg) rotateY(0deg) rotateZ(80deg);
+            }
+            100% {
+                transform: rotateX(30deg) rotateY(360deg) rotateZ(80deg);
+            }
+        }
+
+        /* Ballpit Background Styles */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ballpit-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="sphere">
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="meridian"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="latitude"></div>
+            <div class="axis"></div>
+            <div class="axis"></div>
+        </div>
+    </div>
+
+    <script>
+        // Immediately hide loading screen if already shown this session
+        if (sessionStorage.getItem('loadingShown')) {
+            document.getElementById('loading-screen').style.display = 'none';
+        }
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Leart Ajvazaj</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="writings.html" class="nav-link">Writings</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+                <a href="faq-recommendations.html" class="nav-link">Recommendations</a>
+                <a href="write.html" class="nav-link">Write</a>
+                <a href="index.html#about" class="nav-link">About</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <!-- Ballpit Background -->
+            <canvas id="ballpit-canvas" class="ballpit-background"></canvas>
+
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span>Hi, I'm</span> <span class="highlight">Leart Ajvazaj</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        This is my personal website
+                    </p>
+                    <p class="hero-description">
+                        Here I share resources in mathematics, machine learning and my writings on these fields but also politics fiction and sports. You can play chess agianst me below.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="writings.html" class="btn btn-primary">
+                            <i class="fas fa-book"></i>
+                            <span>Read My Writings</span>
+                        </a>
+                        <a href="technical.html" class="btn btn-secondary">
+                            <i class="fas fa-file-alt"></i>
+                            <span>View Technical</span>
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/leart-ajvazaj/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/learti.a/" class="social-link" title="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                                            <a href="https://x.com/LeartAjvazaj" class="social-link" title="X" target="_blank" rel="noopener noreferrer">
+                        <svg class="x-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+                    </a>
+                        <a href="#" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Writings Section -->
+        <section id="writings" class="section">
+            <div class="container">
+                <h2 class="section-title">Recent Writings</h2>
+                <div class="writings-grid" id="homeWritingsGrid">
+                    <!-- Published articles from write interface will be inserted here -->
+                    
+                    <!-- Albanian Politics Article - Always visible, content in Albanian -->
+                    <article class="writing-card static-article" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">April 4, 2022</span>
+                            <span class="category">Politikë</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="mos-e-lexo-kete-shkrim.html">Mos e lexo këtë shkrim—Është për politikë</a>
+                        </h3>
+                        <p class="card-excerpt">
+                             
+                        </p>
+                        <a href="mos-e-lexo-kete-shkrim.html" class="read-more">Read More</a>
+                    </article>
+
+                    <!-- New Albanian Article -->
+                    <article class="writing-card static-article" data-category="politics">
+                        <div class="card-meta">
+                            <span class="date">June 4, 2022</span>
+                            <span class="category">Politics</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="i-korruptuar-ideologjikisht.html">I korruptuar ideologjikisht</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            Ka kohë që në kritikat për politikanët kosovarë përmenden shtëpitë në lagje private, veturat luksoze ose reflektime të tjera të kapitalit të tyre ekonomik. Dekonstruktimi ideologjik i mënyrës se si jetojnë politikanë të caktuar është larg më i rëndësishëm.
+                        </p>
+                        <a href="i-korruptuar-ideologjikisht.html" class="read-more">Read More</a>
+                    </article>
+
+                    <article class="writing-card static-article" data-category="machine-learning">
+                        <div class="card-meta">
+                            <span class="date">March 15, 2024</span>
+                            <span class="category">Machine Learning</span>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="article.html">Understanding Neural Network Optimization: A Geometric Perspective</a>
+                        </h3>
+                        <p class="card-excerpt">
+                            An exploration of the geometry of neural network loss landscapes and how it influences training dynamics. 
+                            Discover why certain optimization techniques work better than others through the lens of geometric analysis.
+                        </p>
+                        <a href="article.html" class="read-more">Read More</a>
+                    </article>
+                </div>
+                <div class="section-footer">
+                    <a href="writings.html" class="btn btn-outline">View All Writings</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Section -->
+        <section id="technical" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Technical Work</h2>
+                <div class="papers-grid">
+                    <div class="paper-card">
+                        <div class="paper-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="paper-content">
+                            <h3 class="paper-title">Additive Combinatorics Notes</h3>
+                            <p class="paper-authors">Leart Ajvazaj</p>
+                            <p class="paper-venue">University of Cambridge • January 2024</p>
+                            <p class="paper-abstract">
+                                Comprehensive notes from an Additive Combinatorics class at Cambridge with Julia Wolf. 
+                                Covers Fourier-analytic techniques, Bogolyubov's lemma, Roth's theorem, and modern developments 
+                                in arithmetic progressions and sum-product phenomena.
+                            </p>
+                            <div class="paper-links">
+                                <a href="additive_combo.html" class="paper-link">
+                                    <i class="fas fa-file-pdf"></i> View PDF
+                                </a>
+                                <a href="papers/additive_combinatorics.pdf" download class="paper-link">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                                <a href="papers/additive_combinatorics.tex" download class="paper-link">
+                                    <i class="fas fa-download"></i> Download TeX
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="paper-content">
+                            <h3 class="paper-title">Galois Theory Notes</h3>
+                            <p class="paper-authors">Leart Ajvazaj</p>
+                            <p class="paper-venue">Yale University • January 2021</p>
+                            <p class="paper-abstract">
+                                Notes from a Fields and Galois Theory class at Yale. Covers field extensions, construction problems, problems of solvability, cyclotomic extensions, etc.
+                            </p>
+                            <div class="paper-links">
+                                <a href="galois_theory_notes.html" class="paper-link">
+                                    <i class="fas fa-file-pdf"></i> View PDF
+                                </a>
+                                <a href="papers/Galois_theory_notes.pdf" download class="paper-link">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                                <a href="papers/Galois_theory_notes.tex" download class="paper-link">
+                                    <i class="fas fa-download"></i> Download TeX
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="paper-card">
+                        <div class="paper-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="paper-content">
+                            <h3 class="paper-title">Statistical Learning Theory: A Modern Perspective</h3>
+                            <p class="paper-authors">Leart Ajvazaj</p>
+                            <p class="paper-venue">Conference on Learning Theory • 2023</p>
+                            <p class="paper-abstract">
+                                An examination of statistical learning theory through the lens of modern computational methods 
+                                and their theoretical foundations...
+                            </p>
+                            <div class="paper-links">
+                                <a href="#" class="paper-link">
+                                    <i class="fas fa-file-pdf"></i> PDF
+                                </a>
+                                <a href="#" class="paper-link">
+                                    <i class="fas fa-external-link-alt"></i> arXiv
+                                </a>
+                                <a href="#" class="paper-link">
+                                    <i class="fas fa-quote-left"></i> Cite
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-footer">
+                    <a href="technical.html" class="btn btn-outline">View All Technical Work</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chess Challenge Section -->
+        <section id="chess" class="section">
+            <div class="container">
+                <h2 class="section-title">Chess Challenge</h2>
+                <p class="section-subtitle">Play a collaborative chess game against me! Visitors take turns playing as one side.</p>
+                
+                <div class="chess-container">
+                    <div class="chess-board-wrapper">
+                        <div id="chessBoard" class="chess-board"></div>
+                        <div class="board-controls">
+                            <button id="flipBoard" class="btn-secondary">
+                                <i class="fas fa-sync-alt"></i> <span>Flip Board</span>
+                            </button>
+                            <button id="resetGame" class="btn-secondary">
+                                <i class="fas fa-redo"></i> <span>New Game</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chess-info">
+                        <div class="game-status">
+                            <h3 id="gameStatus">Game Status</h3>
+                            <div class="turn-indicator">
+                                <span id="currentTurn"></span>
+                            </div>
+                            <div class="player-info">
+                                <div class="player white-player">
+                                    <i class="fas fa-chess-king"></i>
+                                    <span>Visitors (White)</span>
+                                </div>
+                                <div class="player black-player">
+                                    <i class="fas fa-chess-king"></i>
+                                    <span>Leart (Black)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="move-history">
+                            <h4>Move History</h4>
+                            <div id="moveHistory" class="moves-list"></div>
+                        </div>
+                        
+                        <div class="game-info">
+                            <p><strong>How it works:</strong></p>
+                            <ul>
+                                <li>Visitors play as White collectively</li>
+                                <li>I play as Black when I'm online</li>
+                                <li>Make your move by clicking pieces</li>
+                                <li>Game state persists for everyone</li>
+                                <li>Check back to see my response!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="section section-alt">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="about-paragraph">
+                            I'm a mathematician working in machine learning. My work is on the intersection of AI, mathematics and healthcare.
+                            I work at 91Life developing machine learning models aimed at detecting electrophysiological pathologies
+                            in the heart.
+                        </p>
+                        <p class="about-paragraph">
+                            Outside of my day job, I teach mathematics (recently at ATOMI and Gjirafa LIFE). I also write about
+                            Albanian societal and political issues. The occassional satirical or fictional piece too. 
+                        </p>
+                        <p class="about-paragraph">
+                            I hold a Bachelor's degree from Yale University in mathematics (intensive major) and a 
+                            master's degree in pure mathematics from the University of Cambridge. In high school I 
+                            represented Kosovo at the International Mathematical Olympiad.                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Mathematics</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fa-solid fa-microchip"></i>
+                                <span>ML</span>
+                            </div>
+                            <div class="highlight-item">
+
+                                <i class="fa-solid fa-chess"></i>
+                                <span>1950 Peak Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="leart_picture.jpg" alt="Leart Ajvazaj">
+                        <p class="image-caption">Holding a human heart</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/leart-ajvazaj/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://www.facebook.com/learti.a/" class="footer-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+                                                    <a href="https://x.com/LeartAjvazaj" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+                        <a href="mailto:ajvazaj.leart@gmail.com" class="footer-link">Email</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="writings.html" class="footer-link">Writings</a>
+                        <a href="technical.html" class="footer-link">Technical</a>
+                        <a href="faq-recommendations.html" class="footer-link">Recommendations</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin-auth.js"></script>
+    
+    <!-- Custom Chess Game Script -->
+    <script>
+        // Simple chess game state
+        let chessBoard = null;
+        let selectedSquare = null;
+        let currentTurn = 'white'; // white or black
+        let moveHistory = [];
+        const gameKey = 'leart-simple-chess';
+        let isAdminAuthenticated = false;
+        const adminPassword = 'chess2024leart'; // Change this to your preferred password
+        
+        // Chess game translations
+        const chessTranslations = {
+            en: {
+                'gameOverBlackWins': 'Game Over - Leart (Black) Wins by Checkmate!',
+                'whiteCheckmate': 'White is in checkmate. Game over!',
+                'gameOverWhiteWins': 'Game Over - Visitors (White) Win by Checkmate!',
+                'blackCheckmate': 'Black is in checkmate. Game over!',
+                'gameOverDrawRepetition': 'Game Over - Draw by Three-Fold Repetition!',
+                'drawRepetitionText': 'The same position has occurred three times. Game is a draw.',
+                'gameOverDrawFiftyMoves': 'Game Over - Draw by Fifty-Move Rule!',
+                'drawFiftyMovesText': 'Fifty moves have passed without a pawn move or capture. Game is a draw.',
+                'whitesToMove': 'Visitors (White) to Move',
+                'blackToMove': 'Leart (Black) to Move',
+                'whiteInCheck': 'You are in check! Click a white piece to get out of check.',
+                'blackInCheck': 'Leart: You are in check! Move your king to safety or block the attack.',
+                'yourTurn': 'Your turn! Click a white piece to move.',
+                'leartTurn': 'Leart: Click a black piece to move, or use console: makeAdminMove("e7", "e5")',
+                'noMoves': 'No moves yet. Start playing!',
+                'movesUntilDraw': 'moves until 50-move draw',
+                'positionRepeated': 'Position repeated',
+                'times': 'times'
+            },
+            sq: {
+                'gameOverBlackWins': 'Loja Mbaroi - Leart (Zi) Fitoi me Shah Mat!',
+                'whiteCheckmate': 'Bardhët janë në shah mat. Loja mbaroi!',
+                'gameOverWhiteWins': 'Loja Mbaroi - Vizitorët (Bardhë) Fituan me Shah Mat!',
+                'blackCheckmate': 'Zezët janë në shah mat. Loja mbaroi!',
+                'gameOverDrawRepetition': 'Loja Mbaroi - Barazim nga Përsëritja Tre Herë!',
+                'drawRepetitionText': 'E njëjta pozicion ka ndodhur tri herë. Loja është barazim.',
+                'gameOverDrawFiftyMoves': 'Loja Mbaroi - Barazim nga Rregulli i Pesëdhjetë Lëvizjeve!',
+                'drawFiftyMovesText': 'Pesëdhjetë lëvizje kanë kaluar pa lëvizje turje ose kapje. Loja është barazim.',
+                'whitesToMove': 'Vizitorët (Bardhë) të Lëvizin',
+                'blackToMove': 'Leart (Zi) të Lëvizë',
+                'whiteInCheck': 'Jeni në shah! Klikoni një figurë të bardhë për të dalë nga shahu.',
+                'blackInCheck': 'Leart: Jeni në shah! Lëvizeni mbretin tuaj në siguri ose bllokoni sulmin.',
+                'yourTurn': 'Radha juaj! Klikoni një figurë të bardhë për të lëvizur.',
+                'leartTurn': 'Leart: Klikoni një figurë të zezë për të lëvizur, ose përdorni konsolën: makeAdminMove("e7", "e5")',
+                'noMoves': 'Asnjë lëvizje ende. Filloni të luani!',
+                'movesUntilDraw': 'lëvizje deri në barazim 50-lëvizjesh',
+                'positionRepeated': 'Pozicioni përsëritur',
+                'times': 'herë'
+            }
+        };
+        
+        // Get current language from localStorage or default to English
+        function getCurrentLanguage() {
+            return localStorage.getItem('language') || 'en';
+        }
+        
+        // Get translated text for chess game
+        function getChessTranslation(key) {
+            const lang = getCurrentLanguage();
+            return chessTranslations[lang][key] || chessTranslations.en[key];
+        }
+        
+        // Track castling rights
+        let castlingRights = {
+            whiteKingSide: true,
+            whiteQueenSide: true,
+            blackKingSide: true,
+            blackQueenSide: true
+        };
+        
+        // Track last move for en passant
+        let lastMove = null;
+        
+        // Track for draw conditions
+        let positionHistory = []; // For three-fold repetition
+        let halfMoveClock = 0; // For 50-move rule (half-moves since last pawn move or capture)
+        
+        // Initial chess board setup
+        const initialBoard = [
+            ['♜','♞','♝','♛','♚','♝','♞','♜'],
+            ['♟','♟','♟','♟','♟','♟','♟','♟'],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['♙','♙','♙','♙','♙','♙','♙','♙'],
+            ['♖','♘','♗','♕','♔','♗','♘','♖']
+        ];
+        
+        // Initialize the chess game
+        function initCustomChessGame() {
+            console.log('Initializing custom chess game...');
+            
+            // Load saved game or use initial setup
+            const savedGame = localStorage.getItem(gameKey);
+            if (savedGame) {
+                try {
+                    const gameData = JSON.parse(savedGame);
+                    chessBoard = gameData.board;
+                    currentTurn = gameData.turn;
+                    moveHistory = gameData.moves || [];
+                    castlingRights = gameData.castlingRights || {
+                        whiteKingSide: true,
+                        whiteQueenSide: true,
+                        blackKingSide: true,
+                        blackQueenSide: true
+                    };
+                    lastMove = gameData.lastMove || null;
+                    positionHistory = gameData.positionHistory || [];
+                    halfMoveClock = gameData.halfMoveClock || 0;
+                } catch (error) {
+                    console.log('Starting new game');
+                    chessBoard = JSON.parse(JSON.stringify(initialBoard));
+                    castlingRights = {
+                        whiteKingSide: true,
+                        whiteQueenSide: true,
+                        blackKingSide: true,
+                        blackQueenSide: true
+                    };
+                    lastMove = null;
+                    positionHistory = [];
+                    halfMoveClock = 0;
+                }
+            } else {
+                chessBoard = JSON.parse(JSON.stringify(initialBoard));
+                castlingRights = {
+                    whiteKingSide: true,
+                    whiteQueenSide: true,
+                    blackKingSide: true,
+                    blackQueenSide: true
+                };
+                lastMove = null;
+                positionHistory = [];
+                halfMoveClock = 0;
+            }
+            
+            createChessBoard();
+            updateGameStatus();
+            updateMoveHistory();
+            
+            // Event listeners
+            document.getElementById('flipBoard').addEventListener('click', flipBoard);
+            document.getElementById('resetGame').addEventListener('click', resetGame);
+        }
+        function createChessBoard() {
+            const boardElement = document.getElementById('chessBoard');
+            boardElement.innerHTML = '';
+            boardElement.className = 'custom-chess-board';
+            
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = 'chess-square ' + ((row + col) % 2 === 0 ? 'light' : 'dark');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.addEventListener('click', handleSquareClick);
+                    
+                    const piece = chessBoard[row][col];
+                    if (piece) {
+                        const pieceElement = document.createElement('div');
+                        pieceElement.textContent = piece;
+                        
+                        if (isWhitePiece(piece)) {
+                            pieceElement.className = 'white-piece';
+                        } else {
+                            pieceElement.className = 'black-piece';
+                        }
+                        
+                        square.appendChild(pieceElement);
+                    }
+                    
+                    boardElement.appendChild(square);
+                }
+            }
+        }
+        
+        function handleSquareClick(event) {
+            // Check if game is over
+            if (isCheckmate(true) || isCheckmate(false) || isDrawByRepetition() || isDrawByFiftyMoves()) {
+                return; // No moves allowed when game is over
+            }
+            
+            // Get the square element (might be clicked directly or via piece element)
+            let squareElement = event.target;
+            if (squareElement.classList.contains('white-piece') || squareElement.classList.contains('black-piece')) {
+                squareElement = squareElement.parentElement; // Get the parent square
+            }
+            
+            const row = parseInt(squareElement.dataset.row);
+            const col = parseInt(squareElement.dataset.col);
+            const piece = chessBoard[row][col];
+            
+            if (selectedSquare) {
+                // Try to make a move
+                const fromRow = selectedSquare.row;
+                const fromCol = selectedSquare.col;
+                
+                if (fromRow === row && fromCol === col) {
+                    // Clicking same square - deselect
+                    clearSelection();
+                    return;
+                }
+                
+                // Check if this is a valid move
+                if (isValidMove(fromRow, fromCol, row, col)) {
+                    makeMove(fromRow, fromCol, row, col);
+                }
+                
+                clearSelection();
+            } else {
+                // Select a piece based on current turn
+                if (piece) {
+                    if (currentTurn === 'white' && isWhitePiece(piece)) {
+                        selectedSquare = {row, col};
+                        squareElement.classList.add('selected');
+                        highlightPossibleMoves(row, col);
+                    } else if (currentTurn === 'black' && isBlackPiece(piece)) {
+                        if (authenticateAdmin()) {
+                            selectedSquare = {row, col};
+                            squareElement.classList.add('selected');
+                            highlightPossibleMoves(row, col);
+                        }
+                    }
+                }
+            }
+        }
+        
+        function isWhitePiece(piece) {
+            return ['♙','♖','♘','♗','♕','♔'].includes(piece);
+        }
+        
+        function isBlackPiece(piece) {
+            return ['♟','♜','♞','♝','♛','♚'].includes(piece);
+        }
+        
+        function isValidMove(fromRow, fromCol, toRow, toCol) {
+            const piece = chessBoard[fromRow][fromCol];
+            const targetPiece = chessBoard[toRow][toCol];
+            
+            // Can't move outside board
+            if (toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8) {
+                return false;
+            }
+            
+            // Can't capture own pieces
+            if (targetPiece && isWhitePiece(piece) && isWhitePiece(targetPiece)) {
+                return false;
+            }
+            if (targetPiece && isBlackPiece(piece) && isBlackPiece(targetPiece)) {
+                return false;
+            }
+            
+            // Check basic piece movement rules
+            if (!isValidPieceMove(piece, fromRow, fromCol, toRow, toCol)) {
+                return false;
+            }
+            
+            // Most importantly: the move must not leave your own king in check
+            return !wouldLeaveKingInCheck(fromRow, fromCol, toRow, toCol);
+        }
+        
+        function isValidPieceMove(piece, fromRow, fromCol, toRow, toCol) {
+            const rowDiff = toRow - fromRow;
+            const colDiff = toCol - fromCol;
+            const absRowDiff = Math.abs(rowDiff);
+            const absColDiff = Math.abs(colDiff);
+            const targetPiece = chessBoard[toRow][toCol];
+            
+            switch(piece) {
+                case '♙': // White Pawn
+                    if (colDiff === 0) {
+                        // Moving forward
+                        if (rowDiff === -1 && !targetPiece) return true; // One square forward
+                        if (rowDiff === -2 && fromRow === 6 && !targetPiece && !chessBoard[5][fromCol]) return true; // Two squares from start
+                    } else if (absColDiff === 1 && rowDiff === -1) {
+                        // Diagonal capture (normal or en passant)
+                        if (targetPiece) return true; // Normal capture
+                        // Check for en passant
+                        if (canEnPassant(fromRow, fromCol, toRow, toCol)) return true;
+                    }
+                    return false;
+                    
+                case '♟': // Black Pawn
+                    if (colDiff === 0) {
+                        // Moving forward
+                        if (rowDiff === 1 && !targetPiece) return true; // One square forward
+                        if (rowDiff === 2 && fromRow === 1 && !targetPiece && !chessBoard[2][fromCol]) return true; // Two squares from start
+                    } else if (absColDiff === 1 && rowDiff === 1) {
+                        // Diagonal capture (normal or en passant)
+                        if (targetPiece) return true; // Normal capture
+                        // Check for en passant
+                        if (canEnPassant(fromRow, fromCol, toRow, toCol)) return true;
+                    }
+                    return false;
+                    
+                case '♖': case '♜': // Rook
+                    if (rowDiff === 0 || colDiff === 0) {
+                        return isPathClear(fromRow, fromCol, toRow, toCol);
+                    }
+                    return false;
+                    
+                case '♗': case '♝': // Bishop
+                    if (absRowDiff === absColDiff) {
+                        return isPathClear(fromRow, fromCol, toRow, toCol);
+                    }
+                    return false;
+                    
+                case '♕': case '♛': // Queen
+                    if (rowDiff === 0 || colDiff === 0 || absRowDiff === absColDiff) {
+                        return isPathClear(fromRow, fromCol, toRow, toCol);
+                    }
+                    return false;
+                    
+                case '♘': case '♞': // Knight
+                    return (absRowDiff === 2 && absColDiff === 1) || (absRowDiff === 1 && absColDiff === 2);
+                    
+                case '♔': case '♚': // King
+                    // Normal king moves
+                    if (absRowDiff <= 1 && absColDiff <= 1) {
+                        return true;
+                    }
+                    
+                    // Castling moves
+                    if (absRowDiff === 0 && absColDiff === 2) {
+                        return canCastle(piece, fromRow, fromCol, toRow, toCol);
+                    }
+                    
+                    return false;
+                    
+                default:
+                    return false;
+            }
+        }
+        
+        function isPathClear(fromRow, fromCol, toRow, toCol) {
+            const rowStep = toRow === fromRow ? 0 : (toRow > fromRow ? 1 : -1);
+            const colStep = toCol === fromCol ? 0 : (toCol > fromCol ? 1 : -1);
+            
+            let currentRow = fromRow + rowStep;
+            let currentCol = fromCol + colStep;
+            
+            while (currentRow !== toRow || currentCol !== toCol) {
+                if (chessBoard[currentRow][currentCol] !== '') {
+                    return false; // Path blocked
+                }
+                currentRow += rowStep;
+                currentCol += colStep;
+            }
+            
+            return true;
+        }
+        
+        function canCastle(piece, fromRow, fromCol, toRow, toCol) {
+            const isWhite = piece === '♔';
+            const isKingSide = toCol > fromCol; // King side if moving right
+            
+            // Check if castling rights are available
+            if (isWhite) {
+                if (isKingSide && !castlingRights.whiteKingSide) return false;
+                if (!isKingSide && !castlingRights.whiteQueenSide) return false;
+            } else {
+                if (isKingSide && !castlingRights.blackKingSide) return false;
+                if (!isKingSide && !castlingRights.blackQueenSide) return false;
+            }
+            
+            // King must be on starting square
+            if (isWhite && (fromRow !== 7 || fromCol !== 4)) return false;
+            if (!isWhite && (fromRow !== 0 || fromCol !== 4)) return false;
+            
+            // King must not be in check
+            if (isKingInCheck(isWhite)) return false;
+            
+            // Check if rook is in correct position
+            const rookCol = isKingSide ? 7 : 0;
+            const expectedRook = isWhite ? '♖' : '♜';
+            if (chessBoard[fromRow][rookCol] !== expectedRook) return false;
+            
+            // Check if squares between king and rook are empty
+            const startCol = Math.min(fromCol, rookCol);
+            const endCol = Math.max(fromCol, rookCol);
+            for (let col = startCol + 1; col < endCol; col++) {
+                if (chessBoard[fromRow][col] !== '') return false;
+            }
+            
+            // Check if king passes through check
+            const kingPath = isKingSide ? [fromCol + 1, fromCol + 2] : [fromCol - 1, fromCol - 2];
+            for (const col of kingPath) {
+                // Temporarily move king to check if it would be in check
+                const originalPiece = chessBoard[fromRow][col];
+                chessBoard[fromRow][col] = piece;
+                chessBoard[fromRow][fromCol] = '';
+                
+                const wouldBeInCheck = isKingInCheck(isWhite);
+                
+                // Restore board
+                chessBoard[fromRow][fromCol] = piece;
+                chessBoard[fromRow][col] = originalPiece;
+                
+                if (wouldBeInCheck) return false;
+            }
+            
+            return true;
+        }
+        
+        function canEnPassant(fromRow, fromCol, toRow, toCol) {
+            // En passant can only happen if there was a last move
+            if (!lastMove) return false;
+            
+            const piece = chessBoard[fromRow][fromCol];
+            const isWhitePawn = piece === '♙';
+            const isBlackPawn = piece === '♟';
+            
+            // Check if we're on the correct rank for en passant
+            if (isWhitePawn && fromRow !== 3) return false; // White pawn must be on 5th rank (index 3)
+            if (isBlackPawn && fromRow !== 4) return false; // Black pawn must be on 4th rank (index 4)
+            
+            // Check if last move was a 2-square pawn move
+            if (!lastMove.wasTwoSquarePawnMove) return false;
+            
+            // Check if the pawn that moved 2 squares is adjacent to our pawn
+            if (lastMove.toRow !== fromRow) return false; // Must be on same row
+            if (Math.abs(lastMove.toCol - fromCol) !== 1) return false; // Must be adjacent
+            
+            // Check if we're trying to capture to the square behind the pawn that moved 2 squares
+            if (toCol !== lastMove.toCol) return false; // Must capture to the same column as the pawn
+            if (isWhitePawn && toRow !== lastMove.toRow - 1) return false; // White captures upward
+            if (isBlackPawn && toRow !== lastMove.toRow + 1) return false; // Black captures downward
+            
+            return true;
+        }
+        
+        function generatePositionString() {
+            // Create a unique string representing the current position
+            // Includes: board state, turn, castling rights, en passant possibility
+            let positionStr = '';
+            
+            // Add board state
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    positionStr += chessBoard[row][col] || '.';
+                }
+            }
+            
+            // Add current turn
+            positionStr += '|' + currentTurn;
+            
+            // Add castling rights
+            positionStr += '|' + (castlingRights.whiteKingSide ? 'K' : '') +
+                                 (castlingRights.whiteQueenSide ? 'Q' : '') +
+                                 (castlingRights.blackKingSide ? 'k' : '') +
+                                 (castlingRights.blackQueenSide ? 'q' : '');
+            
+            // Add en passant possibility
+            if (lastMove && lastMove.wasTwoSquarePawnMove) {
+                const enPassantCol = String.fromCharCode(97 + lastMove.toCol);
+                const enPassantRow = lastMove.piece === '♟' ? '3' : '6';
+                positionStr += '|' + enPassantCol + enPassantRow;
+            } else {
+                positionStr += '|-';
+            }
+            
+            return positionStr;
+        }
+        
+        function checkThreeFoldRepetition() {
+            const currentPosition = generatePositionString();
+            let count = 0;
+            
+            for (const position of positionHistory) {
+                if (position === currentPosition) {
+                    count++;
+                }
+            }
+            
+            return count >= 2; // Current position + 2 previous = 3 total
+        }
+        
+        function checkFiftyMoveRule() {
+            return halfMoveClock >= 100; // 100 half-moves = 50 full moves
+        }
+        
+        function isDrawByRepetition() {
+            return checkThreeFoldRepetition();
+        }
+        
+        function isDrawByFiftyMoves() {
+            return checkFiftyMoveRule();
+        }
+        
+        function highlightPossibleMoves(fromRow, fromCol) {
+            const piece = chessBoard[fromRow][fromCol];
+            
+            // Clear previous highlights
+            document.querySelectorAll('.chess-square').forEach(square => {
+                square.classList.remove('possible-move');
+            });
+            
+            // Check all squares for valid moves
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    if (isValidMove(fromRow, fromCol, row, col)) {
+                        const squareIndex = row * 8 + col;
+                        const squares = document.querySelectorAll('.chess-square');
+                        squares[squareIndex].classList.add('possible-move');
+                    }
+                }
+            }
+        }
+        
+        function findKing(isWhite) {
+            const kingPiece = isWhite ? '♔' : '♚';
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    if (chessBoard[row][col] === kingPiece) {
+                        return {row, col};
+                    }
+                }
+            }
+            return null;
+        }
+        function isKingInCheck(isWhite) {
+            const king = findKing(isWhite);
+            if (!king) return false;
+            
+            // Check if any opponent piece can attack the king
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const piece = chessBoard[row][col];
+                    if (piece && (isWhite ? isBlackPiece(piece) : isWhitePiece(piece))) {
+                        // Check if this opponent piece can attack the king
+                        if (isValidPieceMove(piece, row, col, king.row, king.col)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        
+        function wouldLeaveKingInCheck(fromRow, fromCol, toRow, toCol) {
+            const piece = chessBoard[fromRow][fromCol];
+            const targetPiece = chessBoard[toRow][toCol];
+            const isWhite = isWhitePiece(piece);
+            
+            // Make the move temporarily
+            chessBoard[toRow][toCol] = piece;
+            chessBoard[fromRow][fromCol] = '';
+            
+            // Check if king is in check after this move
+            const kingInCheck = isKingInCheck(isWhite);
+            
+            // Undo the move
+            chessBoard[fromRow][fromCol] = piece;
+            chessBoard[toRow][toCol] = targetPiece;
+            
+            return kingInCheck;
+        }
+        
+        function isCheckmate(isWhite) {
+            // If king is not in check, it's not checkmate
+            if (!isKingInCheck(isWhite)) {
+                return false;
+            }
+            
+            // Check if any move can get out of check
+            for (let fromRow = 0; fromRow < 8; fromRow++) {
+                for (let fromCol = 0; fromCol < 8; fromCol++) {
+                    const piece = chessBoard[fromRow][fromCol];
+                    if (piece && (isWhite ? isWhitePiece(piece) : isBlackPiece(piece))) {
+                        // Try all possible moves for this piece
+                        for (let toRow = 0; toRow < 8; toRow++) {
+                            for (let toCol = 0; toCol < 8; toCol++) {
+                                // Use full validation logic, not just piece movement
+                                if (isValidMoveForCheckmate(piece, fromRow, fromCol, toRow, toCol)) {
+                                    return false; // Found a legal move, not checkmate
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return true; // No legal moves found, it's checkmate
+        }
+        
+        function isValidMoveForCheckmate(piece, fromRow, fromCol, toRow, toCol) {
+            const targetPiece = chessBoard[toRow][toCol];
+            
+            // Can't move outside board
+            if (toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8) {
+                return false;
+            }
+            
+            // Can't capture own pieces
+            if (targetPiece && isWhitePiece(piece) && isWhitePiece(targetPiece)) {
+                return false;
+            }
+            if (targetPiece && isBlackPiece(piece) && isBlackPiece(targetPiece)) {
+                return false;
+            }
+            
+            // Check basic piece movement rules
+            if (!isValidPieceMove(piece, fromRow, fromCol, toRow, toCol)) {
+                return false;
+            }
+            
+            // Most importantly: the move must not leave your own king in check
+            return !wouldLeaveKingInCheck(fromRow, fromCol, toRow, toCol);
+        }
+        
+        function makeMove(fromRow, fromCol, toRow, toCol) {
+            const piece = chessBoard[fromRow][fromCol];
+            const capturedPiece = chessBoard[toRow][toCol];
+            const isWhite = isWhitePiece(piece);
+            let moveNotation = '';
+            let isEnPassant = false;
+            
+            // Handle castling moves
+            if ((piece === '♔' || piece === '♚') && Math.abs(toCol - fromCol) === 2) {
+                // This is a castling move
+                const isKingSide = toCol > fromCol;
+                const rookFromCol = isKingSide ? 7 : 0;
+                const rookToCol = isKingSide ? toCol - 1 : toCol + 1;
+                const rook = chessBoard[fromRow][rookFromCol];
+                
+                // Move king
+                chessBoard[toRow][toCol] = piece;
+                chessBoard[fromRow][fromCol] = '';
+                
+                // Move rook
+                chessBoard[fromRow][rookToCol] = rook;
+                chessBoard[fromRow][rookFromCol] = '';
+                
+                // Record castling move
+                moveNotation = isKingSide ? 'O-O' : 'O-O-O';
+            } else if ((piece === '♙' || piece === '♟') && !capturedPiece && Math.abs(toCol - fromCol) === 1) {
+                // This is an en passant capture
+                isEnPassant = true;
+                const capturedPawnRow = isWhite ? toRow + 1 : toRow - 1;
+                const capturedPawn = chessBoard[capturedPawnRow][toCol];
+                
+                // Move pawn
+                chessBoard[toRow][toCol] = piece;
+                chessBoard[fromRow][fromCol] = '';
+                
+                // Remove captured pawn
+                chessBoard[capturedPawnRow][toCol] = '';
+                
+                // Record en passant move
+                moveNotation = String.fromCharCode(97 + fromCol) + 'x' + String.fromCharCode(97 + toCol) + (8 - toRow) + ' e.p.';
+            } else {
+                // Normal move
+                chessBoard[toRow][toCol] = piece;
+                chessBoard[fromRow][fromCol] = '';
+                
+                // Record move
+                moveNotation = piece + ' ' + String.fromCharCode(97 + fromCol) + (8 - fromRow) + 
+                               (capturedPiece ? 'x' : '-') + String.fromCharCode(97 + toCol) + (8 - toRow);
+            }
+            
+            // Track last move for en passant
+            lastMove = {
+                piece: piece,
+                fromRow: fromRow,
+                fromCol: fromCol,
+                toRow: toRow,
+                toCol: toCol,
+                wasTwoSquarePawnMove: (piece === '♙' || piece === '♟') && Math.abs(toRow - fromRow) === 2,
+                wasEnPassant: isEnPassant
+            };
+            
+            // Add move to history
+            moveHistory.push(moveNotation);
+            
+            // Update half-move clock for 50-move rule
+            if (piece === '♙' || piece === '♟' || capturedPiece || isEnPassant) {
+                // Pawn move or capture resets the clock
+                halfMoveClock = 0;
+            } else {
+                halfMoveClock++;
+            }
+            
+            // Add current position to history for three-fold repetition
+            positionHistory.push(generatePositionString());
+            
+            // Update castling rights
+            updateCastlingRights(piece, fromRow, fromCol, toRow, toCol);
+            
+            // Switch turns
+            currentTurn = currentTurn === 'white' ? 'black' : 'white';
+            
+            // Update display
+            createChessBoard();
+            updateGameStatus();
+            updateMoveHistory();
+            saveGame();
+        }
+        
+        function updateCastlingRights(piece, fromRow, fromCol, toRow, toCol) {
+            // If king moves, lose both castling rights
+            if (piece === '♔') {
+                castlingRights.whiteKingSide = false;
+                castlingRights.whiteQueenSide = false;
+            } else if (piece === '♚') {
+                castlingRights.blackKingSide = false;
+                castlingRights.blackQueenSide = false;
+            }
+            
+            // If rook moves, lose castling rights on that side
+            if (piece === '♖') {
+                if (fromRow === 7 && fromCol === 0) castlingRights.whiteQueenSide = false;
+                if (fromRow === 7 && fromCol === 7) castlingRights.whiteKingSide = false;
+            } else if (piece === '♜') {
+                if (fromRow === 0 && fromCol === 0) castlingRights.blackQueenSide = false;
+                if (fromRow === 0 && fromCol === 7) castlingRights.blackKingSide = false;
+            }
+            
+            // If rook is captured, lose castling rights on that side
+            if (toRow === 7 && toCol === 0) castlingRights.whiteQueenSide = false;
+            if (toRow === 7 && toCol === 7) castlingRights.whiteKingSide = false;
+            if (toRow === 0 && toCol === 0) castlingRights.blackQueenSide = false;
+            if (toRow === 0 && toCol === 7) castlingRights.blackKingSide = false;
+        }
+        
+        function clearSelection() {
+            selectedSquare = null;
+            document.querySelectorAll('.chess-square').forEach(square => {
+                square.classList.remove('selected', 'possible-move');
+            });
+        }
+        
+        function updateGameStatus() {
+            let status = '';
+            let turnText = '';
+            
+            // Check for checkmate first (for both players)
+            const whiteInCheck = isKingInCheck(true);
+            const blackInCheck = isKingInCheck(false);
+            const whiteCheckmate = isCheckmate(true);
+            const blackCheckmate = isCheckmate(false);
+            
+            // Debug logging
+            console.log('Game Status Check:', {
+                whiteInCheck,
+                blackInCheck,
+                whiteCheckmate,
+                blackCheckmate,
+                currentTurn
+            });
+            
+            // Check for draw conditions
+            const drawByRepetition = isDrawByRepetition();
+            const drawByFiftyMoves = isDrawByFiftyMoves();
+            
+            if (whiteCheckmate) {
+                status = getChessTranslation('gameOverBlackWins');
+                turnText = getChessTranslation('whiteCheckmate');
+                console.log('WHITE CHECKMATE DETECTED!');
+            } else if (blackCheckmate) {
+                status = getChessTranslation('gameOverWhiteWins');
+                turnText = getChessTranslation('blackCheckmate');
+                console.log('BLACK CHECKMATE DETECTED!');
+            } else if (drawByRepetition) {
+                status = getChessTranslation('gameOverDrawRepetition');
+                turnText = getChessTranslation('drawRepetitionText');
+                console.log('DRAW BY THREE-FOLD REPETITION!');
+            } else if (drawByFiftyMoves) {
+                status = getChessTranslation('gameOverDrawFiftyMoves');
+                turnText = getChessTranslation('drawFiftyMovesText');
+                console.log('DRAW BY FIFTY-MOVE RULE!');
+            } else {
+                // Game is still ongoing - check for check and whose turn it is
+                
+                // Check for draw warnings
+                let drawWarning = '';
+                if (halfMoveClock >= 80) { // 40 moves without pawn move/capture
+                    drawWarning = ` (${50 - Math.floor(halfMoveClock/2)} ${getChessTranslation('movesUntilDraw')})`;
+                }
+                
+                const currentPosition = generatePositionString();
+                let positionCount = 0;
+                for (const position of positionHistory) {
+                    if (position === currentPosition) {
+                        positionCount++;
+                    }
+                }
+                if (positionCount >= 1) {
+                    drawWarning += ` (${getChessTranslation('positionRepeated')} ${positionCount + 1} ${getChessTranslation('times')})`;
+                }
+                
+                if (currentTurn === 'white') {
+                    status = getChessTranslation('whitesToMove') + drawWarning;
+                    if (whiteInCheck) {
+                        status = status.replace(drawWarning, '') + ' - CHECK!' + drawWarning;
+                        turnText = getChessTranslation('whiteInCheck');
+                    } else {
+                        turnText = getChessTranslation('yourTurn');
+                    }
+                    document.querySelector('.white-player').classList.add('active');
+                    document.querySelector('.black-player').classList.remove('active');
+                } else {
+                    status = getChessTranslation('blackToMove') + drawWarning;
+                    if (blackInCheck) {
+                        status = status.replace(drawWarning, '') + ' - CHECK!' + drawWarning;
+                        turnText = getChessTranslation('blackInCheck');
+                    } else {
+                        turnText = getChessTranslation('leartTurn');
+                    }
+                    document.querySelector('.black-player').classList.add('active');
+                    document.querySelector('.white-player').classList.remove('active');
+                }
+            }
+        
+            document.getElementById('gameStatus').textContent = status;
+            document.getElementById('currentTurn').textContent = turnText;
+        }
+        
+        function updateMoveHistory() {
+            const historyElement = document.getElementById('moveHistory');
+            
+            if (moveHistory.length === 0) {
+                historyElement.innerHTML = `<div class="move-entry">${getChessTranslation('noMoves')}</div>`;
+                return;
+            }
+            
+            let html = '';
+            for (let i = 0; i < moveHistory.length; i++) {
+                const moveNumber = Math.floor(i / 2) + 1;
+                if (i % 2 === 0) {
+                    html += '<div class="move-entry">' + moveNumber + '. ' + moveHistory[i];
+                    if (moveHistory[i + 1]) {
+                        html += ' ' + moveHistory[i + 1];
+                    }
+                    html += '</div>';
+                }
+            }
+            
+            historyElement.innerHTML = html;
+            historyElement.scrollTop = historyElement.scrollHeight;
+        }
+        
+        function saveGame() {
+            const gameData = {
+                board: chessBoard,
+                turn: currentTurn,
+                moves: moveHistory,
+                castlingRights: castlingRights,
+                lastMove: lastMove,
+                positionHistory: positionHistory,
+                halfMoveClock: halfMoveClock,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem(gameKey, JSON.stringify(gameData));
+        }
+        
+        function resetGame() {
+            if (confirm('Are you sure you want to start a new game?')) {
+                chessBoard = JSON.parse(JSON.stringify(initialBoard));
+                currentTurn = 'white';
+                moveHistory = [];
+                selectedSquare = null;
+                castlingRights = {
+                    whiteKingSide: true,
+                    whiteQueenSide: true,
+                    blackKingSide: true,
+                    blackQueenSide: true
+                };
+                lastMove = null;
+                positionHistory = [];
+                halfMoveClock = 0;
+                localStorage.removeItem(gameKey);
+                createChessBoard();
+                updateGameStatus();
+                updateMoveHistory();
+            }
+        }
+        
+        function flipBoard() {
+            const boardElement = document.getElementById('chessBoard');
+            boardElement.style.transform = boardElement.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+        
+        function authenticateAdmin() {
+            if (isAdminAuthenticated) {
+                return true;
+            }
+            
+            const enteredPassword = prompt('Admin access required. Enter password to make Black moves:');
+            
+            if (enteredPassword === adminPassword) {
+                isAdminAuthenticated = true;
+                alert('✅ Authentication successful! You can now move Black pieces.');
+                return true;
+            } else if (enteredPassword !== null) { // User didn't cancel
+                alert('❌ Incorrect password. Only Leart can move Black pieces.');
+            }
+            
+            return false;
+        }
+        
+        // Reset authentication when page loads (for security)
+        window.addEventListener('beforeunload', function() {
+            isAdminAuthenticated = false;
+        });
+        
+        // Admin function for Leart to make moves
+        window.makeAdminMove = function(fromSquare, toSquare) {
+            if (isCheckmate(true) || isCheckmate(false) || isDrawByRepetition() || isDrawByFiftyMoves()) {
+                console.log('Game is over - no more moves allowed');
+                return false;
+            }
+            
+            if (currentTurn !== 'black') {
+                console.log('Not black\'s turn');
+                return false;
+            }
+            
+            if (!authenticateAdmin()) {
+                console.log('Authentication failed');
+                return false;
+            }
+            
+            // Convert notation like 'e7' to row/col
+            const fromCol = fromSquare.charCodeAt(0) - 97;
+            const fromRow = 8 - parseInt(fromSquare[1]);
+            const toCol = toSquare.charCodeAt(0) - 97;
+            const toRow = 8 - parseInt(toSquare[1]);
+            
+            if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                makeMove(fromRow, fromCol, toRow, toCol);
+                console.log('Move made:', fromSquare, 'to', toSquare);
+                return true;
+            } else {
+                console.log('Invalid move');
+                return false;
+            }
+        };
+        
+        // Function to update chess game text when language changes
+        function updateChessGameLanguage() {
+            if (document.getElementById('chessBoard')) {
+                updateGameStatus();
+                updateMoveHistory();
+            }
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('chessBoard')) {
+                initCustomChessGame();
+            }
+            
+            // Listen for language changes
+            const languageToggle = document.getElementById('language-toggle');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function() {
+                    // Use a small delay to ensure language is updated first
+                    setTimeout(updateChessGameLanguage, 100);
+                });
+            }
+        });
+    </script>
+
+    <script src="medium-integration.js"></script>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/"
+        }
+    }
+    </script>
+
+    <!-- Ballpit Initialization -->
+    <script type="module">
+        import { createBallpit } from './Ballpit.js';
+
+        // Initialize ballpit when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('ballpit-canvas');
+            if (canvas) {
+                try {
+                    const ballpitInstance = createBallpit(canvas, {
+                        count: 70,
+                        gravity: 0.01,
+                        friction: 0.99,
+                        wallBounce: 0.95,
+                        followCursor: true,
+                        colors: [0x667eea, 0x764ba2, 0xf093fb, 0x4facfe],
+                        ambientIntensity: 0.8,
+                        lightIntensity: 150
+                    });
+                    console.log('Ballpit initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing ballpit:', error);
+                }
+            }
+        });
+    </script>
+
+    <!-- Loading Screen Script -->
+    <script>
+        // Only handle the fade-out animation on first load
+        if (!sessionStorage.getItem('loadingShown')) {
+            window.addEventListener('load', function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                setTimeout(function() {
+                    loadingScreen.classList.add('hidden');
+                    // Mark as shown for this session
+                    sessionStorage.setItem('loadingShown', 'true');
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html> 

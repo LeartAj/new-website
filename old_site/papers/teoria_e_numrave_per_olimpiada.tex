@@ -1,0 +1,853 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\PassOptionsToPackage{usenames,dvipsnames}{xcolor}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\tcbuselibrary{theorems}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{mathrsfs}
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand*{\proofname}{V\"{e}rtetim}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\pmmp}{pmmp}
+\DeclareMathOperator{\shmvp}{shmvp}
+\theoremstyle{definition}
+\newtheorem{myth}{Teorem\"{e}}[section]
+\newtheorem{myd}[myth]{Definicion}
+\newtheorem{myp}[myth]{Problem}
+\newcommand{\ord}[2]{\text{ord}_{#1}(#2)}
+\newcommand{\cho}[2]{{#1 \choose #2}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Image}{\text{Im}}
+\newcommand{\modd}{\text{-mod}}
+%%%%%%% Problem Environment  %%%%%%%%%%%%%%%%%
+\newtheoremstyle{problemstyle}  % <name>
+        {10pt}                                               % <space above>
+        {10pt}                                               % <space below>
+        {\normalfont}                               % <body font>
+        {}                                                  % <indent amount}
+        {\normalfont\bfseries}                 % <theorem head font>
+        {\normalfont\bfseries.}         % <punctuation after theorem head>
+        {.5em}                                          % <space after theorem head>
+        {}                                                  % <theorem head spec (can be left empty, meaning `normal')>
+\theoremstyle{problemstyle}
+
+\newtheorem{problem}{Problem}[section] % Comment out [section] to remove section number dependence
+
+%%%%  Ushtrime Enviroment  %%%%%
+
+\newtheorem{ushtrim}{Ushtrim}[section] % Comment out [section] to remove section number dependence
+
+
+%%%% Teoreme Environment %%%%
+\newtcbtheorem
+  []% init options
+  {theo}% name
+  {Teorem\"{e}}% title
+  {%
+    colback=BlueGreen!5,
+    colframe=green!35!blue,
+    fonttitle=\bfseries, before
+skip=20pt,after skip=20pt 
+  }% options
+  {theo}% prefix
+%%%% Rrjedhim Environment %%%%
+\newtcbtheorem
+  [no counter]% init options
+  {corollary}% name
+  {Rrjedhim}% title
+  {%
+    colback=Plum!10,
+    colframe=Plum!95!Black,
+    fonttitle=\bfseries, before
+skip=20pt plus 2pt,after skip=20pt plus 2pt
+  }% options
+  {corollary}% prefix
+%%%% Shenim Environment %%%%
+\newtcbtheorem
+  [no counter]% init options
+  {remark}% name
+  {Sh\"{e}nim}% title
+  {%
+    colback=OrangeRed!10,
+    colframe=OrangeRed!95!Black,
+    fonttitle=\bfseries, before
+skip=20pt plus 2pt,after skip=20pt plus 2pt
+  }% options
+  {remark}% prefix  
+%%%%%  SOLUTION ENVIRONMENT %%%%%
+\newenvironment{solution}{\renewcommand{\proofname}{Zgjidhje}\begin{proof}}{\end{proof}}
+%%%%
+\setlength\parindent{0pt}
+  
+\begin{document}
+\title{Material Pergaditor nga Teoria e Numrave}
+\author{Leart Ajvazaj}
+\date{Dhjetor 2022}
+\maketitle
+
+\begin{quote} 
+Matematika \"{e}sht\"{e} mbret\"{e}resha e t\"{e} gjith\"{e} shkencave - dhe teoria e numrave \"{e}sht\"{e} mbret\"{e}resha e matematik\"{e}s 
+\begin{flushright}
+C.F. Gauss
+\end{flushright}
+\end{quote}
+Nj\"{e}ra nga kat\"{e}r fushat kryesore n\"{e} olimpiada matematike, teoria e numrave konsiderohet nga shum\"{e} si disiplina m\"{e} e vjet\"{e}r n\"{e} matematike.
+Th\"{e}n\"{e} me pak fjal\"{e}, teoria e numrave merret me studimin e numrave t\"{e} plot\"{e} dhe numrave t\"{e} thjesht\"{e}.
+Bashk\"{e}sia e numrave t\"{e} plot\"{e} sh\"{e}nohet me $\mathbb{Z}$ dhe p\"{e}rmban $$\left\{\dots,-3,-2,-1,0,1,2,3,\dots\right\}$$
+Q\"{e}llimi i k\"{e}tij materiali \"{e}sht\"{e} paisja e nx\"{e}n\"{e}sve me njohuri t\"{e} mjaftueshme p\"{e}r t\"{e} kuptuar dhe zgjidhur problemet e nivelit 1/4 n\"{e} olimpiad\"{e}n nd\"{e}rkomb\"{e}tare t\"{e} matematik\"{e}s. N\"{e}se v\"{e}reni probleme me k\"{e}t\"{e} material, ju lutem m\"{e} kontaktoni n\"{e} ajvazaj.leart@gmail.com.
+\section{Moduli I - Plotpjes\"{e}tueshm\"{e}ria}
+
+\subsection{Plotpjes\"{e}tueshm\"{e}ria}
+Nj\"{e}ra nga idet\"{e} m\"{e} t\"{e} r\"{e}nd\"{e}sishme n\"{e} teorin\"{e} e numrave \"{e}sht\"{e} ajo e plotpjes\"{e}tueshm\"{e}ris\"{e}. N\"{e} shkoll\"{e} fillore m\"{e}sojm\"{e} operacionin e pjes\"{e}timit duke vendosur theks t\"{e} ve\c{c}ant\"{e} n\"{e} rastet kur mbetja nga pjes\"{e}timi i nj\"{e} numri me nj\"{e} tjet\"{e}r \"{e}sht\"{e} zero. N\"{e} k\"{e}to raste kemi t\"{e} b\"{e}jm\"{e} me plotpjes\"{e}tueshm\"{e}ri.
+\myd Le t\"{e} jen\"{e} $a$ dhe $b$ numra t\"{e} plot\"{e} dhe $a \neq 0$. Themi se $a$ \textbf{\textcolor{RubineRed}{ndan\"{e}}} $b$ (ose $b$ \"{e}sht\"{e} i \textbf{\textcolor{RubineRed}{plotpjes\"{e}tuesh\"{e}m}} me $a$), sh\"{e}nuar si $a \mid b$, n\"{e}se ekziston nj\"{e} num\"{e}r i plot\"{e} $c$ ashtu q\"{e} $b=a\cdot c.$ Mund ta shohim kushtin $a\mid b$ si $\dfrac{b}{a}\in \mathbb{N}.$\\
+
+\textit{Shembuj:}  \begin{itemize}
+  \item  $3\mid 15$ ($3$ ndan\"{e} $15$) meq\"{e} $15=3\cdot 5.$
+\item $1\mid n$ p\"{e}r \c{c}do $n\in \mathbb{Z}$ pasi $n=1\cdot n.$
+
+\item $3\mid -6$ pasi $-6=3\cdot (-2)$
+\item $7$ nuk e ndan\"{e} $80$ (sh\"{e}nohet $7\nmid 80$)
+\end{itemize} 
+N\"{e}se $a\mid b$ themi se $a$ \"{e}sht\"{e} \textbf{\textcolor{RubineRed}{faktor}} i $b$ dhe $b$ \"{e}sht\"{e} \textbf{\textcolor{RubineRed}{shum\"{e}fish}} i $a$.
+V\"{e}rejm\"{e} q\"{e} shum\"{e}fish\"{e}t e nj\"{e} numri t\"{e} plot\"{e} $n$ jan\"{e} $0,\pm n,\pm 2n,\pm 3n,\dots$ Pra p\"{e}r $n$ numra t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m gjithmon\"{e} ekziston nj\"{e} shum\"{e}fish i $n$. N\"{e} vijim, do t\"{e} tregojm\"{e} disa veti t\"{e} plotpjes\"{e}tueshm\"{e}ris\"{e}.
+\begin{theo}{}{}
+    Le t\"{e} jen\"{e} $a,b,c,m$ dhe $n$ numra t\"{e} plot\"{e} dhe le t\"{e} jet\"{e} $a \neq 0$. N\"{e}se $a \mid b$ dhe $a \mid c,$ v\"{e}rtetoni q\"{e} $a \mid mb+nc$.
+\end{theo}
+\begin{proof}
+    Pasi $a\mid b$ dhe $a\mid c$ nga definicioni i plotpjes\"{e}tueshm\"{e}ris\"{e} fitojm\"{e} $b=ax$ dhe $c=ay$ ku $x$ dhe $y$ jan\"{e} numra t\"{e} plot\"{e}. Pra $$mb+nc=max+nay=a\cdot(mx+ny)$$ q\"{e} nga definicioni do t\"{e} implikon q\"{e} $a\mid mb+nc.$
+\end{proof}
+\begin{theo}{Tranzitiviteti i Plotpjes\"{e}tueshm\"{e}ris\"{e}}{}
+Le t\"{e} jen\"{e} $a,b$ dhe $c$ numra t\"{e} plot\"{e} me $a,b \neq 0$. N\"{e}se $a \mid b$ dhe $b \mid c,$ at\"{e}her\"{e} $a \mid c$.    
+\end{theo}
+\begin{proof}
+    Meq\"{e} $a\mid b$ dhe $b\mid c,$ kemi $b=ax$ dhe $c=by$ ku $x$ dhe $y$ jan\"{e} numra t\"{e} plot\"{e}. Pra $$c=by=axy=a\cdot (xy)$$ q\"{e} do t\"{e} thot\"{e} se $a\mid c.$
+\end{proof}
+
+S\"{e} bashku me definicionin e par\"{e}, mund ti p\"{e}rdorim k\"{e}to dy veti p\"{e}r t\"{e} zgjidhur disa probleme. 
+\begin{ushtrim}
+    Gjeni t\"{e} gjith\"{e} numrat natyror\"{e} $n$ t\"{e} till\"{e} q\"{e} $n+1 \mid n^2+1.$
+\end{ushtrim}
+\begin{solution}
+    V\"{e}rejm\"{e} q\"{e} teorema 1 na tregon q\"{e} n\"{e}se mbledhim (ose zbresim) dy shum\"{e}fish\"{e} t\"{e} nj\"{e} numri, shuma (dhe ndryshimi) i tyre do t\"{e} jet\"{e} shum\"{e}fish i atij numri. Pra p\"{e}rdorim teorem\"{e}n 1 si vijon. 
+    N\"{e}se $n+1\mid n^2+1$ at\"{e}her\"{e} kemi $n+1\mid n^2+1 - (n-1)(n+1)$ meq\"{e} $n+1\mid (n+1)(n-1)$. Pra kemi $n+1\mid 2.$ Faktor\"{e}t e vet\"{e}m t\"{e} $2$ jan\"{e} $\{1,-1,2,-2\}$ pra kemi k\"{e}to mund\"{e}si: \\
+    $$n+1=1\Rightarrow n=0. \; \; 0+1\mid 0^2+1. $$
+    $$n+1=-1\Rightarrow n=-2. \; \; -2+1\mid (-2)^2+1. $$
+    $$n+1=2\Rightarrow n=1. \; \; 1+1\mid 1^2+1. $$
+    $$n+1=-2\Rightarrow n=-3. \; \; -3+1\mid (-3)^2+1.$$
+% NASHTA OSHT MIRE ME TREGU PSE PO E CHECKIRATI KUSHTIN FILLESTAR. ME FOL PER NEVOJSHEM VS MJAFTUESHEM
+Pra vlerat e vetme t\"{e} $n$ q\"{e} plot\"{e}sojn\"{e} $n+1\mid n^2+1$ jan\"{e} $\{-3,-2,0,1\}.$
+\end{solution}
+\begin{ushtrim}
+    N\"{e}se $17 \mid (3x+2),$ tregoni q\"{e} $17 \mid (3x^2-x-2).$ 
+\end{ushtrim}
+\begin{solution}
+    V\"{e}rejm\"{e} q\"{e} $3x^2-x-2=(3x+2)(x-1).$ Pra mjafton t\"{e} tregojm\"{e} q\"{e} $17\mid (3x+2)(x-1).$ Kjo vlen nga kushti i problemit $17\mid 3x+2$ dhe teorema 2.
+\end{solution}
+\begin{ushtrim}
+    V\"{e}rtetoni q\"{e} $ 6 \mid n^3-n$ p\"{e}r \c{c}do $n \in \mathbb{N}.$
+\end{ushtrim}
+\begin{solution}
+    Faktorizojm\"{e} $n^3-n$ dhe kemi $n^3-n=n(n^2-1)=n(n-1)(n+1).$ Pra $n^3-n$ \"{e}sht\"{e} prodhimi i tre numrave t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m. Nga tre numra t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m sakt\"{e}sisht nj\"{e}ri \"{e}sht\"{e} shum\"{e}fish i $3.$ Nga dy numra t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m sakt\"{e}sisht nj\"{e}ri \"{e}sht\"{e} \c{c}ift. Pra $3\mid (n-1)n(n+1)$ dhe $2\mid (n-1)n(n+1).$ Kemi q\"{e} $(n-1)n(n+1)$ \"{e}sht\"{e} shum\"{e}fish i $2$ dhe i $3$ pra $\dfrac{(n-1)n(n+1)}{2}$ dhe $\dfrac{(n-1)n(n+1)}{3}$ jan\"{e} numra t\"{e} plot\"{e}. Kjo implikon q\"{e} ndryshimi i tyre \"{e}sht\"{e} num\"{e}r i plot\"{e}. Pra $\dfrac{(n-1)n(n+1)}{2}-\dfrac{(n-1)n(n+1)}{3}=\dfrac{(n-1)n(n+1)}{6}\in \mathbb{N}$ q\"{e} implikon $6\mid (n-1)n(n+1).$
+\end{solution}
+\begin{remark}{}{}
+    S\"{e} shpejti do t\"{e} kemi mund\"{e}si q\"{e} nga $2\mid a$ dhe $3\mid a$ t\"{e} konkludojm\"{e} q\"{e} $6\mid a$ pa pasur nevoj\"{e} p\"{e}r t\"{e} konsideruar ndryshimin $\dfrac{a}{2}-\dfrac{a}{3}.$ 
+    P\"{e}r k\"{e}t\"{e} na duhet t\"{e} prezantojm\"{e} numrat e thjesht\"{e}.
+\end{remark}
+N\"{e} vijim jan\"{e} disa veti t\"{e} tjera t\"{e} r\"{e}nd\"{e}sishme. N\"{e}n\"{e}sit inkurajohen t\"{e} provojn\"{e} ti v\"{e}rtetojn\"{e} k\"{e}to veti. 
+\begin{theo}{}{}
+    Le t\"{e} jen\"{e} $a$,$b$ dhe $c$ numra t\"{e} plot\"{e}. At\"{e}her\"{e} kemi:
+    \begin{itemize}
+        \item[(a)] N\"{e}se $a\mid b$ dhe $b\neq0$, at\"{e}her\"{e} $|a|\leq |b|$
+        \item[(b)] N\"{e}se $a\mid b$ dhe $b\mid a$, at\"{e}her\"{e} $|a|=|b|.$
+        \item[(c)] N\"{e}se $a\mid b$ dhe $b\neq 0$, at\"{e}her\"{e} $\frac{b}{a}\mid b$
+        \item[(d)] N\"{e}se $c\neq 0$, $a\mid b$ at\"{e}her\"{e} dhe vet\"{e}m at\"{e}her\"{e} kur $ac\mid bc$.
+    \end{itemize}
+\end{theo}
+\begin{proof} $\empty$
+    \begin{itemize}
+        \item[(a)] N\"{e}se $a\mid b$ kemi $ak=b$ p\"{e}r ndonj\"{e} $k\in\mathbb{Z}.$
+        Meq\"{e} $b\neq0$ kemi $|b|=|ka|=|k|\cdot|a|.$
+        Pasi $k\neq0$ kemi $|k|\geq 1$ pra $|k|\cdot |a|\geq |a|.$
+        Rrjedhimisht, $|a|\leq |b|.$
+        \item[(b)] N\"{e}se $a\mid b$ kemi $ak=b$ p\"{e}r ndonj\"{e} $k\in\mathbb{Z}.$ 
+        N\"{e} an\"{e}n tjet\"{e}r, $b\mid a$ implikon q\"{e} $bk'=a$ p\"{e}r ndonj\"{e} $k'\in\mathbb{Z}.$
+        Duke kombinuar k\"{e}to dy relacione kemi $$a=bk'=(ak)k'=akk'.$$
+        Pra detyrimisht kemi $kk'=1.$ 
+        Rrjedhimisht $k=\pm1$, qe implikon $|a|=|b|.$
+        \item[(c)] Meq\"{e} $a\mid b$ kemi $\frac{b}{a}\in\mathbb{Z}.$ 
+        Pasi $\frac{b}{a}\cdot a=b$ kemi edhe $\frac{b}{a}\mid b.$
+        \item[(b)] N\"{e}se $a\mid b$ kemi $b=ka$ pra $bc=k(ac)$ q\"{e} implikon $ac\mid bc.$
+        N\"{e} an\"{e}n tjet\"{e}r $ac\mid bc$ implikon $bc=kac$. 
+        Meq\"{e} $c\neq0$ mund t\"{e} pjes\"{e}tojm\"{e} t\"{e} dy an\"{e}t e barazimit me $c$ dhe fitojm\"{e} $b=ka$ pra $a\mid b.$ 
+    \end{itemize}
+\end{proof}
+\begin{ushtrim}
+    Tregoni q\"{e} $6\mid a+b+c\iff 6\mid a^3+b^3+c^3$.
+\end{ushtrim}
+\begin{solution}
+    Nga nj\"{e}ri nga problemet paraprake kemi $6\mid a^3-a$, $6\mid b^3-b$ dhe $6\mid c^3-c$. 
+    Nga teorema 1 kemi $6\mid a^3-a+b^3-b+c^3-c$ pra $6\mid (a^3+b^3+c^3)-(a+b+c)$. 
+    Do t\"{e} thot\"{e} $6\mid a^3+b^3+c^3\iff 6\mid a+b+c$.
+\end{solution}
+\subsection*{Problemet}
+\begin{problem}
+    N\"{e}se $a^2b+a \mid b^3+a^2b^2+ab-a$, tregoni q\"{e} $a^2b+a \mid a^2+b^2$.
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} $6\mid n^3+5n$.
+\end{problem}
+\begin{problem}
+    N\"{e}se $4ab-1 \mid (4a^2-1)^2$, tregoni q\"{e} $4ab-1 \mid (a-b)^2$.
+\end{problem}
+\begin{problem}
+    N\"{e}se $5 \mid a+2$ tregoni q\"{e} $5 \mid n^2-4$, $5 \mid n^2+8n+7$ dhe $5 \mid n^4-1$.
+\end{problem}
+\begin{problem}(OMK 2016 - Klasa 9). V\"{e}rtetoni q\"{e} $31 \mid 5+5^{2}+5^{3}+...+5^{2016}.$ 
+\end{problem}
+\begin{problem}
+    N\"{e}se $a-c \mid ab+cd$, at\"{e}her\"{e} $a-c \mid ad+bc$.
+\end{problem}
+\begin{problem}
+    Gjeni numrin m\"{e} t\"{e} madh t\"{e} plot\"{e} $n$ p\"{e}r t\"{e} cilin $n+10 \mid n^3+100$
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} n\"{e}se $m$ dhe $n$ jan\"{e} numra natyror\"{e} t\"{e} till\"{e} q\"{e} $mn\mid m^2+n^2$, at\"{e}her\"{e} $m=n$.
+\end{problem}
+\begin{problem}
+    (KAMO 2022 Klasa 7-8) Gjeni t\"{e} gjitha dyshet e plota $(m, n)$ ashtu q\"{e} $$m+n = 3(mn+10).$$
+\end{problem}
+\subsection{Pjes\"{e}tuesi m\"{e} i Madh i P\"{e}rbashk\"{e}t dhe Algoritmi i Euklidit}
+\begin{theo}{Algoritmi i Pjes\"{e}timit}{}
+    P\"{e} \c{c}do dy numra natyror\"{e} $a,b$ ekziston nj\"{e} dyshe unike e numrave t\"{e} plot\"{e} jo-negativ $q,r$ ashtu q\"{e} $a=b\cdot q+r$ ku $0\leq r<b$.
+\end{theo}
+
+\myd Le t\"{e} jen\"{e} $a$ dhe $b$ numra t\"{e} plot\"{e}, jo t\"{e} dy zero. Le t\"{e} jet\"{e} $d$ numri m\"{e} i madh n\"{e} bashk\"{e}sin\"{e} e faktor\"{e}ve t\"{e} p\"{e}rbashk\"{e}t t\"{e} $a$ dhe $b$. Themi se $d$ \"{e}sht\"{e} \textbf{\textcolor{RubineRed}{pjes\"{e}tuesi m\"{e} i madh i p\"{e}rbashk\"{e}t}} i $a$ dhe $b$, sh\"{e}nuar si $\pmmp(a,b)=d$ dhe nganj\"{e}her\"{e} $(a,b)=d.$
+Ngjash\"{e}m, mund t\"{e} definojm\"{e} pmmp p\"{e}r m\"{e} shum\"{e} se dy numra.
+\begin{ushtrim}
+    Llogarisni pjes\"{e}tuesin m\"{e} t\"{e} madh t\"{e} p\"{e}rbashk\"{e}t t\"{e}
+    \begin{itemize}
+        \item $\pmmp(6,10)$
+        \item $\pmmp(1,120)$
+        \item $\pmmp(0,36)$
+        \item $\pmmp(24,990,18)$
+    \end{itemize}
+\end{ushtrim}
+
+N\"{e} vijim do t\"{e} spjegojm\"{e} nj\"{e} metod\"{e} standarde p\"{e}r gjetjen e $\pmmp$ t\"{e} dy numrave.
+\begin{ushtrim}
+    Gjeni $\pmmp(21,54)$.
+\end{ushtrim}
+\begin{solution}
+    Do t\"{e} zbatojm\"{e} t\"{e} ashtuquajturin \textbf{\textcolor{RubineRed}{Algorit\"{e}m t\"{e} Euklidit}}. 
+    Fillimisht, nga pjes\"{e}timi i $54$ me $21$ kemi $$54=2\cdot 21+12$$
+    Nga pjes\"{e}timi i $21$ me $12$ kemi $$21=1\cdot 12+9$$
+    Nga pjes\"{e}timi i $12$ me $9$ kemi $$12=1\cdot 9+3$$
+    S\"{e} fundmi kemi $$9=3\cdot 3+0.$$
+    Sipas algoritmit t\"{e} Euklidit, mbetja n\"{e} hapin para se t\"{e} arrihet mbetja $0$ \"{e}sht\"{e} $\pmmp$ e $21$ dhe $54.$ Pra $\pmmp(54,21)=3.$
+\end{solution}
+\begin{ushtrim}
+$\empty$
+    \begin{itemize}
+        \item[(a)] Gjeni nj\"{e} dyshe numrash t\"{e} plot\"{e} $(x,y)$ ashtu q\"{e} $760x+693y=1$.
+        \item[(b)] Sa dyshe t\"{e} tilla ekzistojn\"{e}?
+    \end{itemize}
+\end{ushtrim}
+\begin{solution}
+    $\empty$
+    \begin{itemize}
+        \item[(a)] Q\"{e} t\"{e} gjejm\"{e} nj\"{e} dyshe $(x,y)$ zbatojm\"{e} algoritmin e Euklidit.
+        $$760=1\cdot 693+67$$
+        $$693=10\cdot 67+23$$
+        $$67=2\cdot 23+21$$
+        $$23=1\cdot 21+2$$
+        $$21=10\cdot 2+1$$
+        Nga ekuacioni i fundit kemi $1=21-10\cdot2$, nga i parafundit kemi $2=23-1\cdot 21.$ N\"{e}se e vazhdojm\"{e} k\"{e}t\"{e} proces dhe i bashkojm\"{e} shprehjet kemi 
+        $$1=21-10\cdot 2=21-10\cdot(23-21)=11\cdot 21-10\cdot 23.$$
+        Duke p\"{e}rdorur $21=67-2\cdot23$ kemi $$1=11(67-2\cdot 23)-10\cdot 23=11\cdot 67-32\cdot 23.$$
+        Duke p\"{e}rdorur $23=693-10\cdot 67$ kemi $$1=11\cdot 67-32(693-10\cdot 67)=331\cdot 67-32\cdot 693.$$
+        P\"{e}rfundimisht, p\"{e}rdorim $67=760-693$ kemi $$1=331(760-693)-32\cdot 693=331\cdot 760-363\cdot 693.$$
+        Pra $x=331$ dhe $y=363$ \"{e}sht\"{e} nj\"{e} dyshe p\"{e}r t\"{e} cil\"{e}n $760x+693y=1$.
+        \item[(b)] Ekzistojn\"{e} pafund\"{e}sisht shum\"{e} dyshe t\"{e} tilla meq\"{e} ekzisojn\"{e} pafund\"{e}sisht shum\"{e} dyshe $(x,y)$ ashtu q\"{e} $760x=693y$.
+    \end{itemize}
+\end{solution}
+Rezultati n\"{e} vijim na lejon t\"{e} karakterizojm\"{e} p\"{e}r \c{c}fare vlera t\"{e} $a$ ekzistojn\"{e} dyshe t\"{e} plota $(x,y)$ ashtu q\"{e} $mx+ny=a$ p\"{e}r $m$ dhe $n$ t\"{e} fiksuar. 
+\begin{theo}{Identiteti i B\'{e}zout}{}
+    P\"{e}r \c{c}far\"{e}do dy numra t\"{e} plot\"{e} $m$ dhe $n$ ekzistojn\"{e} numrat e plot\"{e} $x$ dhe $y$ ashtu q\"{e} 
+    \begin{center}
+    $mx+ny=\pmmp(m,n)$.
+    \end{center}
+\end{theo}
+\begin{proof}
+Ekzistenca e nj\"{e} dysheje t\"{e} plot\"{e} $(x,y)$ ashtu q\"{e} $mx+ny=\pmmp(m,n)$ garantohet nga algoritmi i Euklidit si\c{c} kemi par\"{e} m\"{e} her\"{e}t n\"{e} rastin $\pmmp(m,n)=1$.
+\end{proof}
+\begin{remark}{}{}
+    V\"{e}rejm\"{e} q\"{e} nuk mund t\"{e} fitojm\"{e} ndonj\"{e} vler\"{e} pozitive m\"{e} t\"{e} vog\"{e}l se $\pmmp(m,n)$ nga $xm+ny$. Kjo meq\"{e} $\pmmp(m,n)\mid m$ dhe $\pmmp(m,n)\mid n$ implikon q\"{e} $\pmmp(m,n)\mid xm+ny$ pra $|\pmmp(m,n)|\leq |xm+ny|$ n\"{e}se $xm+ny\neq0$.
+\end{remark}
+\begin{corollary}{Identiteti Gjeneral i B\'{e}zout}{}
+    P\"{e}r \c{c}far\"{e}do $n$ numra t\"{e} plot\"{e} $a_1,a_2,\dots,a_n$ ekzistojn\"{e} numrat e plot\"{e} ashtu q\"{e} $$a_1x_1+a_2x_2+\dots+a_nx_n=\pmmp(a_1,a_2,\dots,a_n).$$  
+\end{corollary}
+\begin{proof}
+    Rrjedhimi mund t\"{e} v\"{e}rtetohet me an\"{e} t\"{e} induksionit t\"{e} fuqish\"{e}m. P\"{e}r ilustrim, tregojm\"{e} q\"{e} nga rasti $n=2$ mund t\"{e} fitojm\"{e} identitetin e B\'{e}zout p\"{e}r $n=3$.
+    $$\pmmp(a_1,a_2,a_3)=\pmmp(a_1,\pmmp(a_2,a_3))=a_1x_1+c\pmmp(a_2,a_3)$$
+    P\"{e}rdorim identitetin e B\'ezout p\"{e}rs\"{e}ri dhe kemi $$\pmmp(a_1,a_2,a_3)=x_1a_1+cx_2a_2+cx_3a_3.$$
+    Pra kemi identitetin e B\'{e}zout p\"{e}r $n=3$.
+    Ngjash\"{e}m p\"{e}rgjith\"{e}sojm\"{e} p\"{e}r \c{c}far\"{e}do $n$. Nx\"{e}n\"{e}si inkurajohet ti plot\"{e}soj\"{e} detajet e v\"{e}rtetimit bazuar n\"{e} k\"{e}t\"{e} ide.
+\end{proof}
+N\"{e} vijim, do v\"{e}rtetojm\"{e} disa veti t\"{e} $\pmmp$ t\"{e} cilat do gjejn\"{e} zbatim p\"{e}rgjat\"{e} k\"{e}tij materiali.
+\begin{ushtrim}
+    V\"{e}rtetoni q\"{e} n\"{e}se $a\mid bc$ dhe $\pmmp(a,b)=1$, kemi $a\mid c$.
+\end{ushtrim}
+\begin{theo}{}{}
+    \begin{itemize}
+        \item[(a)] N\"{e}se $\pmmp(a,b)=d$ at\"{e}her\"{e} $a=d a'$ dhe $b=db'$ ku $a'$ dhe $b'$ jan\"{e} numra t\"{e} plot\"{e} dhe $\pmmp(a',b')=1$.
+        \item[(b)] N\"{e}se $x\mid a$ dhe $x\mid b$, at\"{e}her\"{e} $x\mid \pmmp(a,b)$. 
+        \item[(c)] $\pmmp(ca,cb)=c\pmmp(a,b)$.
+        \item[(d)] $\pmmp(a^n,b^n)=\pmmp(a,b)^n$.
+        \item[(e)] $\pmmp(a,b)=\pmmp(a,b\pm n\cdot a)$ p\"{e}r \c{c}far\"{e}do num\"{e}r t\"{e} plot\"{e} $n$.\footnote[1]{Jash\"{e}zakonisht e dobishme!}
+    \end{itemize}
+\end{theo}
+\begin{proof} $\empty$
+    \begin{itemize}
+        \item[(a)] Meq\"{e} $d\mid a$ dhe $d\mid b$, kemi $a=da'$ dhe $b=db'$ ku $a',b'\in\mathbb{Z}$.
+        Mjafton t\"{e} tregojm\"{e} q\"{e} $\pmmp(a',b')=1$.
+        Supozojm\"{e}, p\"{e}r hir t\"{e} kontradiksionit, q\"{e} $\pmmp(a',b')=c>1$.
+        N\"{e} k\"{e}t\"{e} rast kemi $a'=ca''$ dhe $b'=cb''$ ku $a'',b''\in\mathbb{Z}$.
+        Pra duke z\"{e}vend\"{e}suar p\"{e}r $a$ dhe $b$ kemi se $a=cda''$ dhe $b=cdb''$ pra $cd\mid a$ dhe $cd\mid b$.
+        Meq\"{e} $c>1$, kjo do t\"{e} thot\"{e} se $\gcd(a,b)\geq cd>d$ q\"{e} bie n\"{e} kontradiksion me faktin q\"{e} $\gcd(a,b)=d$.
+        Pra $\pmmp(a',b')$ nuk \"{e}sht\"{e} m\"{e} e madhe se $1$, rrejdhimisht $\pmmp(a',b')=1$.
+        \item[(b)] \textit{Ushtrim}
+        \item[(c)] \textit{Ushtrim}
+        \item[(d)] \textit{Ushtrim}
+        \item[(e)] \textit{Ushtrim}
+    \end{itemize}
+\end{proof}
+P\"{e}r t\"{e} ilustruar fuqin\"{e} e rezultatit (e) nga teorema paraprake, v\"{e}rtetojm\"{e} teorem\"{e}n n\"{e} vijim.
+\begin{theo}{}{}
+    N\"{e}se $a,m,n\in\mathbb{N}$, at\"{e}her\"{e} \[\pmmp(a^m-1,a^n-1)=a^{\pmmp(m,n)}-1.\]
+\end{theo}
+\begin{proof}
+    Hint: P\"{e}rdorim vetin\"{e} (e) nga teorema paraprake dhe identitetin e B\'ezout p\"{e}r t\"{e} zvog\"{e}luar fuqin\"{e} e $a$ n\"{e} pmmp.
+\end{proof}
+\begin{remark}{}{}
+    Nj\"{e} pjes\"{e} t\"{e} madhe t\"{e} teoris\"{e} q\"{e} kemi zhvilluar mbi $\pmmp$ t\"{e} numrave t\"{e} plot\"{e} mund ta gjeneralizojm\"{e} n\"{e} bashk\"{e}si m\"{e} t\"{e} sofistikuara se $\mathbb{Z}$. M\"{e} posht\"{e}, do t\"{e} diskutojm\"{e} analogun e rezultateve t\"{e} deritanishme duke z\"{e}vend\"{e}suar numrat e plot\"{e} me polinome me nj\"{e} ndryshore me koeficient\"{e} numra racional\"{e}. Megjithat\"{e}, kjo nuk \"{e}sht\"{e} shkalla m\"{e} e lart\"{e} e p\"{e}rgjith\"{e}simit t\"{e} mundsh\"{e}m. N\"{e} fakt, strukturat algjebrike n\"{e} t\"{e} cilat vlen algoritmi i Euklidit nga r\"{e}nd\"{e}sia fitojn\"{e} edhe nj\"{e} em\"{e}r t\"{e} ve\c{c}ant\"{e}. Ato quhen \textbf{\textcolor{RubineRed}{Domena Euklidiane}}. Megjithat\"{e}, fokusi yn\"{e} p\"{e}r tani mbetet n\"{e} rastin $\mathbb{Z}$ dhe $\mathbb{Q}[x]$.
+\end{remark}
+\subsubsection{Nj\"{e} Digresion n\"{e} Polinome}
+Sh\"{e}nojm\"{e} me $\mathbb{Q}[x]$ bashk\"{e}sin\"{e} e polinomeve me nj\"{e} ndryshore me koeficient\"{e} numra racional\"{e}.
+P\"{e}r t\"{e} zhvilluar teorin\"{e} analoge t\"{e} $\pmmp$ p\"{e}r $\mathbb{Q}[x]$ fillojm\"{e} me algoritmin e pjes\"{e}timit.
+\begin{theo}{Algoritmi i Pjes\"{e}timit $\mathbb{Q}[x]$}{}
+    P\"{e}r \c{c}do dy polinome $a(x)$ dhe $b(x)$ me koeficient\"{e} numra racional\"{e} ekziston nj\"{e} dyshe unike e polinomeve n\"{e} $q(x),r(x)\in \mathbb{Q}[x]$ ashtu q\"{e} $a(x)=b(x)q(x)+r(x)$ ku $\deg(r)\leq \deg(b)$ ose $r\equiv0$.
+\end{theo}
+\begin{proof}
+    (se shpejti)
+\end{proof}
+\begin{ushtrim}
+    Gjeni $q(x)$ dhe $r(x)$ ashtu q\"{e} $(x^5+3x^4+7x^2+x-1)=(x^2-1)q(x)+r(x)$ ku $q(x),r(x)\in\mathbb{Q}[x]$ dhe $\deg(r)\leq 2$ ose $r\equiv0$.
+\end{ushtrim}
+\begin{solution}
+    (se shpejti)
+\end{solution}
+Definojm\"{e} pjes\"{e}tuesin m\"{e} t\"{e} madh t\"{e} p\"{e}rbashk\"{e}t t\"{e} dy polinoeve $a(x)$ dhe $b(x)$ si polinomin monik me shkall\"{e} maksimale q\"{e} ndan\"{e} $a(x)$ dhe $b(x)$.
+Duke p\"{e}rdorur algoritmin e pjes\"{e}timit p\"{e}r $\mathbb{Q}[x]$ mund t\"{e} formulojm\"{e} algoritmin e Euklidit p\"{e}r $\mathbb{Q}[x]$ dhe nj\"{e} pjes\"{e} t\"{e} madhe t\"{e} teoris\"{e} s\"{e} zhvilluar p\"{e}r $\mathbb{Z}$. V\"{e}rtetimet jan\"{e} t\"{e} ngjashme, dhe mbeten si ushtrime p\"{e}r nx\"{e}n\"{e}sit.
+\begin{theo}{}{}
+    N\"{e}se $a(x)=b(x)q(x)+r(x)$ ashtu q\"{e} $\deg(r)\leq\deg(b)$, at\"{e}her\"{e} $\pmmp(a(x),b(x))=\pmmp(r(x),b(x))$.
+\end{theo}
+\begin{remark}{}{}
+    Duhet t\"{e} kemi kujdes kur p\"{e}rdorim algoritmin e pjes\"{e}timit ose Euklidit p\"{e}r polinome. Ndon\"{e}se p\"{e}r $\mathbb{Q}[x]$ dhe $\mathbb{R}[x]$ k\"{e}to rezultate vlejn\"{e}, p\"{e}r $\mathbb{Z}[x]$ nuk kemi t\"{e} njejtat.
+    Shembull, $x+1, 2x+1\in\mathbb{Z}[x]$ por $x+1=(2x+1)q(x)+r(x)$ p\"{e}r $q(x),r(x)\in\mathbb{Z}[x]$ dhe $\deg(r)\leq 1$ \"{e}sht\"{e} e pamundur. Pra algoritmi i pjes\"{e}timit nuk vlen p\"{e}r polinome me koeficient\"{e} numra t\"{e} plot\"{e}. 
+\end{remark}
+\subsubsection{Shum\"{e}fishi m\"{e} i Vog\"{e}l i P\"{e}rbashk\"{e}t}
+Nj\"{e} nocion komplementar i $\pmmp$ \"{e}sht\"{e} ai i $\shmvp$.
+\myd Le t\"{e} jen\"{e} $a$ dhe $b$ numra t\"{e} plot\"{e}, jo-zero. Le t\"{e} jet\"{e} $m$ numri m\"{e} i vog\"{e}l natyror ashtu q\"{e} $a\mid m$ dhe $b\mid m$.
+Themi se $m$ \"{e}sht\"{e} \textbf{\textcolor{RubineRed}{shum\"{e}fishi m\"{e} i vog\"{e}l i p\"{e}rbashk\"{e}t}} i $a$ dhe $b$, sh\"{e}nuar si $\shmvp(a,b)=m$.
+\begin{theo}{}{}
+    N\"{e}se $a,b$ jan\"{e} numra natyror\"{e}, at\"{e}her\"{e} $\pmmp(a,b)\shmvp(a,b)=ab.$
+\end{theo}
+\begin{proof}
+    Supozojm\"{e} q\"{e} $\pmmp(a,b)=d$. Mund t\"{e} themi q\"{e} $a=da'$ dhe $b=db'$ ashtu q\"{e} $\pmmp(a',b')=1$.
+    Meq\"{e} $ab=d^2a'b'$ mjafton t\"{e} tregojm\"{e} q\"{e} $\shmvp(a,b)=da'b'$.
+    Le t\"{e} themi q\"{e} $m=\shmvp(a,b)$. Duhet t\"{e} kemi $da'\mid m$ pra $m=da'k_1$. N\"{e} an\"{e}n tjet\"{e}r, meq\"{e} $b\mid m$ kemi $db'\mid da'k_1$ rrjedhimisht $b'\mid a'k_1$.
+    Meq\"{e} $\pmmp(a',b')=1$, kemi $b'\mid k_1$. Pra $k_1\in\mathbb{N}$ minimal q\"{e} plot\"{e}son $b'\mid k_1$ jep $\shmvp(a,b)=a'b'd$.
+\end{proof}
+\begin{remark}{}{}
+    S\"{e} shpejti do t\"{e} kemi mund\"{e}si t\"{e} japim nj\"{e} argument shum\"{e} m\"{e} t\"{e} past\"{e}r me ndihm\"{e}n e numrave t\"{e} thjesht\"{e} dhe teorem\"{e}s fundamentale t\"{e} aritmetik\"{e}s.
+\end{remark}
+\subsection*{Problemet}
+\begin{problem}
+    Tregoni q\"{e} $\pmmp(n,n+1)=1$ p\"{e}r \c{c}do $n\in\mathbb{N}$.
+\end{problem}
+\begin{problem}
+    Duke p\"{e}rdorur algoritmin e Euklidit gjeni
+    \begin{itemize}
+        \item[(a)] $\pmmp(198,240)$
+        \item[(b)] $\pmmp(928,1286)$
+        \item[(c)] $\pmmp(12345,98760)$
+        \item[(d)] $\pmmp(2328, 2184, 2604)$
+    \end{itemize}
+\end{problem}
+\begin{problem}
+    Gjeni nj\"{e} dyshe t\"{e} numrave t\"{e} plot\"{e} $(x,y)$ ashtu q\"{e} $53x+77y=1$.
+\end{problem}
+\begin{problem}
+    N\"{e}se $\pmmp(a,b)=1$, tregoni q\"{e} $\pmmp(a^2+b^2+ab,a+b)=1$.
+\end{problem}
+\begin{problem}
+    Gjeni nj\"{e} dyshe t\"{e} numrave t\"{e} plot\"{e} $(x,y)$ ashtu q\"{e} $357x+469y=7$.    
+\end{problem}
+\begin{problem}
+    Gjeni nj\"{e} dyshe t\"{e} numrave t\"{e} plot\"{e} $(x,y)$ ashtu q\"{e} $197x+131y=7$.       
+\end{problem}
+\begin{problem}
+    Gjeni nj\"{e} tresha t\"{e} numrave t\"{e} plot\"{e} $(x,y,z)$ ashtu q\"{e} $21x+9y+35z=1$.
+\end{problem}
+\begin{problem}
+    Definojm\"{e} $F_n=2^{2^n}+1$ p\"{e}r $n\geq0$.
+    Gjeni $\pmmp(F_n,F_m)$.
+\end{problem}
+\begin{problem}
+    (IMO 1959) Tregoni q\"{e} p\"{e}r \c{c}do $n\in\mathbb{N}$ thyesa $\dfrac{21n+4}{14n+3}$ \"{e}sht\"{e} e pathjeshtueshme. 
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} p\"{e}r \c{c}do $n\in\mathbb{N}$ kemi \[\pmmp(n!+1,(n+1)!+1)=1.\]
+\end{problem}
+\begin{problem}
+    (HMMT 2002) Sa \"{e}sht\"{e} vlera e $\pmmp(2002+2,2002^2+2,2002^3+2,\dots).$
+\end{problem}
+\begin{problem}
+    Tregoni se a vlen $\pmmp(a,b,c)\shmvp(a,b,c)=abc$.
+\end{problem}
+\begin{problem} (ShBA 1972).
+    Tregoni q\"{e} $$\dfrac{\shmvp(a,b,c)^2}{\shmvp(a,b)\shmvp(b,c)\shmvp(c,a)}=\dfrac{\pmmp(a,b,c)^2}{\pmmp(a,b)\pmmp(b,c)\pmmp(c,a)}.$$
+\end{problem}
+\subsection{Numrat e Thjesht\"{e}}
+
+Numrat e thjesht\"{e} jan\"{e} objekti kryesor i studimit n\"{e} teorin\"{e} e numrave. 
+Ata sh\"{e}rbejn\"{e} si grimcat elementare nga t\"{e} cilat t\"{e} gjith\"{e} numrat natyror\"{e} nd\"{e}rtohen. Nj\"{e}soj si n\"{e} kimi ku molekula e ujit nd\"{e}rtohet nga dy atome hidrogjeni dhe nj\"{e} atom oksigjeni, numri $12$ nd\"{e}rtohet nga dy faktor\"{e} t\"{e} numrit t\"{e} thjeshte $2$ dhe nj\"{e} faktor t\"{e} numrit t\"{e} thjesht\"{e} $3$. 
+Si\c{c} do shohim gjat\"{e} k\"{e}tij materiali, n\"{e} shum\"{e} rast mjafton t\"{e} kuptojm\"{e} ndonj\"{e} aspekt t\"{e} numrave t\"{e} thjesht\"{e} p\"{e}r t\"{e} fituar veti t\"{e} numrave natyror\"{e}. P\"{e}r shembull, pas nj\"{e} kohe do t\"{e} v\"{e}rtetojm\"{e} q\"{e} \c{c}do num\"{e}r natyror mund t\"{e} paraqitet si shum\"{e} e kat\"{e}r katror\"{e}ve t\"{e} plot\"{e}. Hapi i par\"{e} i k\"{e}tij v\"{e}rtetimi \"{e}sht\"{e} observimi se mjafton ta v\"{e}rtetojm\"{e} k\"{e}t\"{e} veti p\"{e}r numra t\"{e} thjesht\"{e}. Fillimisht duhet t\"{e} definojm\"{e} se \c{c}ka jan\"{e} numrat e thjesht\"{e}.
+\myd Nj\"{e} num\"{e}r natyror $p\geq 2$ quhet i \textbf{\textcolor{RubineRed}{thjesht\"{e}}} n\"{e}se faktor\"{e}t e vet\"{e}m natyror\"{e} t\"{e} tij jan\"{e} $1$ dhe $p$.
+\begin{ushtrim}
+    Gjeni $10$ numrat e par\"{e} t\"{e} thjesht\"{e}.
+\end{ushtrim}
+\myd Nje num\"{e}r natyror $n\geq2$ quhet i \textbf{\textcolor{RubineRed}{p\"{e}rb\"{e}r\"{e}}} n\"{e}se nuk \"{e}sht\"{e} i thjesht\"{e}. 
+V\"{e}rejm\"{e} q\"{e} n\"{e}se $n$ \"{e}sht\"{e} i p\"{e}rb\"{e}r\"{e} ekzistojn\"{e} dy numra t\"{e} thjeshte $p_1$ dhe $p_2$ (jo detyrimisht t\"{e} ndrysh\"{e}m) ashtu q\"{e} $p_1p_2\mid n$.
+Nga ky observim kemi q\"{e} n\"{e}se $n$ \"{e}sht\"{e} num\"{e}r i plot\"{e}, $n$ ka nj\"{e} faktor t\"{e} thjesht\"{e} jo m\"{e} t\"{e} madh se $\sqrt{n}$ (plot\"{e}soni detajet e implikimit).
+\begin{ushtrim}
+    N\"{e}se $p$ \"{e}sht\"{e} num\"{e}r i thjesht\"{e} dhe $p\mid ab$, at\"{e}her\"{e} $p\mid a$ ose $p\mid b$.
+\end{ushtrim}
+\begin{solution}
+    Supozojm\"{e} q\"{e} $p\nmid a$. Meq\"{e} faktor\"{e}t e vet\"{e}m natyror\"{e} t\"{e} $p$ jan\"{e} $1$ dhe $p$, nga supozimi kemi $\pmmp(a,p)=1$.
+    Nga identiteti i B\'ezout kemi $ax+py=1$ p\"{e}r ndonj\"{e} dyshe $x,y\in\mathbb{Z}$. 
+    Shum\"{e}zojm\"{e} t\"{e} dy an\"{e}t e barazimit me $b$ dhe kemi $$abx+pyb=b$$
+    Meq\"{e} $p\mid ab$ dhe $p\mid p$, kemi $p\mid abx+pyb$. Pra $p\mid b$. 
+    Rrjedhimisht, $p$ duhet t\"{e} ndaj\"{e} nj\"{e}rin nga $a$ dhe $b$.
+\end{solution}
+\begin{ushtrim}
+    N\"{e}se $p\mid a^n$, at\"{e}her\"{e} $p\mid a$.
+\end{ushtrim}
+\begin{solution}
+(ushtrim)
+\end{solution}
+M\"{e} posht\"{e} shohim numrat e thjeshte n\"{e} mesin e 100 numrave t\"{e} par\"{e} natyror\"{e}.
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{Primes.jpeg}
+\end{center}
+Nese vazhdojme edhe pas 100 shohim se numrat e thjesht\"{e} rrallohen. Por rezultati n\"{e} vijim tregon q\"{e} ata asnj\"{e}her\"{e} nuk mbarojn\"{e}. 
+Ky rezultat \"{e}sht\"{e} v\"{e}rtetuar nga Euklidi rreth vitit 300 BC. V\"{e}rtetimi i k\"{e}saj teoreme \"{e}sht\"{e} nj\"{e} nga aplikimet m\"{e} t\"{e} njohura t\"{e} kontradiksionit.
+\begin{theo}{(Euklid, 300 BC)}{}
+    Ekzistojn\"{e} pafund\"{e}sisht shum\"{e} numra t\"{e} thjesht\"{e}.
+\end{theo}
+\begin{solution}
+    Supozojm\"{e}, p\"{e}r hir t\"{e} kontradiksionit, q\"{e} ekziston nj\"{e} bashk\"{e}si e fundme $S=\{p_1,p_2,...,p_n\}$ q\"{e} p\"{e}rmban t\"{e} gjith\"{e} numrat e thjesht\"{e}.
+    Konsiderojm\"{e} numrin $k=p_1p_2\dots p_n+1$.
+    Meq\"{e} $\gcd(k,p_i)=1$ kemi $p_i\nmid k$ p\"{e}r \c{c}do $i\in\{1,2,\dots,n\}$.
+    Pra duke p\"{e}rdorur supozimin kemi q\"{e} asnj\"{e} num\"{e}r i thjesht\"{e} nuk \"{e}sht\"{e} faktor i $k$. Duke qen\"{e} se $k>1$ kemi kontradiksion.
+    Pra ekzistojn\"{e} pafund\"{e}sisht shum\"{e} numra t\"{e} thjesht\"{e}.
+\end{solution}
+\begin{remark}{1}{}
+    Nj\"{e} gabim klasik n\"{e} argumentin m\"{e} lart\"{e} \"{e}sht\"{e} konkludimi q\"{e} $k$ \"{e}sht\"{e} i thjesht\"{e} meq\"{e} nuk ka asnj\"{e} faktor n\"{e} $S$. 
+    Kjo megjithat\"{e} nuk vlen detyrimisht. Konsiderojm\"{e} $n=6$ dhe kemi $k=2\cdot3\cdot5\cdot7\cdot11\cdot13+1=30031$. Por $30031$ nuk \"{e}sht\"{e} i thjesht\"{e} ($30031=59\cdot509$).
+\end{remark}
+\begin{remark}{2}{}
+    Ideja e konstruktimit t\"{e} $k$ m\"{e} lart do t\"{e} paraqitet edhe n\"{e} t\"{e} ardhmen si\c{c} do t\"{e} shohim s\"{e} shpejti.
+\end{remark}
+Meq\"{e} bashk\"{e}sia e numrave t\"{e} thjesht\"{e} \"{e}sht\"{e} e pafundme, \"{e}sht\"{e} e natyrshme t\"{e} pyesim lidhur me shp\"{e}rndarjen e numrave t\"{e} plot\"{e}. 
+Nj\"{e} pjes\"{e} t\"{e} madhe t\"{e} k\"{e}tyre pyetjeve k\"{e}rkojn\"{e} aparatur\"{e} t\"{e} avancuar nga teoria e numrave analitike t\"{e} cil\"{e}n nuk do mund ta zhvillojm\"{e} n\"{e} k\"{e}t\"{e} material. Nj\"{e} pjes\"{e} tjet\"{e}r e pyetjeve q\"{e}ndrojn\"{e} t\"{e} pazgjidhura p\"{e}r qindra vite. 
+P\"{e}r shembull, konjektura e t\"{e} thjesht\"{e}ve binjak\"{e} \"{e}sht\"{e} nj\"{e} problem i till\"{e}.
+Dy numra t\"{e} thjesht\"{e} quhen \textbf{\textcolor{RubineRed}{binjak\"{e}}} n\"{e}se kan\"{e} distanc\"{e} $2$ mes vete. 
+Konjektura e t\"{e} thjesht\"{e}ve binjak\"{e} thot\"{e} se ekzistojn\"{e} pafund\"{e}sisht dyshe t\"{e} tilla. Ky problem mbetet ende i hapur. 
+Megjithat\"{e}, ne do t\"{e} konsiderojm\"{e} t\"{e} kund\"{e}rt\"{e}n e k\"{e}tij problemi. N\"{e} vend se t\"{e} k\"{e}erkojm\"{e} distanc\"{e} t\"{e} vog\"{e}l mes numrave t\"{e} thjesht\"{e}, ushtrimi n\"{e} vijim tregon q\"{e} distanca mes numrave t\"{e} thjesht\"{e} mund t\"{e} jet\"{e} arbitrarisht e madhe.
+
+\begin{ushtrim}
+    V\"{e}rtetoni q\"{e} p\"{e}r \c{c}do $n$ mund t\"{e} gjejm\"{e} $n$ numra t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m q\"{e} jan\"{e} t\"{e} p\"{e}rb\"{e}r\"{e}.
+\end{ushtrim}
+\begin{solution}
+    Konstruktimi m\"{e} i natyrsh\"{e}m p\"{e}rdor si "baz\"{e}" nj\"{e} num\"{e}r me shum\"{e} faktor\"{e}. 
+    N\"{e}se marrim $(n+1)!+2$ si numrin e par\"{e}, $n$ numrat e nj\"{e}pasnj\"{e}sh\"{e}m jan\"{e}:
+    $$(n+1)!+2,(n+1)!+3,\dots,(n+1)!+(n+1).$$    
+\end{solution}
+Teorema n\"{e} vijim formalizon analogjin\"{e} mes numrave t\"{e} thjesht\"{e} dhe llojeve t\"{e} atomeve. 
+Nj\"{e}soj sikur teorema mbi pafund\"{e}sin\"{e} e numrave t\"{e} thjesht\"{e}, teorema n\"{e} vijim p\"{e}r her\"{e} t\"{e} par\"{e} v\"{e}rtetohet nga Euklidi n\"{e} librin "Elementet", ndon\"{e}se n\"{e} shkall\"{e} m\"{e} t\"{e} ul\"{e}t t\"{e} gjeneralitetit.
+\begin{theo}{Teorema Fundamentale e Aritmetik\"{e}s}{}
+    \c{C}do num\"{e}r natyror m\"{e} t\"{e} madh se $1$ mund t\"{e} sh\"{e}nohet si prodhim i numrave t\"{e} thjesht\"{e}. 
+    P\"{e}r m\"{e} tep\"{e}r, kjo paraqitje \"{e}sht\"{e} unike. 
+\end{theo}
+Pra \c{c}do $n>1$ mund t\"{e} sh\"{e}nohet si $n=p_1^{\alpha_1}p_2^{\alpha_2}\dots p_k^{\alpha_k}$ n\"{e} m\"{e}nyr\"{e} unike ku $p_i$ jan\"{e} t\"{e} thjesht\"{e} dhe $\alpha_k\in\mathbb{N}$.
+\begin{proof} (Teknik)
+V\"{e}rtetimi p\"{e}rmban dy pjes\"{e}: ekzistenc\"{e}n e nj\"{e} paraqitjeje si produkt i fuqive t\"{e} numrave t\"{e} thjesht\"{e} dhe unicitetin e k\"{e}saj paraqitje.
+Fillojm\"{e} duke v\"{e}rtetuar ekzistenc\"{e}n. 
+P\"{e}rdorim induksionin e fuqish\"{e}m n\"{e} $n$.
+\textit{Rasi baz\"{e}}: $n=2$ p\"{e}r t\"{e} cilin ekziston nj\"{e} paraqitje si produkt i fuqive t\"{e} thjeshta ($2=2$). \\
+\textit{Hipoteza induktive}: Supozojm\"{e} q\"{e} ekzistenca vlen p\"{e}r $n=2,3,\dots,k$.\\
+N\"{e}se $k+1$ \"{e}sht\"{e} i thjesht\"{e}, induksioni kompletohet.
+Supozojm\"{e} q\"{e} $k+1$ nuk \"{e}sht\"{e} i thjesht\"{e}. 
+At\"{e}her\"{e} ekziston nj\"{e} num\"{e}r i thjesht\"{e} $p$ ashtu q\"{e} $p\mid k+1$. 
+Pra $k+1=A\cdot p$. 
+Meq\"{e} $A<k+1$, nga hipoteza induktive kemi se ekziston nj\"{e} paraqitje e $A$ si prodhim i fuqive t\"{e} numrave t\"{e} thjesht\"{e}. 
+Rrjedhimisht ekziston nj\"{e} paraqitje e $k+1$ si prodhim i fuqive t\"{e} numrave t\"{e} thjesht\"{e}. 
+Pra, me an\"{e} t\"{e} induksionit, kemi v\"{e}rtetuar ekzistenc\"{e}n e nj\"{e} paraqitje si prodhim i fuqive t\"{e} numrave t\"{e} thjesht\"{e} p\"{e}r \c{c}do num\"{e}r natyror.\\
+N\"{e} m\"{e}nyr\"{e} q\"{e} t\"{e} tregojm\"{e} unicitetin e paraqitjes, supozojm\"{e} q\"{e} $n=p_1^{\alpha_1}\dots p_k^{\alpha_k}$ dhe $n=q_1^{\beta_1}q_2^{\beta_2}\dots q_t^{\beta_t}$.
+Le t\"{e} themi se $p_1<p_2<...<p_k$ dhe $q_1<q_2<...<q_t$. 
+Meq\"{e} $$p_1^{\alpha_1}\dots p_k^{\alpha_k}=q_1^{\beta_1}q_2^{\beta_2}\dots q_t^{\beta_t}$$ kemi $p_1\mid q_1^{\beta_1}q_2^{\beta_2}\dots q_t^{\beta_t}$ dhe $q_1\mid p_1^{\alpha_1}\dots p_k^{\alpha_k}$ duhet t\"{e} kemi q\"{e} $p_1=q_1$. Rrjedhimisht edhe $\alpha_1=\beta_1$.
+Ngjash\"{e}m edhe p\"{e}r $p_i=q_i$ fitojm\"{e} q\"{e} dy paraqitjet jan\"{e} identike. 
+\end{proof}
+\begin{remark}{}{}
+    Vetia e faktorizimit unik n\"{e} elemente t\"{e} thjesht\"{e} p\"{e}rgjith\"{e}sohet edhe n\"{e} unaza (lexo:bashk\"{e}si) t\"{e} tjera p\"{e}rve\c{c} $\mathbb{Z}$. 
+    K\"{e}to quhen \textbf{\textcolor{RubineRed}{Domena Faktorizimi Unik}}. Nj\"{e} rezultat n\"{e} teorin\"{e} e unazave tregon q\"{e} \c{c}do domen\"{e} Euklidiane \"{e}sht\"{e} domen\"{e} faktorizimi unik.    
+\end{remark}
+\begin{ushtrim}
+    Supozojm\"{e} q\"{e} $3n-4$, $4n-5$ dhe $5n-3$ jan\"{e} numra t\"{e} thjesht\"{e}. Gjeni $n$.
+\end{ushtrim}
+\begin{solution}
+    V\"{e}rejm\"{e} q\"{e} shuma e tre numrave \"{e}sht\"{e} $12n-12$. 
+    Pra shuma \"{e}sht\"{e} num\"{e}r \c{c}ift. Meq\"{e} ekziston vet\"{e}m nj\"{e} num\"{e}r i thjesht\"{e} \c{c}ift, kemi q\"{e} nj\"{e}ri nga $3n-4$, $4n-5$, ose $5n-3$ \"{e}sht\"{e} $2$.\\
+    N\"{e}se $5n-3=2$, kemi $n=1$ por n\"{e} k\"{e}t\"{e} rast $4n-5=-1$ q\"{e} nuk \"{e}sht\"{e} num\"{e}r i thjesht\"{e}, pra $5n-3\neq2$.\\
+    N\"{e}se $4n-5=2$ kemi $n=\dfrac{7}{4}$ por $5n-3=\dfrac{35}{4}-3\not\in\mathbb{N}$. Pra $4n-5\neq2$.\\
+    N\"{e}se $3n-4=2$, at\"{e}her\"{e} $n=2$. N\"{e} k\"{e}t\"{e} rast $4n-5=5$ dhe $5n-3=7$. 
+    Pra $n=2$.
+\end{solution}
+\begin{ushtrim}
+    Gjeni numrin m\"{e} t\"{e} vog\"{e}l natyror $n$ ashtu q\"{e} $\dfrac{n}{2}$ \"{e}sht\"{e} katror i plot\"{e} dhe $\dfrac{n}{3}$ \"{e}sht\"{e} kub i plot\"{e}.
+\end{ushtrim}
+\begin{solution}
+    Le t\"{e} themi se $\dfrac{n}{2}=a^2$ dhe $\dfrac{n}{3}=b^3$.
+    Nga k\"{e}to relacione kemi $n=2a^2$ dhe $n=3b^3$.
+    Nga relacioni i pari kemi $2\mid n$ dhe nga relacioni i dyt\"{e} kemi $3\mid n$.\\ 
+    Pra $n=6n_1$ dhe kemi $3n_1=a^2$ dhe $2n_1=b^3$. 
+    Nga k\"{e}to relacione kemi $3\mid a^2\Rightarrow 3\mid a$ dhe $2\mid b^3\Rightarrow 2\mid b$.\\
+    Pra mund t\"{e} sh\"{e}nojm\"{e} $a=3a_1$ dhe $b=2b_1$ dhe kemi $3n_1=9a_1^2\Rightarrow n_1=3a_1^2$ dhe $2n_1=8b_1^3\Rightarrow n_1=4b_1^3$.
+    Nga k\"{e}to relacione kemi $3\mid n_1$ dhe $4\mid n_1.$\\
+    Pra $n_1=12n_2$ dhe kemi $12n_2=3a_1^2$ dhe $12n_2=4b_1^3$. 
+    Pra $4n_2=a_1^2$ dhe $3n_2=b_1^3$ qe implikon se $4\mid a_1^2\Rightarrow 2\mid a_1$\footnote[1]{Duhet t\"e kemi kujdes. $4\mid a_1^2$ nuk implikon $4\mid a_1$ por vet\"em $2\mid a_1$} dhe $3\mid b_1^3\Rightarrow 3\mid b_1$.\\
+    Pra $a_1=2a_2$ dhe $b_1=3b_2$. 
+    Rrjedhimisht, $4n_2=4a_2^2\Rightarrow n_2=a_2^2$ dhe $3n_2=27b_2^3\Rightarrow n_2=9b_2^3$.\\
+    Pra $n_2=9n_3$ dhe kemi $9n_3=a_2^2$ dhe $9n_3=9b_2^3$.
+    Marrim $a_2=3a_3$ dhe p\"{e}rfundimisht kemi $n_3=a_3^2$ dhe $n_3=b_2^3$.\\
+    P\"{e}r \c{c}do $n_3$ q\"{e} \"{e}sht\"{e} nj\"{e}koh\"{e}sisht katror dhe kub i plot\"{e} (pra fuqi e gjasht\"{e}) fitojm\"{e} nj\"{e} $n$ ashtu q\"{e} $\dfrac{n}{2}$ \"{e}sht\"{e} katror i plot\"{e} dhe $\dfrac{n}{3}$ \"{e}sht\"{e} kub i plot\"{e}. 
+    Meq\"{e} k\"{e}rkojm\"{e} $n$ m\"{e} t\"{e} vog\"{e}l natyror m\"{e} k\"{e}t\"{e} veti, marrim $n_3=1$ dhe fitojm\"{e} $n_2=9$,  $n_1=12\cdot9=108$, dhe $n=6\cdot 108=648$.
+\end{solution}
+Teorema fundamentale e aritmetik\"{e}s na lejon t\"{e} ri-interpretojm\"{e} disa nga konceptet e prezentuara deri tani.
+P\"{e}r shembull, n\"{e}se kemi $n=p_1^{\alpha_1}p_2^{\alpha_2}\dots p_k^{\alpha_k}$ dhe $m=p_1^{\beta_1}p_2^{\beta_2}\dots p_k^{\beta_k}$ ku $\beta_i\geq0$ dhe $p_i$ jan\"{e} t\"{e} ndryshme (keni parasysh q\"{e} p\"{e}r \c{c}far\"{e}do $m,n\in\mathbb{N}$ paraqitja si m\"{e} lart \"{e}sht\"{e} e mundur), at\"{e}her\"{e} $$\pmmp(m,n)=p_{1}^{\min\{\alpha_1,\beta_1\}} p_{2}^{\min\{\alpha_2,\beta_2\}} \dots p_{k}^{\min\{\alpha_k,\beta_k\}}$$
+dhe 
+$$\shmvp(m,n)=p_{1}^{\max\{\alpha_1,\beta_1\}}p_{2}^{\max\{\alpha_2,\beta_2\}} \dots p_{k}^{\max\{\alpha_k,\beta_k\}}$$
+Me k\"{e}t\"{e} paraqitje v\"{e}rtetimi i teorem\"{e}s 10 \"{e}sht\"{e} i drejtp\"{e}rdrejt\"{e} meq\"{e} $\alpha_i+\beta_i=\max\{\alpha_i,\beta_i\}+\min\{\alpha_i,\beta_i\}$.
+\begin{ushtrim}
+    (KAMO 2021 7-8) P\"{e}r nj\"{e} num\"{e}r natyror $n\neq1$ sh\"{e}nojm\"{e} me $a_n$ faktorin m\"{e} t\"{e} madh t\"{e} numrit $n$ ashtu q\"{e} $a_n\neq n$ dhe me $b_n$ faktorin m\"{e} t\"{e} vog\"{e}l natyror t\"{e} numrit $n$ ashtu q\"{e} $b_n\neq1$. 
+    Gjeni t\"{e} gjith\"{e} numrat natyror\"{e} $n$ p\"{e}r t\"{e} cil\"{e}t vlen $\frac{a_n}{b_n}=17$.
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{ushtrim}
+    Tregoni q\"{e}
+    \[S=1+\dfrac{1}{2}+\dots+\dfrac{1}{n}\] nuk \"{e}sht\"{e} num\"{e}r i plot\"{e} p\"{e}r $n>1$.
+\end{ushtrim}
+\begin{solution}
+    Le t\"{e} jet\"{e} $k\in\mathbb{Z}$ ashtu q\"{e} $2^k\leq n<2^{k+1}$.
+    Le t\"{e} jet\"{e} $m$ shmvp i numrave $1,2,3,\dots, 2^k-1,2^k+1,\dots,n$ (pra $n$ numrave t\"{e} par\"{e} natyror\"{e} p\"{e}rve\c{c} $2^k$).
+    Shum\"{e}zojm\"{e} $S=1+\dfrac{1}{2}+\dots+\dfrac{1}{n}$ me $m$ nga t\"{e} dyja an\"{e}t e barazimit dhe kemi \[mS=m+\dfrac{m}{2}+\dots+\dfrac{m}{n}\].
+    N\"{e} an\"{e}n e djatht\"{e} t\"{e} ekuacionit secili mbledhor \"{e}sht\"{e} natyror p\"{e}rve\c{c} $\dfrac{m}{2^k}$ (nga m\"{e}nyra si kemi definuar $k$).
+    Pra $mS\not\in\mathbb{Z}$, rrjedhimisht $S\not\in\mathbb{Z}$.
+\end{solution}
+\begin{ushtrim}
+    Le t\"{e} jet\"{e} $p(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_0$ polinom me koeficient\"{e} t\"{e} plot\"{e} ashtu q\"{e} p\"{e}r kat\"{e}r vlera t\"{e} ndryshme t\"{e} plota $x_1,x_2,x_3,x_4$ kemi $p(x_i)=5$ p\"{e}r $i\in\{1,2,3,4\}$.
+    Tregoni q\"{e} nuk ekziston asnj\"{e} num\"{e}r i plot\"{e} p\"{e}r t\"{e} cilin polinomi merr vler\"{e}n $12$.
+\end{ushtrim}
+\begin{solution}
+    Meq\"{e} $p(x_i)=5$, kemi 
+    \begin{equation}
+    p(x)-5=(x-x_1)(x-x_2)(x-x_3)(x-x_4)q(x)    
+    \end{equation}
+    Supozojm\"{e}, p\"{e}r hir t\"{e} kontradiksionit, q\"{e} $p(z)=12$ p\"{e}r $z\in\mathbb{Z}$.
+    Z\"{e}vend\"{e}sojm\"{e} $x=z$ n\"{e} ekuacionin 1 dhe kemi \[p(z)-5=12-5=(z-x_1)(z-x_2)(z-x_3)(z-x_4)\]
+    Pra kemi q\"{e} $12-5=7$ \"{e}sht\"{e} prodhim i kat\"{e}r numrave t\"{e} ndrysh\"{e}m\footnote[1]{Pra fakti q\"{e} $x_i$ jan\"{e} t\"{e} ndrysh\"{e}m \"{e}sht\"{e} esencial.} t\"{e} plot\"{e}, por nga teorema fundamentale e aritmetik\"{e}s kemi se maksimalisht $7$ mund t\"{e} jet\"{e} prodhim i tre numrave t\"{e} ndrysh\"{e}m t\"{e} plot\"{e} ($7=(-1)\cdot1\cdot(-7)$). Pra kemi kontradiksionin e d\"{e}shiruar.
+\end{solution}
+\begin{ushtrim}
+    Gjeni t\"{e} gjith\"{e} numrat natyror\"{e} $n$ ashtu q\"{e} $2^8+2^{11}+2^n$ \"{e}sht\"{e} katror i plot\"{e}.
+\end{ushtrim}
+\begin{solution}
+    Supozojm\"{e} q\"{e} ekziston nj\"{e} $k\in\mathbb{Z}$ ashtu q\"{e} $2^8+2^{11}+2^n=k^2$. 
+    Meq\"{e} $2^8+2^{11}=48^2$ kemi \[2^n+48^2=k^2\]
+    Rrjedhimisht $$2^n=(k-48)(k+48).$$
+    Nga teorema fundamentale e aritmetik\"{e}s kemi q\"{e} $k-48$ dhe $k+48$ kan\"{e} vet\"{e}m fuqi t\"{e} numrit $2$ n\"{e} dekompozimin e tyre n\"{e} numra t\"{e} thjesht\"{e}.
+    Pra $k-48=2^t$ dhe $k+48=2^s$ ku $t+s=n$.
+    Zbresim ekuacionin e par\"{e} nga i dyti dhe kemi $k+48-(k-48)=2^s-2^t$.
+    Pra \[96=2^s-2^t\]
+    Nga ky ekuacion kemi q\"{e} $2^t\leq 96$. Pra mjafton t\"{e} shqyrtojm\"{e} vlerat e $t$ m\"{e} t\"{e} vogla se $7$.
+    Zgjidhja e vetme \"{e}sht\"{e} $t=5$ dhe $s=7$ p\"{e}r t\"{e} cil\"{e}n kemi $k=80$ dhe $n=12$.
+\end{solution}
+\subsection*{Problemet}
+\begin{problem}
+    Verifikoni qe \c{c}do num\"{e}r $n$ i till\"{e} q\"{e} $1<n<30$ dhe $\pmmp(n,30)=1$ \"{e}sht\"{e} i thjesht\"{e}.\\
+    \textit{Sh\"{e}nim:} $30$ \"{e}sht\"{e} numri m\"{e} i madh me k\"{e}t\"{e} veti.
+\end{problem}
+\begin{problem}
+    Themi se dy numra jan\"{e} \textbf{\textcolor{RubineRed}{relativisht t\"{e} thjesht\"{e}}} n\"{e}se $\pmmp(a,b)=1$.\\
+    N\"{e}se $a$ dhe $b$ jan\"{e} relativisht t\"{e} thjesht\"{e} dhe $ab$ \"{e}sht\"{e} katror i plot\"{e}, at\"{e}her\"{e} $a$ dhe $b$ jan\"{e} katror\"{e} t\"{e} plot\"{e}.
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} n\"{e} \c{c}do n\"{e}nbashk\"{e}si e $\{1,2,\dots,100\} $ me $51$ elemente p\"{e}rmban dy elemente relativisht t\"{e} thjesht\"{e} nj\"{e}ri-me-tjetrin.
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} ekzistonj\"{e} pafund\"{e}sisht numra t\"{e} thjesht\"{e} t\"{e} form\"{e}s $3k+2$.
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} p\"{e}rve\c{c} treshes $(0,0,0)$ nuk ekziston asnj\"{e} treshe e numrave t\"{e} plot\"{e} $(a,b,c)$ ashtu q\"{e} $$a+b\sqrt{2}+c\sqrt{3}=0.$$
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} \[S=1+\dfrac{1}{3}+\dfrac{1}{5}+\dots+\dfrac{1}{2n-1}\] nuk \"{e}sht\"{e} num\"{e}r i plot\"{e} p\"{e}r $n>1$.
+\end{problem}
+\begin{problem}
+    Le t\"{e} jet\"{e} $n\geq2$ dhe $a_1,\dots,a_n$ numra t\"{e} plot\"{e} jonegativ. Supozojm\"{e} q\"{e} ekziston nj\"{e} num\"{e}r i thjesht\"{e} $p$ dhe nj\"{e} num\"{e}r natyror $h$ ashtu q\"{e} $p^h\mid a_i$ p\"{e}r ndonj\"{e} $i$ dhe $p^h\nmid a_j$ p\"{e}r \c{c}do $j\neq i$.
+    Tregoni q\"{e} \[S=\dfrac{1}{a_1}+\dots+\dfrac{1}{a_n}\] nuk \"{e}sht\"{e} num\"{e}r i plot\"{e}.
+\end{problem}
+\begin{problem}
+    Tregoni q\"{e} prodhimi i kat\"{e}r numrave natyror\"{e} t\"{e} nj\"{e}pasnj\"{e}sh\"{e}m nuk mund t\"{e} jet\"{e} katror i plot\"{e}.
+\end{problem}
+\begin{problem}
+    N\"{e}se $n>1$, at\"{e}her\"{e} $n^5+n^4+1$ nuk \"{e}sht\"{e} i thjesht\"{e}.
+\end{problem}
+\begin{problem}
+    Themi se n\"{e} tok\"{e} zbresin disa alien\"{e} nga Marsi dhe tregojn\"{e} q\"{e} ata n\"{e} vend t\"{e} numrave natyror\"{e}, p\"{e}rdorin bashk\"{e}sin\"{e} $\mathbb{E}$ ku b\"{e}jn\"{e} pjes\"{e} vet\"{e}m numrat \c{c}ift\"{e}\footnote[2]{Nj\"{e} shembull i famsh\"{e}m i k\"{e}tij lloji \"{e}sht\"{e} dh\"{e}n\"{e} nga matematikani David Hilbert ku bashk\"{e}sia p\"{e}rmban numrat e form\"{e}s $3k+1$. Si ushtrim shtes\"{e} mund ti mendoni pjes\"{e}t (a),(b),(c) dhe (d) edhe p\"{e}r at\"{e} bashk\"{e}si}. Pra $\mathbb{E}=\{0,2,4,6,\dots\}$. Le t\"{e} themi se nj\"{e} num\"{e}r $a\in\mathbb{E}$ \"{e}sht\"{e} i $\mathbb{E}$-thjesht\"{e} n\"{e}se nuk mund t\"{e} sh\"{e}nohet si prodhim i dy numrave n\"{e} $\mathbb{E}$.
+    \begin{itemize}
+        \item[(a)] Gjeni t\"{e} gjith\"{e} numrat qe jan\"{e} t\"{e} $\mathbb{E}$-thjeshte.
+        \item[(b)] Jepni analogun e teorem\"{e}s fundamentale t\"{e} aritmetik\"{e}s p\"{e}r bashk\"{e}sin\"{e} $\mathbb{E}$ dhe numrat e $\mathbb{E}$-thjesht\"{e}. A vlen ekzistenca e nj\"{e} p\"{e}rfaq\"{e}simi? A vlen uniciteti?
+        \item[(c)] Gjeni numrin m\"{e} t\"{e} vog\"{e}l n\"{e} $\mathbb{E}$ q\"{e} ka $4$ p\"{e}rfaq\"{e}sime t\"{e} ndryshme si prodhim i numrave t\"{e} $\mathbb{E}$-thjesht\"{e}.
+        \item[(d)] Cil\"{e}t numra kan\"{e} sakt\"{e}sisht nj\"{e} p\"{e}rfaq\"{e}sim si prodhim i numrave t\"{e} $\mathbb{E}$-thjesht\"{e}?
+    \end{itemize}
+\end{problem}
+\begin{problem}
+    Cili \"{e}sht\"{e} numri m\"{e} i madh \c{c}ift i cili nuk mund t\"{e} paraqitet si shum\"{e} e dy numrave t\"{e} p\"{e}rb\"{e}r\"{e} tek\"{e}.
+\end{problem}
+\begin{remark}{}{}
+    Problemi m\"{e} lart i ngjason nj\"{e}rit nga problemet m\"{e} t\"{e} famshme dhe vjetra n\"{e} teorin\"{e} e numrave - konjektur\"{e}s s\"{e} Goldbahut. 
+    N\"{e} vitin 1742 matematikani Gjerman Kristian Goldbah hamend\"{e}soi se \c{c}do num\"{e}r \c{c}ift m\"{e} i madh se $2$ mund t\"{e} paraqitet si shum\"{e} e dy numrave t\"{e} thjesht\"{e}. Ky problem mbetet ende i pazgjidhur.
+\end{remark}
+\subsection{Disa Rregulla t\"{e} Plotpjes\"{e}tueshm\"{e}ris\"{e}}
+\begin{theo}{}{}
+Le t\"{e} jet\"{e} $\overline{a_{n}a_{n-1}...a_0}$ representimi decimal i numrit $a$ ($a_i$ jan\"{e} shifra t\"{e} numrit $a$).
+\begin{itemize} 
+\item[(a)] $2^k$ ndan\"{e} $a$ at\"{e}her\"{e} dhe vet\"{e}m at\"{e}her kur $2^k$ ndan\"{e} $\overline{a_{k-1}a_{k-2}...a_0}$
+\item[(b)] $5^k$ ndan\"{e}  $a$ at\"{e}her\"{e} dhe vet\"{e}m at\"{e}her\"{e} kur $5^k$ ndan\"{e} $\overline{a_{k-1}a_{k-2}...a_0}$
+\item[(c)] $3$ ndan\"{e} $a$ at\"{e}her\"{e} dhe vet\"{e}m at\"{e}her\"{e} kur $3$ ndan\"{e} $a_{n}+a_{n-1}+...+a_{0}$ 
+\item[(d)] $11$ ndan\"{e} $a$ at\"{e}her\"{e} dhe vet\"{e}m at\"{e}her\"{e} kur $11$ ndan\"{e} $a_{0}-a_{1}+...+(-1)^na_{n}$
+\end{itemize}    
+\end{theo}
+\begin{proof}
+$\empty$
+\begin{itemize}
+    \item[(a)] V\"{e}rejm\"{e} q\"{e} $\overline{a_na_{n-1}\dots a_0}=10^k\cdot \overline{a_na_{n-1}\dots a_k}+\overline{a_{k-1}a_{k-2}\dots a_0}$.
+    Meq\"{e} $2^k\mid 10^k$ kemi q\"{e} $2^k\mid \overline{a_na_{n-1}\dots a_0}\iff 2^k\mid \overline{a_{k-1}a_{k-2}\dots a_0}$.
+    \item[(b)] Ngjash\"{e}m si n\"{e} pjes\"{e}n (a).
+    \item[(c)] V\"{e}rejm\"{e} q\"{e} $\overline{a_na_{n-1}\dots a_0}=\displaystyle\sum_{i=0}^n 10^ia_i$.
+    Meq\"{e} $10^i$ ka mbetje $1$ kur pjestohet me $3$, kemi q\"{e} mbetja e $\overline{a_na_{n-1}\dots a_0}$ pas pjes\"{e}timit me $3$ \"{e}sht\"{e} mbetja e $a_n+a_{n-1}+\dots+a_0$ pas pjes\"{e}timit me $3$.
+    \item[(d)] Meq\"{e} mbetja e $10^i$ pas pjes\"{e}timit me $11$ \"{e}sht\"{e} $\pm 1$ duke alternuar, si n\"{e} rastin (c) fitojm\"{e} rezultatin e k\"{e}rkuar.
+ \end{itemize}
+\end{proof}
+\begin{remark}{}{}
+    N\"{e} modulin 2 do t\"{e} zhvillojm\"{e} aparatur\"{e} q\"{e} na lejon t\"{e} formalizojm\"{e} m\"{e} leht\"{e} v\"{e}rtetimet e pjes\"{e}ve (c) dhe (d). 
+\end{remark}
+\begin{ushtrim}
+    Gjeni $X$ dhe $Y$ n\"{e}se $8$ dhe $9$ ndajn\"{e} $\overline{X1989Y}$
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{ushtrim}
+    Gjeni $X, Y,$ dhe $Z$ n\"{e}se $3,5,8,$ dhe $11$ ndajn\"{e} $\overline{2X4YZ}$
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+
+\subsection{Funksionet Multiplikative Tau dhe Sigma} 
+\begin{remark}{}{}
+    Nga tani e tutje, kur themi pjestues n\"{e}nkuptojm\"{e} pjestues natyror. Kur flitet p\"{e}r pjestues potencialisht jo-natyror\"{e}, themi pjestues t\"{e} plot\"{e}.
+\end{remark}
+\begin{theo}{}{}
+    Le t\"{e} $n=p_{1}^{\alpha_1} p_{2}^{\alpha_2} \dots p_{k}^{\alpha_k}$ faktorizimi n\"{e} numra t\"{e} thjesht\"{e} i numrit $n$.
+    Sh\"{e}nojm\"{e} me $\tau(n)$ numrin e pjestuesve natyror\"{e} $n$, 
+    at\"{e}her\"{e} $\tau(n)=(\alpha_1+1)(\alpha_2+1)\dots(\alpha_k+1)$.
+\end{theo}
+\begin{proof}
+
+\end{proof}
+\begin{ushtrim}
+    N\"{e}se $n=p_1^{\alpha_1}p_2^{\alpha_2}\dots p_k^{\alpha_k}$, sa pjestues t\"{e} plot\"{e} ka $n$?
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{ushtrim}
+    Gjeni t\"{e} gjith\"{e} pjestuesit e plot\"{e} t\"{e} numrit $72$.
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{ushtrim}
+    Gjeni prodhimin e pjestuesve natyror\"{e} t\"{e} $2520$.
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{corollary}{}{}
+    P\"{e}r \c{c}do num\"{e}r natyror $n$ kemi \[\displaystyle\prod_{d\mid n} d=n^{\frac{\tau(n)}{2}}.\]
+\end{corollary}
+\begin{proof}
+    
+\end{proof}
+Si\c{c} edhe pam\"{e} nga teorema 14, numri i pjestuesve t\"{e} $n$, varet nga numri i faktor\"{e}ve t\"{e} thjesht\"{e} t\"{e} $n$ dhe jo drejtp\"{e}rdrejt\"{e} nga madh\"{e}sia e $n$. Megjithat\"{e}, madh\"{e}sia e $n$ mund t\"{e} p\"{e}rdoret t\"{e} na jap nj\"{e} kufi t\"{e} sip\"{e}rm t\"{e} vler\"{e}s $\tau(n)$.
+\begin{corollary}{}{}
+    P\"{e}r \c{c}do $n\in\mathbb{N}$ kemi \[\tau(n)\leq 2\sqrt{n}.\]
+\end{corollary}
+\begin{proof}
+    
+\end{proof}
+\begin{theo}{}{}
+    Le t\"{e} jet\"{e} $n=p_1^{\alpha_1}p_2^{\alpha_2}\dots p_k^{\alpha_k}$ faktorizimi n\"{e} numra t\"{e} thjesht\"{e} i numrit $n$.
+    Sh\"{e}nojm\"{e} me $\sigma(n)$ shum\"{e}n e t\"{e} gjith\"{e} pjestuesve natyror\"{e} t\"{e} $n$, at\"{e}her\"{e} \[\sigma(n)=\dfrac{p_{1}^{\alpha_1+1}-1}{p_{1}-1}\cdot \dfrac{p_{2}^{\alpha_2+1}-1}{p_{2}-1}\dots\dfrac{p_{k}^{\alpha_k+1}-1}{p_{k}-1}\]
+\end{theo}
+\begin{proof}
+
+\end{proof}
+\begin{ushtrim}
+    Gjeni shum\"{e}n e pjestuesve natyror\"{e} t\"{e} numrit $1,683,000$.
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\begin{ushtrim}
+    Gjeni shum\"{e}n e pjestuesve (natyror\"{e}) \c{c}ift\"{e} t\"{e} numrit $10000$.
+\end{ushtrim}
+\begin{solution}
+    
+\end{solution}
+\subsection*{Problemet}
+\begin{problem}
+    Llogarisni $\tau(2^n\cdot 3)$, $\sigma(2^n\cdot 3)$.
+\end{problem}
+\begin{problem}
+    N\"{e}se zgjedhim nj\"{e} pjestues natyror t\"{e} $10^{70}$ rast\"{e}sisht sa \"{e}sht\"{e} gjasa q\"{e} ky num\"{e}r t\"{e} jet\"{e} pjestues i $10^{55}$?
+\end{problem}
+\begin{problem}
+    Gjeni t\"{e} gjith\"{e} $n$ ashtu qe $\sigma(n)=56$.
+\end{problem}
+\begin{problem}
+    Gjeni t\"{e} gjith\"{e} $n$ ashtu q\"{e} $\tau(n)\sigma(n)=12$.
+\end{problem}
+\begin{problem}
+    Gjeni t\"{e} gjith\"{e} $n$ ashtu q\"{e} $\tau(n)\sigma(n)=20$.
+\end{problem}
+\begin{problem}
+$\empty$
+\begin{itemize}
+    \item[(a)] Tregoni q\"{e} n\"{e}se $n$ \"{e}sht\"{e} num\"{e}r i thjesht\"{e}, $n\mid \tau(n)\sigma(n)+2$.
+    Nuk dihet n\"{e}se ekziston ndonj\"{e} $n>4$ i p\"{e}rb\"{e}r\"{e} q\"{e} plot\"{e}son k\"{e}t\"{e} veti.
+    \item[(b)] Tregoni q\"{e} n\"{e}se $n$ \"{e}sht\"{e} num\"{e}r i thjesht\"{e}, $n\mid \tau(n)\sigma(n)-2$.
+    Gjeni nj\"{e} num\"{e}r t\"{e} p\"{e}rb\"{e}r\"{e} q\"{e} plot\"{e}son k\"{e}t\"{e} veti.
+\end{itemize}
+
+\end{problem}
+
+\subsection{Nj\"{e} Digresion Lidhur me Konvolucionin e Dirileut}
+
+\subsection{Probleme Sfiduese p\"{e}r Modulin 1}
+\begin{problem}
+    %Yu Hong-Bing Page 31 
+    Supozoni q\"{e} $m\geq n\geq1$, tregoni q\"{e} $\dfrac{\pmmp(m,n)}{m}\displaystyle\cho{m}{n}$ \"{e}sht\"{e} num\"{e}r i plot\"{e}.
+\end{problem}
+\begin{problem}
+    Gjeni numrat natyror\"{e} $n$ ashtu q\"{e} $n$ plot\"{e}pjestohet nga \c{c}do num\"{e}r natyror m\"{e} i vog\"{e}l ose baraz me $\sqrt{n}$.
+\end{problem}
+\begin{problem}
+    (APMO 2004) Gjeni t\"{e} gjitha bashk\"{e}sit\"{e} (jo t\"{e} zbraz\"{e}ta) t\"{e} fundme $S$ me elemente numra natyror\"{e} ashtu q\"{e} \[\dfrac{i+j}{\gcd(i,j)}\in S\] p\"{e}r \c{c}do $i$ dhe $j$ (jo meodoemos t\"{e} ndryshm\"{e}) n\"{e} $S$. 
+\end{problem}
+\begin{problem}
+    Le t\"{e} jet\"{e} $n$ nj\"{e} num\"{e}r natyror. Themi se nj\"{e} num\"{e}r natyror $m$ ka vetin\"{e} $P$ n\"{e}se $\forall k \in  \{1, 2, \dots , m - 1 \}$, $\frac{\sigma(m)}{m} >\frac{\sigma(k)}{k}.$ Tregoni q\"{e} ekzistojn\"{e} pafund\"{e}sisht shum\"{e} numra me vetin\"{e} $P$.
+    
+    \textit{Shenim:} Matematikani Hungarez Paul Erdos n\"{e} nj\"{e} publikim t\"{e} vitit $1944$ definon numrat me vetin\"{e} $P$ si \textit{"Superabundant numbers"}.
+\end{problem}
+\begin{problem}
+    (IMO 2002/P4)
+\end{problem}
+\begin{problem}
+    (IMO 1998/P4) Gjeni t\"{e} gjitha dyshet e numrave natyror\"{e} $(a,b)$ ashtu q\"{e} \[ab^2+b+7\mid a^2b+a+b.\]
+\end{problem}
+\section{Moduli 2}
+Deri tani kemi zhvilluar teknika q\"{e} na lejojn\"{e} t\"{e} flasim p\"{e}r plotpjestueshm\"{e}ri. Pra krejt n\"{e} fillim kemi treguar q\"{e} n\"{e}se $a\mid b$ dhe $a\mid c$, at\"{e}her\"{e} $a\mid b+c$.
+Do mundohemi q\"{e} k\"{e}t\"{e} ide ta p\"{e}rgjith\"{e}sojm\"{e} n\"{e} k\"{e}t\"{e} modul. 
+Pra n\"{e} vend se t\"{e} marrim p\"{e}rfundime vet\"{e}m p\"{e}r kombinimet lineare t\"{e} numrave q\"{e} kan\"{e} mbetje $0$, do t\"{e} konsiderojm\"{e} edhe kombinimet lineare t\"{e} numrave q\"{e} kan\"{e} mbetje jo-zero.
+N\"{e} m\"{e}nyr\"{e} q\"{e} t\"{e} mbajm\"{e} llogari p\"{e}r mbetjet jo-zero, na duhet t\"{e} zhvillojm\"{e} iden\"{e} e aritmetik\"{e}s modulare.
+\section{Metodat e Vertetimit}
+\subsection{Induksioni Matematik}
+\myth Le te jete $P(n)$ nje pohim per variablen $n$.Atehere nese \begin{itemize}
+\item $P(1)$ eshte i sakte dhe
+\item nese $P(n)$ eshte i sakte atehere edhe $P(n+1)$ eshte i sakte
+kemi qe $P(n)$ vlen per cdo numer natyror $n$.
+\end{itemize}
+\myp Vertetoni qe $1+3+5+...+(2n-1)=n^2$ per cdo $n\in \mathbb{N}$
+\vspace{30mm}
+\myp Vertetoni qe $2^n>n^2$ per cdo $n>5$
+\vspace{30mm}
+\myp Vertetoni qe nje bashkesi me $n$ elemente ka $2^n$ nenbashkesi.
+\vspace{30mm}
+\myth Le te jete $P(n)$ nje pohim per variablen $n$.Atehere nese \begin{itemize}
+\item $P(1),P(2),...,P(k)$ eshte i sakte dhe
+\item nese $P(n)$ eshte i sakte atehere edhe $P(n+k)$ eshte i sakte
+kemi qe $P(n)$ vlen per cdo numer natyror $n$.
+\end{itemize}
+\vspace{30mm}
+\myp Vertetoni qe ekuacioni $x^2+y^2=z^n$ ka zgjidhje $(x,y,z,n)\in \mathbb{N}^4$ per cdo numer natyror $n$.
+\vspace{30mm}
+\myp Vertetoni qe $9 \mid n^3+(n+1)^3+(n+2)^3$ per cdo $n\in \mathbb{N}$
+\vspace{30mm}
+\myp Tregoni qe per cdo numer natyror $n>2$ numrat e formes $2^{2^n}+1$ mbarojne me shifren $7$.
+\vspace{30mm}
+\myp \textsc{(USAMO 2003)} Vertetoni qe per cdo numer natyror $n$ ekziston nje numer n-shifror shumefish i $5^n$ shifrat e te cilit jane te gjitha teke.
+\vspace{30mm}
+\myp Vertetoni qe ekzistojne pakufi shume numra natyror qe nuk permbajne shifren $0$ dhe qe plotepjes\"{e}tohen nga shuma e shifrave te tyre.
+\section{Sene me i shti}
+\begin{theo}{}{}
+    Le t\"{e} jet\"{e} $n$ num\"{e}r natyror dhe $S(n)$ shuma e shifrave t\"{e} $n$.
+    Kemi
+    \begin{itemize}
+        \item[(a)] $9\mid S(n)-n$
+        \item[(b)] $S(n_1+n_2)\leq S(n_1)+S(n_2)$
+        \item[(c)] $S(n_1n_2)\leq \min\{n_1S(n_2),n_2S(n_1)\}$
+        \item[(d)] $S(n_1n_2)\leq S(n_1)S(n_2)$
+    \end{itemize}
+\end{theo}
+PSS Engel - 138, 147\\
+BMO 1989 P1 - Kur e bon katrort mod 4.
+\section{Zgjidhjet e Problemeve}
+
+\section*{Appendix A - Funksioni i Pjes\"{e}s s\"{e} Plot\"{e}}
+
+\end{document}  

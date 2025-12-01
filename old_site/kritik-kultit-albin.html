@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritikë Kultit Albin - Leart Ajvazaj</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .article-meta {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .article-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .article-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin: 1rem 0;
+            line-height: 1.3;
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .article-content code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+        
+        .article-content pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .article-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .article-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+        }
+        
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 0 8px 8px 0;
+        }
+        
+
+        
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-container {
+                margin-top: 100px;
+                padding: 0 15px;
+            }
+            
+            .article-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Leart Ajvazaj</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="writings.html" class="nav-link active">Writings</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+                <a href="faq-recommendations.html" class="nav-link">Recommendations</a>
+                <a href="write.html" class="nav-link">Write</a>
+                <a href="index.html#about" class="nav-link">About</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="article-container">
+        <a href="writings.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Writings
+        </a>
+        
+        <div class="article-meta">
+            <span class="article-date">May 28, 2021</span>
+            <span class="article-category">Politics</span>
+        </div>
+        
+        <h1 class="article-title">Kritikë Kultit Albin</h1>
+        
+        <div class="article-excerpt">Publikuar nën pseudonimin Valerius</div>
+        
+        <div class="article-content">
+            <p>Dje, në një nga ligjërimet e tij të zakonshme në Kuvendin e Kosovës, kryeministri Kurti deklaroi se opozita është e paaftë ti bëjë kritikë qeverisë së tij. Ai kritikën e opozitës tha se e sheh vetëm si paragjykim ose shpifje, por diçka e tille është aq e marrë sa Kurti është arrogant. Gjasat se je i paaftë të kritikosh si opozitë kur pushteti është i paaftë të udhëheq janë fare të vogla. Ndoshta Kurti nuk ua vë veshin kritikave pasi, jo rrallë herë, ai dhe ndjekësit e tij fshihen pas turmës që kanë krijuar për tu mos u ballafaquar me kundërshtarë të pafuqishëm politikisht.</p><p><br></p><p>Ne seancën për planin qeverisës, zv. Kryeministri Bislimi thoshte se 51% e qytetarëve kanë votuar atë plan, në një tentim për të cilësuar të parëndësishme shqetësimet e deputetëve opozitarë. Ky rast shpërfaq dy kritikat më të mëdha ndaj Lëvizjes Vetëvendosje. Ndonëse të gjitha këto janë elaboruar ad nauseam nga opozita e gjerë, duket se edhe një iteracion i tyre është i domosdoshëm që Kurti ta kupton se kritika ndaj qeverisë së tij ka me bollëk.</p><p>Kritika e parë për qeverinë Kurti II lidhet me qëndrimet, ose mungesën e tyre, për çështjet e mëdha. Kur Besnik Bislimi thotë që qytetarët kanë votuar planin e qeverise me 51%, ai thyen ligjet fizike të kauzalitetit pasi qytetarët nuk do kishin mundësi të votonin për një plan që dritën e diellit do ta shihte dy muaj pas procesit elektoral. Ne fakt, Lëvizja Vetëvendosje në zgjedhjet e kaluara ka qenë një pako misterioze. Vetëvendosja është një kombinim socialistësh dhe neoliberalësh, pjesëtarësh dhe kundërshtarësh të UÇK-së, islamistësh dhe pjesësh të komunitetit LGBTI. Për shkak te këtij mishmashi, një program i qartë ishte i domosdoshëm.</p><p><br></p><p>Në mungesë te qëndrimeve dhe ballafaqimeve të Lëvizjes Vetëvendosje me kundërshtarë, dukej e arsyeshme të supozohet që qëndrimet e këtij subjekti nuk kishin ndryshuar aq shumë nga koha kur ata ishin në pushtet. Pas vetëm dy muajsh qeverisje, ky supozim për nga niveli i absurditetit krahasohet me lënien në terr të qytetarëve para zgjedhjeve dhe pagimin për mos-lënien në terr të rezidentëve veriorë pas zgjedhjeve. Nga Kurti, kësaj radhe nuk mund të presim konsistence as me vetveten e tij të vitit 2020. Për me tepër, ajo që cilësohej të ishte arsyeja për kolapsin e qeverisë Kurti I dhe, natyrshëm, një faktor esencial në fitoren e Vetëvendosjes në zgjedhjet e fundit u kundërshtua plotësisht vetëm pak ditë më parë. Duket se përkundër fjalëve të Kurtit para fushatës, qeveria e tij nuk do të implementon masa të reciprocitetit me Serbinë, të paktën jo si çështje javësh siç pat deklaruar kryeministri.</p><p><br></p><p>Nëse reciprociteti me të vërtetë nuk qenka ndonjë çështje esenciale për Kosovën, si e justifikon Kurti armiqësimin e tij me ambasadorin Grenell? Kurti ose mund të thotë që nuk e ka ditur se reciprociteti nuk mund të implementohet menjëherë ose ka mashtruar qytetarët duke premtuar diçka të tillë. Por sigurisht që Kurti nuk mund ta ketë gabim. Fundja, e vërteta objektive është thjeshtë projektim i interpretimeve subjektive të Kurtit. Ai, ndër të tjera, dje tha që arsye për te mos fuqizuar masat e reciprocitetit është mungesa e përgatitjes së zyrtarëve të doganave që ta zbatojnë suksesshëm reciprocitetin. I njëjti teksa po mblidhte plaçkat para largimit nga kryeministria, pat vendosur masat të reciprocitetit.</p><p><br></p><p>Nëse atëbotë dikush kishte dyshime për intencën prapa atij vendimi, sot gjithçka është e qartë. Ai vendim shërbente vetëm një rol: formimin e një narrative që vetëvendosje donte reciprocitet por Avdullah Hoti e hoqi atë. Sipas deklaratave të fundit të Kurtit, Hoti po del të ketë marrë vendimin e duhur pasi Kosova, sipas Kurtit, nuk është e gatshme për reciprocitet. Albin Kurti në këto vitet e fundit nga një udhëheqës i një subjekti që bazën e veprimit e ka ideologjik është shndërruar në personifikimin e kontradiksionit. Ai nuk ka qëndrime permanente, e nuk i zbulon ato të përkohshme. Zoti Kurti, a është kritikë kjo?</p><p><br></p><p>Kritika e dytë ndaj Vetëvendosjes ka të bëjë pikërisht me trajtimin që këta i bëjnë kritikës. Kurti tha që rreziku i vetëm për qeverinë e tij është mungesa e kritikës. Duke pasur parasysh që kritika ndaj qeverise nuk mungon, kjo deklarate shpërfaq rrezikun që qeveria e tij së bashku me kultin Albin paraqesin për shtetin e Kosovës. Albin Kurti vuan nga idetë për supermacinë e tij morale e intelektuale. Ai mendon që, duke qenë plotësisht i pastër, mund te kritikohet vetëm nga një rrafsh moral përmbi atë. E pikërisht mënyra se si e sheh Kurti veten diskualifikon secilin kritik potencial.</p><p>Ky mekanizëm mbrojtës i shërben Kurtit që të shtyj gjithçka poshtë fytit të ndjekësve të tij dhe të lëshoj armatën e rrjeteve sociale pas secilit kritik. Në mungesë të prezencës fizike timen, shpresoj qe kritika ime te adresohet në substance e jo si kundërsulm ndaj subjektit qe e parashtron këtë kritikë. Në të vërtetë, qëndrimi që kritika është e pavlerë në mungese të autoritetit moral të parashtruesit të saj është thjeshte mënyre për të injoruar kundërshtarët. Validiteti i kritikës varet vetëm nga vlera e vërtetësisë së premisave dhe rrjedha logjike qe shpije në deklaratën e saj. Pra, në mënyrë që të konsiderohen kritikat si te pabaza ose valide, duhet pranuar njëfarë objektiviteti rreth tyre. Konstatimet subjektive mbi autoritetin moral te dikujt nuk mund ta ndikojnë objektivitetin e kritikes në vetvete sepse, përkundër çka praktikon kulti Albin, vërtetësia e diçkaje nuk varet nga qëndrimet e individëve për atë gjë.</p><p><br></p><p>Kjo intolerancë e qeverisë ndaj kundërshtarëve është e pashmangshme për një subjekt si vetëvendosje. Vetëvendosja harliset si fuqi kundërshtuese; atyre u duhet një armik për të pasur kauzë politike. Edhe pse Kurti sot është njeriu me i pushtetshëm në Kosovë, vetëvendosja ende e kërkon gogolin. Ata ende flasin për kapësit e shtetit e se si po i luftojnë ata ne baza ditore neper institucione. Kush janë këta nuk është shume lehtë të përcaktohet. Nëse janë funksionarët e qeverive të kaluara, a është shefja e grupit parlamentar Kusari? Nëse janë funksionaret me aktakuza, a është ministri i ambientit Aliu? Armiku është diku ne eter dhe armiku është i tillë deri sa forca gravitacionale e 51 përqindëshit ta bëj pjesë të kultit. Kur armiku i bashkohet kultit kërkimi fillon përsëri.</p><p>Ndonëse Albin Kurti ende nuk ka kompletuar as 100 ditët e para në krye të qeverisë, ai po konfirmon frikën që shumë nga ne ndajmë qe sa kohë. Arroganca e Kurtit dhe përkrahja e verbër që ai gëzon mund të jenë kombinim fatal për Kosovën. Me atë qe tha dje, Kurti dëshmoi që nuk ua vë veshin kritikave të kundërshtarëve te tij. E nëse Kurti konsideron që kritikat për inkonsistencë, mungesë plani qeverisës, gafat e MPJ dhe sigurimin e vaksinave janë të pabaza, atëherë Kurti nuk është thjeshtë arrogant, por plotësisht deluzional.&nbsp;</p>
+        </div>
+        
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/leart-ajvazaj/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://www.facebook.com/learti.a/" class="footer-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        <a href="https://x.com/LeartAjvazaj" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+                        <a href="mailto:ajvazaj.leart@gmail.com" class="footer-link">Email</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="writings.html" class="footer-link">Writings</a>
+                        <a href="technical.html" class="footer-link">Technical</a>
+                        <a href="faq-recommendations.html" class="footer-link">Recommendations</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ata që vallëzojnë mbi varre - Leart Ajvazaj</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--color-primary);
+            transform: translateX(-4px);
+        }
+
+        .article-meta {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-date {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 1rem 0;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            line-height: 1.7;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            font-weight: 700;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--color-primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        .article-content a {
+            color: var(--color-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--color-primary);
+        }
+
+        .article-content code {
+            background: var(--color-border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--color-border);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            border: 2px solid var(--color-border);
+        }
+
+        .article-content em {
+            text-align: center;
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-container {
+                padding: 100px 15px 40px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .article-excerpt {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill is-active" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="faq-recommendations.html" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link is-active">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link">Technical</a>
+                </li>
+                <li>
+                    <a href="faq-recommendations.html" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="article-container">
+        <a href="writings.html" class="back-link">
+            ← Back to Writings
+        </a>
+
+        <div class="article-meta">
+            <span class="article-date">January 22, 2024</span>
+            <span class="article-category">Politics</span>
+        </div>
+        
+        <h1 class="article-title">Ata që vallëzojnë mbi varre</h1>
+        
+        
+        
+        <div class="article-content">
+            <p>Kur lexova për vrasjen e një tetëmbëdhjetëvjeçari në Podujevë, mbylla sytë. Kështu bëj zakonisht me lajme të tilla. E di se me të mësuar detajet, dhimbja për jetën e humbur dhe ato të shkatërruara si pasojë, veç sa mund të rritet. Kështu që injorimi, aq sa njeriu mund t’i injorojë të tilla gjëra, është zakonisht kursi im i (mos)veprimit. Kësaj here nuk durova dot. Varret edhe mund t’i injorosh, por njerëzit që vallëzojnë mbi to është e pamundur. Nuk do të zgjatem në ato që çdokush me mend në kokë i ka thënë deri tani: Vrasje e dhimbshme jashtë çdo përmase. Edhe më tragjike kur e mendon që duart e krimit janë duar të njoma të miturish. Rikujtimi që 16-vjecarët kanë kapacitet për ligësi të këtyre përmasave është rrëqethës. Mos të flas për motivin e krimit…</p><p>Ndonëse shumica e kemi të përbashkët tmerrimin dhe zhgënjimin, disa shohin mundësi në këtë tragjedi; disa fërkojnë duart. Për ca njerëz edhe vrasja e një tetëmbëdhjetëvjeçari mund të instrumentalizohet, mund të avancojë agjenda. Këta njerëz vinë nga grupe plotësisht të ndryshme të shoqërisë, por kanë disa të përbashkëta. Këta nuk udhëhiqen nga parimi që dëshmitë sjellin të vërtetën, por nga e kundërta. Dëshmitë përzgjidhen dhe interpretohen në mënyrë që t’i përshtaten një të vërtete të paracaktuar. Realiteti për ta është gjithmonë i thjeshtë për t’u kuptuar, meqë gjithçka reduktohet në dinamika binare. Për ta, problemet janë të qarta. Zgjidhjet, triviale. Nuk jam i sigurt se a janë të vetëdijshme idiotësitë e tyre apo janë thjeshtë rezultat i narkozës së shkaktuar nga dogma që i sundon. Kjo ka pak rëndësi.</p><p><br></p><p>Në rastin konkret këta njerëz shohin një tragjedi dhe mendojnë për agjendat e tyre ideologjike, religjioze, politike, antireligjioze, e kulturore. Dikush si Zana Avdiu, për shembull, shfrytëzon rastin që ta reduktojë edhe këtë vrasje në çështje gjinore. Për të, secila problematikë, nga diskrepanca e pagesave në Silicon Valley e deri te çmimet e naftës, ka të bëjë me diskriminim gjinor dhe toksicitet maskulin.</p><p>Në anën tjetër janë ata që secilën çështje e reduktojnë në problem religjioz. Faji për këtë krim qenka sekularizmi i shoqërisë shqiptare. Kinse religjioni qenka ilaç për dhunën, kur dihen motivet e rrahjes se gazetarit Valon Syla, për shembull. Ndonëse në kundërshti të plotë diskursive me grupin e “aktivistëve gjinorë”, “aktivistët religjiozë” bien në të njëjtin kurth të reduktimit të gjithçkaje në dogmën e tyre.</p><p>Pastaj i ke radikalistët antireligjiozë, njëfarë religjioni në vete, që si dy grupet e mësipërme, në mungesë të informacionit bazë japin verdiktin e betonuar për vrasjen. Këta thonë që faji qenka te fetarizimi i shoqërisë shqiptare. Ta mbushin mendjen që dhunë nuk ka pasur të përcaktuar edhe në norma kanunore që nuk kanë pyetur besim.</p><p>Të mos i harroj edhe ata që reduktojnë në problemin e dhunës në punë politike, ose defekt të shkollës, ose produkt të modernitetit, e të tjera, shumë të tjera.</p><p>Sigurisht që njerëzit kanë të drejtë që të japin mendimet e tyre. Por parakusht për mendimin e sinqertë duhet të jetë një dozë e skepticizmit para verdiktit, diçka që nuk gjendet te këta për të cilët po flas. Shtytësit e agjendave i kanë mendimet gati me të ndodhur ngjarjet. Jo, i kanë gati madje para se të ndodhin ato. Secili i ka gati diagnozën dhe ilaçin para se ta takojnë pacientin. Kësaj shoqërie nuk i duhen edhe sëmundjet iatrogjenike, mbi ato që qartazi veçse i kemi. Fatkeqësisht, refleksi i këtyre mjekëve të shoqërisë është entuziazmi sa herë që dikush troket në derë, qoftë ai edhe një jetim tetëmbëdhjetë vjeçar. Në këtë kuptim, disa jo vetëm që po qëndrojnë mbi varre, ata po vallëzojnë mbi to. Po i përdorin ato dhe gjithçka tjetër si platforma për agjendat e tyre.</p><p>Që shoqëria jonë ka një problem me dhunën, nuk besoj që do diskutim. Krimet sporadike janë normale gjithkund nëpër botë, por te ne dhuna është mishëruar në çdo cep të shoqërisë. Nga lagja e shkolla deri te stadiumi e komunikacioni. Epshin për dhunë e sheh gjithkush që rritet në Kosovë. Përderisa në këtë eksperiencë të jetuar, nuk kemi arritur ta lokalizojmë burimin e këtij epshi, nuk ka se si të jetë përgjigja aq e thjeshtë siç thonë valltarët mbi varre.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

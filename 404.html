@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Leart Ajvazaj</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--background);
+        }
+        
+        .error-content {
+            text-align: center;
+            color: var(--text-color);
+            max-width: 600px;
+        }
+        
+        .error-code {
+            font-size: clamp(8rem, 15vw, 12rem);
+            font-weight: 700;
+            line-height: 1;
+            margin: 0;
+            color: var(--text-color);
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            color: var(--text-color);
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card-background);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color, #e0e0e0);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-btn.primary {
+            background: var(--card-background);
+            color: var(--text-color);
+            border-color: var(--primary-color);
+            border-width: 3px;
+        }
+        
+        .error-btn.primary:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            color: var(--primary-color);
+        }
+        
+        .shape:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .error-btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="floating-shapes">
+            <div class="shape">
+                <i class="fas fa-cube" style="font-size: 3rem;"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-atom" style="font-size: 4rem;"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-infinity" style="font-size: 3.5rem;"></i>
+            </div>
+        </div>
+        
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Page Not Found</h2>
+            <p class="error-message">
+                The page you're looking for seems to have wandered off into the mathematical multiverse. 
+                Don't worry, even the best algorithms sometimes take a wrong turn!
+            </p>
+            
+            <div class="error-actions">
+                <a href="index.html" class="error-btn primary">
+                    <i class="fas fa-home"></i>
+                    Go Home
+                </a>
+                <a href="writings.html" class="error-btn">
+                    <i class="fas fa-book"></i>
+                    Read Articles
+                </a>
+                <a href="technical.html" class="error-btn">
+                    <i class="fas fa-file-pdf"></i>
+                    Technical Work
+                </a>
+                <a href="faq-recommendations.html" class="error-btn">
+                    <i class="fas fa-question-circle"></i>
+                    FAQ & Tips
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-auth.js"></script>
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle parallax effect to floating shapes
+            document.addEventListener('mousemove', function(e) {
+                const shapes = document.querySelectorAll('.shape');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.02;
+                    const xOffset = (x - 0.5) * 50 * speed;
+                    const yOffset = (y - 0.5) * 50 * speed;
+                    
+                    shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

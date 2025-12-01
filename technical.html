@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Work - Leart Ajvazaj</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Technical work and research papers by Leart Ajvazaj. Galois theory, additive combinatorics, and mathematical notes.">
+    <meta name="keywords" content="Leart Ajvazaj, technical papers, research, Galois theory, additive combinatorics, mathematics">
+    <meta name="author" content="Leart Ajvazaj">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Technical Work - Leart Ajvazaj">
+    <meta property="og:description" content="Technical work and research papers on mathematics and machine learning theory.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/technical.html">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Technical Work - Leart Ajvazaj">
+    <meta name="twitter:description" content="Technical work and research papers on mathematics and machine learning theory.">
+    <meta name="twitter:creator" content="@LeartAjvazaj">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/technical.html">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill is-active" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="faq-recommendations.html" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link is-active">Technical</a>
+                </li>
+                <li>
+                    <a href="faq-recommendations.html" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="writings-main">
+        <section class="section">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title-writings">Technical Work</h1>
+                    <p class="page-subtitle">
+                        Research notes and technical papers on mathematics and machine learning.
+                    </p>
+                </div>
+
+                <!-- Technical Papers Grid -->
+                <div class="papers-grid">
+                    <div class="paper-card">
+                        <h3 class="paper-title"><a href="additive_combo.html">Additive Combinatorics Notes</a></h3>
+                        <p class="paper-authors">Leart Ajvazaj</p>
+                        <p class="paper-venue">University of Cambridge • January 2024</p>
+                        <p class="paper-abstract">
+                            Comprehensive notes from an Additive Combinatorics class at Cambridge with Julia Wolf.
+                            Covers Fourier-analytic techniques, Bogolyubov's lemma, Roth's theorem, and modern developments
+                            in arithmetic progressions and sum-product phenomena.
+                        </p>
+                        <div class="paper-links">
+                            <a href="additive_combo.html" class="paper-link">View PDF</a>
+                            <a href="papers/additive_combinatorics.pdf" download class="paper-link">Download PDF</a>
+                            <a href="papers/additive_combinatorics.tex" download class="paper-link">Download TeX</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title"><a href="galois_theory_notes.html">Galois Theory Notes</a></h3>
+                        <p class="paper-authors">Leart Ajvazaj</p>
+                        <p class="paper-venue">Yale University • January 2021</p>
+                        <p class="paper-abstract">
+                            Notes from a Fields and Galois Theory class at Yale. Covers field extensions, construction problems,
+                            problems of solvability, cyclotomic extensions, and fundamental theorems of Galois theory.
+                        </p>
+                        <div class="paper-links">
+                            <a href="galois_theory_notes.html" class="paper-link">View PDF</a>
+                            <a href="papers/Galois_theory_notes.pdf" download class="paper-link">Download PDF</a>
+                            <a href="papers/Galois_theory_notes.tex" download class="paper-link">Download TeX</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title"><a href="modern_algebra_notes.html">Modern Algebra Notes</a></h3>
+                        <p class="paper-authors">Leart Ajvazaj</p>
+                        <p class="paper-venue">Yale University • 2020</p>
+                        <p class="paper-abstract">
+                            Notes on modern algebra covering group theory, ring theory, and module theory.
+                            Includes fundamental concepts and advanced topics in abstract algebra.
+                        </p>
+                        <div class="paper-links">
+                            <a href="modern_algebra_notes.html" class="paper-link">View PDF</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title"><a href="teoria_e_numrave_per_olimpiada.html">Number Theory for Olympiads</a></h3>
+                        <p class="paper-authors">Leart Ajvazaj</p>
+                        <p class="paper-venue">Educational Resource</p>
+                        <p class="paper-abstract">
+                            Comprehensive notes on number theory topics commonly found in mathematical olympiads.
+                            Covers divisibility, modular arithmetic, Diophantine equations, and problem-solving techniques.
+                        </p>
+                        <div class="paper-links">
+                            <a href="teoria_e_numrave_per_olimpiada.html" class="paper-link">View Notes</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title"><a href="computational_complexity.html">Computational Complexity</a></h3>
+                        <p class="paper-authors">Leart Ajvazaj</p>
+                        <p class="paper-venue">Research Notes</p>
+                        <p class="paper-abstract">
+                            Notes on computational complexity theory, including P vs NP, complexity classes,
+                            and fundamental theorems in theoretical computer science.
+                        </p>
+                        <div class="paper-links">
+                            <a href="computational_complexity.html" class="paper-link">View Notes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

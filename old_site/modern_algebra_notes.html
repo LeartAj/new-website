@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Algebra Notes - PDF | Leart Ajvazaj</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        .pdf-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .pdf-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-meta {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .pdf-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+        }
+
+        .pdf-fallback {
+            text-align: center;
+            padding: 3rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-fallback h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .pdf-fallback p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .pdf-container {
+                padding: 1rem;
+            }
+            
+            .pdf-title {
+                font-size: 2rem;
+            }
+            
+            .pdf-viewer {
+                height: 70vh;
+            }
+            
+            .pdf-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-code"></i>
+                Leart Ajvazaj
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="writings.html" class="nav-link">Writings</a></li>
+                <li><a href="technical.html" class="nav-link">Technical</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="pdf-container">
+            <div class="pdf-header">
+                <h1 class="pdf-title">Modern Algebra Notes</h1>
+                <div class="pdf-meta">
+                    <strong>Leart Ajvazaj • September 2022 • Yale University</strong>
+                </div>
+                <p style="max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                    This course covers module theory, homological algebra, and other topics.
+                </p>
+                <div class="pdf-actions">
+                    
+                <a href="papers/modern_algebra_notes.pdf" download class="btn-primary">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </a>
+            
+                    
+                <a href="papers/modern_algebra_notes.tex" download class="btn-secondary">
+                    <i class="fas fa-file-alt"></i>
+                    Download TeX
+                </a>
+            
+                    
+                <a href="#pdf-viewer" class="btn-secondary">
+                    <i class="fas fa-eye"></i>
+                    View Below
+                </a>
+            
+                </div>
+            </div>
+
+            
+            <div id="pdf-viewer">
+                <embed 
+                    src="papers/modern_algebra_notes.pdf" 
+                    type="application/pdf" 
+                    class="pdf-viewer"
+                    title="Modern Algebra Notes PDF">
+                </embed>
+                
+                <!-- Fallback for browsers that don't support embed (hidden by default) -->
+                <div class="pdf-fallback" id="pdf-fallback" style="display: none;">
+                    <h3><i class="fas fa-file-pdf"></i> PDF Viewer Not Supported</h3>
+                    <p>Your browser doesn't support embedded PDFs. Please download the file to view it.</p>
+                    <a href="papers/modern_algebra_notes.pdf" download class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Leart Ajvazaj</h3>
+                    <p>Mathematics & Computer Science</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><svg class="x-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize theme
+        const currentTheme = localStorage.getItem('theme') || 'auto';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        // Smooth scroll to PDF viewer
+        document.querySelector('a[href="#pdf-viewer"]')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('pdf-viewer').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Check if PDF embed is working, show fallback if not
+        document.addEventListener('DOMContentLoaded', () => {
+            const embed = document.querySelector('embed[type="application/pdf"]');
+            const fallback = document.getElementById('pdf-fallback');
+            
+            // Check after a short delay to see if PDF loaded
+            setTimeout(() => {
+                try {
+                    // If embed has no content or failed to load, show fallback
+                    if (!embed || embed.offsetHeight === 0 || embed.offsetWidth === 0) {
+                        embed?.style.setProperty('display', 'none');
+                        fallback?.style.setProperty('display', 'block');
+                    }
+                } catch (error) {
+                    // If there's any error, show fallback
+                    embed?.style.setProperty('display', 'none');
+                    fallback?.style.setProperty('display', 'block');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

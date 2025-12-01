@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I korruptuar ideologjikisht - Leart Ajvazaj</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--color-primary);
+            transform: translateX(-4px);
+        }
+
+        .article-meta {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-date {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 1rem 0;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            line-height: 1.7;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            font-weight: 700;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--color-primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        .article-content a {
+            color: var(--color-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--color-primary);
+        }
+
+        .article-content code {
+            background: var(--color-border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--color-border);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            border: 2px solid var(--color-border);
+        }
+
+        .article-content em {
+            text-align: center;
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-container {
+                padding: 100px 15px 40px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .article-excerpt {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill is-active" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="faq-recommendations.html" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link is-active">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link">Technical</a>
+                </li>
+                <li>
+                    <a href="faq-recommendations.html" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="article-container">
+        <a href="writings.html" class="back-link">
+            ← Back to Writings
+        </a>
+
+        <div class="article-meta">
+            <span class="article-date">June 4, 2022</span>
+            <span class="article-category">Politics</span>
+        </div>
+        
+        <h1 class="article-title">I korruptuar ideologjikisht</h1>
+        
+        <div class="article-content">
+            <p>Ka kohë që në kritikat për politikanët kosovarë përmenden shtëpitë në lagje private, veturat luksoze ose reflektime të tjera të kapitalit të tyre ekonomik. Zakonisht, këto të dhëna i shërbejnë shtyrjes së ndonjë narracioni për pasurimin e jashtëligjshëm e korruptimin e zyrtarëve në fjalë. Ndonëse, ndonjëherë, gjykime të tilla mund të bëhen edhe me saktësi, shpeshherë, dekonstruktimi ideologjik i mënyrës se si jetojnë politikanë të caktuar është larg më i rëndësishëm.</p>
+
+            <p>Së fundi, përgjimet lidhur me një projekt infrastrukture i rivendosën në diskutim banesën e ministrit Liburn Aliu në lagjen "Marigona Hill" e, gjithashtu, shkollat private, ku djemtë e këtij shkollohen. Personalisht, nuk besoj që këta dy faktorë janë tregues që z. Aliu është i korruptuar. Në fakt, korruptimi i ministrit Aliu është i një tjetër soji, që, ndonëse i papërfillur, është gjithashtu problematik. Liburn Aliu është i korruptuar ideologjikisht.</p>
+
+            <p>Përvojat personale janë të rrënjëzuara në kontekste shoqërore e historike dhe, si rezultat, edhe botëkuptimi ideologjik për shoqërinë duhet të përputhet me veprimtarinë private. Nëse askush tjetër, ata që pozitën shoqërore e kanë si rezultat të aktivitetit politik, do të duhej të mbaheshin në këtë standard. Pra, nëse ngritja vjen si pasojë e ligjërimit politik, sjellja pas kësaj ngritjeje duhet të përputhet me atë ligjërim. Nëse lufton për të drejtat e punëtorëve, kur je pjesë e klasës së mesme, duhet t'i mbrosh të njëjtat vlera edhe kur bëhesh punëdhënës. Nëse bën thirrje për rishpërndarje të pasurisë, kur je i varfër, nuk duhet ta refuzosh të njëjtën, kur ajo nuk të përshtatet më. Nëse i refuzon elitat ekonomike e shoqërore, nuk duhet t'u bashkohesh atyre, kur të paraqitet mundësia. Në fakt, refuzimi ka kuptim, vetëm kur pranimi është alternativë, meqë të refuzosh diçka të paqasshme është thjesht performative. Këtu ndodh çarja ideologjike e një pjese të politikanëve tanë, që qartë shihet te z. Aliu.</p>
+
+            <p>Aktivizmit politik duhet t'i paraprijë një botëkuptim për shoqërinë. Ky botëkuptim, për një pjesë të madhe të partive politike në Kosovë, është, në rastin më të mirë, i paqartë. Nga PDK-ja, që së fundi u identifikua si parti liberale (duke pas ndryshuar nga e majta në të djathtë në të kaluarën), deri te LDK-ja, që udhëhiqet nga libertariani më i çuditshëm mbi tokë, duket se koncepti ideologjik nuk është themeli i angazhimit politk për shumicën e politikanëve në Kosovë. Megjithatë, vetë-(keq)identifikimi nuk është problem aq i madh sa dualiteti i njëkohshëm. Dikush si ministri Aliu paraqitet si qytetar i rëndomtë e flet për barazi sociale e ekonomike, ndërkohë ai është dhëmbëz aktive në makinerinë e riprodhimit të elitave shoqërore. "Marigona Hill"-i, "AUK"-u e "ASK"-ja janë inkubatorë të këtij riprodhimi.</p>
+
+            <p>Fillimisht, duhet kuptuar çka realisht është "Marigona Hill"-i. Lagjet, ku jetojnë shumica nga ne, janë thjesht bashkësi shtëpish e pallatesh banesore ku, zakonisht, rangu socio-ekonomik është i gjerë e kapitali nuk rrjedh nga i njëjti burim. Lagjet si "Marigona", në anën tjetër, janë shënuese të klasave shoqërore. Këto janë komunitete të mbyllura, ndërtimi social i të cilave përcaktohet nga ai grusht njerëzish që i ndërtojnë ato. Nuk janë as vendndodhja, as cilësia e ndërtimeve që e bëjnë anëtarësimin në një kësi "klubi ekskluziv" tërheqës - janë asocimi me elitat ekonomike e shoqërore dhe distancimi nga të zakonshmit që i ngashënjejnë të famshmit e Kosovës për të blerë prona në lagjet pas rampave. Në këso lagjesh nuk ka shkolla publike, nuk ka qebaptore ku hamburgeri kushton 1€, besa, as vetura Golf 2 nuk sheh. Nëse narracionin politik e ke të ndërtuar për klasën e mesme, drejtuar klasës së mesme, duke u shtirur se je klasë e mesme, duhet të dalësh këndej rampës e t'i kritikosh këto komunitete të mbyllura. Pra, të dashur social-demokratë, nëse elitat ju pengojnë vetëm kur nuk jeni pjesë e tyre, përditësojini bindjet tuaja!</p>
+
+            <p>Nëse lagjet private shërbejnë për shtresimin e shoqërisë, shkollat private këtë shtresim e betonojnë edhe më fuqishëm. U fol goxha për djemtë e ministrit Aliu, që vijojnë shkolla private (njëri në "ASK" e tjetri në "AUK"). Ndonëse ministri tregoi që i riu ka bursë në "ASK", këtë të "AUK"-ut në mënyrë të volitshme nuk e përmendi. Se a e paguan ministri "AUK"-un, nuk ka shumë rëndësi për mua. Ajo shkollë kushton diç më pak se 7.500 euro në vit e kjo mjafton për të treguar se çfarë përfaqëson ai institucion. Aty, fëmijët e mësuesve, të policëve, me gjasë, nuk studiojnë (në përjashtim të ndokujt që fiton ndonjë bursë), meqë të ardhurat për këto profesione për një vit nuk e kapin këtë shifër. Në "AUK" studion elita socio-ekonomike (kryesisht e kryeqytetit e thuajse absolutisht urbane). Këta fëmijët e lagjeve me rampa, të shkollave të mesme private studiojnë aty. Pra, është një mekanizëm tjetër i segregimit klasor e, rrjedhimisht, një mekanizëm i riprodhimit të elitave shoqërore.</p>
+
+            <p>Kapitali ekonomik, ndonëse shumë i pranishëm, nuk është kusht i domosdoshëm për t'u bërë pjesë e një kësi grupi. Nganjëherë, mungesa e tij kompensohet me kapital kulturor, shoqëror e njerëzor. Pr, fakti se a se a paguan apo jo zoti Aliu për këto shkolla nuk e ndryshon atë se çka buron nga këto vende. Nëse njëmend jeni të majtë, deklarimi se jeni pjesë e një elite shoqërore, përkundër mungesës së kushteve financiare, është i pamjaftueshëm. Sistemi arsimor nga të majtit konceptohet si një mekanizëm që duhet ta zvogëlojë pabarazinë, por koncentrimi i kapitalit në këso vendesh si "AUK"-u vetëm e rrit pabarazinë dhe i demarkon grupet shoqërore në përputhje. Nuk mund t'u flasësh me dhembshuri automekanikut, bojaxhiut, e punëtorit të krahut, kur rrethi, në të cilin e fut familjen tënde, përbëhet prej biznesmenëve, doktorëve e avokatëve.</p>
+
+            <p>Kam parasysh se konsistenca ideologjike nuk u intereson politikanëve e aq më pak qytetarëve—kjo e dyta përcakton një limit të poshtëm për të parën. Megjithatë, është e rëndësishme që narracioni politik, mbi të cilin ne i zgjedhim përfaqësuesit tanë, të jetë i sinqertë e jo thjesht një mjet për t'u shndërruar në atë që je zotuar ta luftosh. Unë ende nuk jam i bindur që ministri Aliu është i korruptuar, meqë nuk shoh mjaftueshëm evidencë që të bëj një vlerësim të tillë, por të njëjtën nuk mund ta them për korruptimin e tij ideologjik.</p>
+        </div>
+        
+        <div class="article-footer">
+            <div class="article-tags">
+                <span class="article-tag">Politikë</span>
+                <span class="article-tag">Ideologji</span>
+                <span class="article-tag">Korrupsion</span>
+                <span class="article-tag">Klasa shoqërore</span>
+                <span class="article-tag">Barazi</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

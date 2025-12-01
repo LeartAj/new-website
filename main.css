@@ -801,6 +801,17 @@ body.dark-mode {
   transition: color 0.3s ease;
 }
 
+.paper-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.paper-title a:hover {
+  border-bottom-color: var(--color-primary);
+}
+
 .paper-authors {
   font-weight: 500;
   color: var(--color-text);
