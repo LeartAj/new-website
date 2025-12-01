@@ -16,7 +16,7 @@ This is purely about FUNCTIONALITY - no visual design specifications are include
 
 1.2 SEO & Social Media Meta Tags
 Required meta tags:
-- Title: "Leart Ajvazaj - Machine Learning Researcher & Mathematical Thinker"
+- Title: "Leart Ajvazaj - Machine Learning Engineer & Mathematical Thinker"
 - Description meta tag with content about ML researcher and mathematical thinker
 - Keywords: "Leart Ajvazaj, machine learning, mathematics, research, Yale University, Galois theory, additive combinatorics, statistical learning theory"
 - Author: "Leart Ajvazaj"

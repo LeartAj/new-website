@@ -31,7 +31,7 @@ This directory contains 7 different visual themes for Leart Ajvazaj's personal w
 ## Content Used (Same Across All Themes):
 
 **Name:** Leart Ajvazaj
-**Title:** Mathematician / Machine Learning Researcher
+**Title:** Mathematician / Machine Learning Engineer
 
 **About:**
 - Works at 91Life on ML for healthcare
