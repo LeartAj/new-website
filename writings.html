@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writings - Leart Ajvazaj</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Articles and writings by Leart Ajvazaj on mathematics, machine learning, politics, and philosophy.">
+    <meta name="keywords" content="Leart Ajvazaj, writings, articles, mathematics, machine learning, politics, philosophy">
+    <meta name="author" content="Leart Ajvazaj">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Writings - Leart Ajvazaj">
+    <meta property="og:description" content="Articles and writings on mathematics, machine learning, politics, and philosophy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/writings.html">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Writings - Leart Ajvazaj">
+    <meta name="twitter:description" content="Articles and writings on mathematics, machine learning, politics, and philosophy.">
+    <meta name="twitter:creator" content="@LeartAjvazaj">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/writings.html">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pillnav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="pill-nav-container" id="nav-container">
+        <nav class="pill-nav" aria-label="Primary">
+            <a class="pill-logo" href="index.html" aria-label="Home" id="logo-link">
+                <img src="logo.svg" alt="Logo" id="logo-img">
+            </a>
+
+            <div class="pill-nav-items desktop-only" id="nav-items">
+                <ul class="pill-list" role="menubar">
+                    <li role="none">
+                        <a role="menuitem" href="index.html" class="pill" aria-label="Home" data-index="0">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Home</span>
+                                <span class="pill-label-hover" aria-hidden="true">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="writings.html" class="pill is-active" aria-label="Writings" data-index="1">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Writings</span>
+                                <span class="pill-label-hover" aria-hidden="true">Writings</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="technical.html" class="pill" aria-label="Technical" data-index="2">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">Technical</span>
+                                <span class="pill-label-hover" aria-hidden="true">Technical</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#faq" class="pill" aria-label="FAQ" data-index="3">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">FAQ</span>
+                                <span class="pill-label-hover" aria-hidden="true">FAQ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="index.html#about" class="pill" aria-label="About" data-index="4">
+                            <span class="hover-circle" aria-hidden="true"></span>
+                            <span class="label-stack">
+                                <span class="pill-label">About</span>
+                                <span class="pill-label-hover" aria-hidden="true">About</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="mobile-menu-button mobile-only" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-popover mobile-only" id="mobile-menu">
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="index.html" class="mobile-menu-link">Home</a>
+                </li>
+                <li>
+                    <a href="writings.html" class="mobile-menu-link is-active">Writings</a>
+                </li>
+                <li>
+                    <a href="technical.html" class="mobile-menu-link">Technical</a>
+                </li>
+                <li>
+                    <a href="#faq" class="mobile-menu-link">FAQ</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="mobile-menu-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="writings-main">
+        <section class="section">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title-writings">Writings</h1>
+                    <p class="page-subtitle">
+                        Thoughts on machine learning, mathematics, politics, and the intersection of technology and humanity.
+                    </p>
+                </div>
+
+                <!-- Search Input -->
+                <input type="text" id="search-input" class="search-input" placeholder="Search writings...">
+
+                <!-- Filter buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="mathematics">Mathematics</button>
+                    <button class="filter-btn" data-filter="philosophy">Philosophy</button>
+                    <button class="filter-btn" data-filter="politics">Politics</button>
+                    <button class="filter-btn" data-filter="personal">Personal</button>
+                </div>
+
+                <!-- Writings Grid -->
+                <div class="writings-grid" id="writings-grid">
+                    <!-- Articles will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Leart Ajvazaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <script src="app.js"></script>
+    <script src="writings.js"></script>
+</body>
+</html>

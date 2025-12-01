@@ -1,0 +1,509 @@
+INDEX.HTML FUNCTIONAL REQUIREMENTS DOCUMENT
+===========================================
+
+This document contains all functional requirements needed to recreate index.html.
+This is purely about FUNCTIONALITY - no visual design specifications are included.
+
+==============================================================================
+1. PAGE STRUCTURE & METADATA
+==============================================================================
+
+1.1 HTML Document Setup
+- HTML5 doctype
+- Language: English (lang="en")
+- Character encoding: UTF-8
+- Viewport meta tag for responsive design
+
+1.2 SEO & Social Media Meta Tags
+Required meta tags:
+- Title: "Leart Ajvazaj - Machine Learning Researcher & Mathematical Thinker"
+- Description meta tag with content about ML researcher and mathematical thinker
+- Keywords: "Leart Ajvazaj, machine learning, mathematics, research, Yale University, Galois theory, additive combinatorics, statistical learning theory"
+- Author: "Leart Ajvazaj"
+- Robots: "index, follow"
+
+Open Graph (Social Media) tags:
+- og:title, og:description, og:type (website), og:url, og:site_name, og:image
+
+Twitter Card tags:
+- twitter:card (summary_large_image), twitter:title, twitter:description
+- twitter:image, twitter:creator (@LeartAjvazaj)
+
+Canonical URL: Link to domain
+
+1.3 External Resources
+- Google Fonts: Inter font family (weights: 300, 400, 500, 600, 700)
+- Font Awesome 6.5.1 for icons
+- CSS files: styles.css, medium-styles.css
+- JavaScript files: script.js, admin-auth.js, medium-integration.js
+
+==============================================================================
+2. LOADING SCREEN FEATURE
+==============================================================================
+
+2.1 Loading Screen Display
+- Full-screen overlay that covers entire viewport
+- Contains an animated 3D rotating sphere made of meridians, latitudes, and axes
+- Sphere consists of:
+  * 36 meridian circles (rotated at 10-degree increments from 10° to 360°)
+  * 12 latitude circles (positioned at different z-depths)
+  * 2 axis lines
+
+2.2 Loading Screen Animation
+- Sphere rotates continuously using CSS keyframe animation
+- 8-second rotation cycle
+- 3D transforms: rotateX(30deg), rotateY(0-360deg), rotateZ(80deg)
+
+2.3 Session-Based Display Logic
+CRITICAL FUNCTIONALITY:
+- Loading screen shows ONLY ONCE per browser session
+- Uses sessionStorage with key 'loadingShown'
+- Inline script immediately after loading screen div checks sessionStorage
+- If 'loadingShown' exists, set display:none immediately (prevents flash)
+- After 1 second delay on first load, add 'hidden' class for fade-out
+- Set sessionStorage 'loadingShown' = 'true' after first display
+
+Script flow:
+1. Inline script right after loading-screen div: check sessionStorage, hide if shown
+2. On window load event: if not shown before, wait 1s, fade out, mark as shown
+
+==============================================================================
+3. NAVIGATION BAR
+==============================================================================
+
+3.1 Navigation Structure
+- Fixed position at top of page
+- Contains:
+  * Logo/name: "Leart Ajvazaj" (links to index.html)
+  * Navigation menu with links:
+    - Home (index.html)
+    - Writings (writings.html)
+    - Technical (technical.html)
+    - Recommendations (faq-recommendations.html)
+    - Write (write.html)
+    - About (index.html#about - hash link to About section)
+  * Hamburger menu icon (3 bars) for mobile
+
+3.2 Navigation Behavior
+- Navbar has backdrop blur effect
+- Border at bottom
+- Changes background on scroll (after 50px scroll):
+  * Background becomes more opaque
+  * Box shadow appears
+- Mobile hamburger menu toggles navigation visibility
+- Clicking nav link on mobile closes the menu
+
+3.3 Active Link Highlighting (from script.js)
+- Automatically highlights current page link on page load
+- Compares current URL pathname with link href
+- Adds 'active' class to matching link
+- For hash links (#about, etc.), highlights based on scroll position
+- Updates active state when scrolling through sections
+
+==============================================================================
+4. HERO SECTION
+==============================================================================
+
+4.1 Hero Content Structure
+- Section ID: "home"
+- Contains:
+  * Background canvas element (id="ballpit-canvas") for animated background
+  * Hero title: "Hi, I'm Leart Ajvazaj" (with "Leart Ajvazaj" highlighted)
+  * Subtitle: "This is my personal website"
+  * Description paragraph about sharing resources and playing chess
+  * Two CTA buttons:
+    - "Read My Writings" → writings.html (with book icon)
+    - "View Technical" → technical.html (with file icon)
+  * Social media links:
+    - LinkedIn: https://www.linkedin.com/in/leart-ajvazaj/
+    - Facebook: https://www.facebook.com/learti.a/
+    - X/Twitter: https://x.com/LeartAjvazaj (custom SVG logo)
+    - Email link (no href specified)
+
+4.2 Background Animation (Ballpit)
+- Canvas element with id "ballpit-canvas"
+- Positioned absolutely within hero section
+- Initialized via Ballpit.js module
+- Configuration:
+  * 70 balls
+  * Gravity: 0.01
+  * Friction: 0.99
+  * Wall bounce: 0.95
+  * Follow cursor: enabled
+  * Colors: 4 purple/pink gradient colors (0x667eea, 0x764ba2, 0xf093fb, 0x4facfe)
+  * Ambient light intensity: 0.8
+  * Point light intensity: 150
+- Uses Three.js (imported via importmap from CDN version 0.170.0)
+- Script initializes on DOMContentLoaded event
+
+==============================================================================
+5. WRITINGS SECTION
+==============================================================================
+
+5.1 Section Structure
+- Section ID: "writings"
+- Section title: "Recent Writings"
+- Grid layout for writing cards (id="homeWritingsGrid")
+- Footer with "View All Writings" button → writings.html
+
+5.2 Static Articles (Always Visible)
+The section contains 3 static articles:
+
+Article 1:
+- Date: April 4, 2022
+- Category: "Politikë"
+- Title: "Mos e lexo këtë shkrim—Është për politikë"
+- Link: mos-e-lexo-kete-shkrim.html
+- Excerpt: (empty)
+- Data attribute: data-category="politics"
+
+Article 2:
+- Date: June 4, 2022
+- Category: "Politics"
+- Title: "I korruptuar ideologjikisht"
+- Link: i-korruptuar-ideologjikisht.html
+- Excerpt: "Ka kohë që në kritikat për politikanët kosovarë përmenden shtëpitë në lagje private, veturat luksoze ose reflektime të tjera të kapitalit të tyre ekonomik. Dekonstruktimi ideologjik i mënyrës se si jetojnë politikanë të caktuar është larg më i rëndësishëm."
+- Data attribute: data-category="politics"
+
+Article 3:
+- Date: March 15, 2024
+- Category: "Machine Learning"
+- Title: "Understanding Neural Network Optimization: A Geometric Perspective"
+- Link: article.html
+- Excerpt: "An exploration of the geometry of neural network loss landscapes and how it influences training dynamics. Discover why certain optimization techniques work better than others through the lens of geometric analysis."
+- Data attribute: data-category="machine-learning"
+
+5.3 Dynamic Articles Integration
+- Grid has id="homeWritingsGrid" for dynamic article insertion
+- Published articles from write interface can be injected here
+- Integration via medium-integration.js
+
+==============================================================================
+6. TECHNICAL SECTION
+==============================================================================
+
+6.1 Section Structure
+- Section ID: "technical"
+- Section title: "Technical Work"
+- Grid layout for paper cards
+- Footer with "View All Technical Work" button → technical.html
+
+6.2 Paper Cards (3 total)
+
+Paper 1 - Additive Combinatorics Notes:
+- Icon: PDF icon (fas fa-file-pdf)
+- Title: "Additive Combinatorics Notes"
+- Authors: "Leart Ajvazaj"
+- Venue: "University of Cambridge • January 2024"
+- Abstract: "Comprehensive notes from an Additive Combinatorics class at Cambridge with Julia Wolf. Covers Fourier-analytic techniques, Bogolyubov's lemma, Roth's theorem, and modern developments in arithmetic progressions and sum-product phenomena."
+- Links:
+  * View PDF → additive_combo.html
+  * Download PDF → papers/additive_combinatorics.pdf
+  * Download TeX → papers/additive_combinatorics.tex
+
+Paper 2 - Galois Theory Notes:
+- Icon: PDF icon (fas fa-file-pdf)
+- Title: "Galois Theory Notes"
+- Authors: "Leart Ajvazaj"
+- Venue: "Yale University • January 2021"
+- Abstract: "Notes from a Fields and Galois Theory class at Yale. Covers field extensions, construction problems, problems of solvability, cyclotomic extensions, etc."
+- Links:
+  * View PDF → galois_theory_notes.html
+  * Download PDF → papers/Galois_theory_notes.pdf
+  * Download TeX → papers/Galois_theory_notes.tex
+
+Paper 3 - Statistical Learning Theory:
+- Icon: PDF icon (fas fa-file-pdf)
+- Title: "Statistical Learning Theory: A Modern Perspective"
+- Authors: "Leart Ajvazaj"
+- Venue: "Conference on Learning Theory • 2023"
+- Abstract: "An examination of statistical learning theory through the lens of modern computational methods and their theoretical foundations..."
+- Links: All placeholder (#) links for PDF, arXiv, and Cite
+
+==============================================================================
+7. ABOUT SECTION
+==============================================================================
+
+7.1 Section Structure
+- Section ID: "about"
+- Title: "About Me"
+- Two-column layout: text content and image
+
+7.2 About Text Content
+Paragraph 1:
+"I'm a mathematician working in machine learning. My work is on the intersection of AI, mathematics and healthcare. I work at 91Life developing machine learning models aimed at detecting electrophysiological pathologies in the heart."
+
+Paragraph 2:
+"Outside of my day job, I teach mathematics (recently at ATOMI and Gjirafa LIFE). I also write about Albanian societal and political issues. The occassional satirical or fictional piece too."
+
+Paragraph 3:
+"I hold a Bachelor's degree from Yale University in mathematics (intensive major) and a master's degree in pure mathematics from the University of Cambridge. In high school I represented Kosovo at the International Mathematical Olympiad."
+
+7.3 About Highlights (Icon + Text)
+Three highlight items:
+1. Graduation cap icon + "Mathematics"
+2. Microchip icon + "ML"
+3. Chess icon + "1950 Peak Rating"
+
+7.4 About Image
+- Image: leart_picture.jpg
+- Alt text: "Leart Ajvazaj"
+- Caption below image: "Holding a human heart"
+
+==============================================================================
+8. FOOTER
+==============================================================================
+
+8.1 Footer Structure
+Two columns of links:
+
+Column 1 - "Connect":
+- LinkedIn: https://www.linkedin.com/in/leart-ajvazaj/
+- Facebook: https://www.facebook.com/learti.a/
+- X: https://x.com/LeartAjvazaj
+- Email: mailto:ajvazaj.leart@gmail.com
+
+Column 2 - "Quick Links":
+- Writings → writings.html
+- Technical → technical.html
+- Recommendations → faq-recommendations.html
+
+8.2 Footer Bottom
+Copyright notice: "© 2025 Leart Ajvazaj. All rights reserved."
+
+==============================================================================
+9. JAVASCRIPT FUNCTIONALITY REQUIREMENTS
+==============================================================================
+
+9.1 script.js Functions
+(Based on the file, these functionalities must be implemented)
+
+Mobile Navigation:
+- Hamburger click toggles 'active' class on hamburger and nav-menu
+- Clicking nav-link removes 'active' from hamburger and nav-menu
+
+Smooth Scrolling:
+- All anchor links (href starting with #) scroll smoothly
+- Prevents default jump behavior
+- Uses scrollIntoView with behavior: 'smooth', block: 'start'
+
+Navbar Scroll Behavior:
+- On window scroll > 50px:
+  * Change navbar background to --navbar-scroll variable
+  * Add box shadow: '0 2px 20px var(--shadow)'
+- On scroll <= 50px:
+  * Revert to --navbar-bg
+  * Remove box shadow
+
+Active Page Highlighting:
+- Get current page from window.location.pathname
+- Compare with each nav-link href
+- Add 'active' class to matching link
+- Handle edge cases (empty path, index.html variations)
+
+Section Highlighting on Scroll:
+- Find all sections with id attributes
+- On scroll, check which section is in viewport
+- Update nav links for hash-based navigation
+- Only update links that start with # (section links)
+
+Scroll Animations:
+- Use IntersectionObserver for card animations
+- Threshold: 0.1
+- Root margin: '0px 0px -50px 0px'
+- Add 'visible' class when elements enter viewport
+
+9.2 admin-auth.js Functions
+(Authentication functionality for admin features)
+- Handle admin login for admin features
+- Password validation
+- Session management
+
+9.3 medium-integration.js Functions
+(Integration with Medium or article publishing)
+- Load and display published articles
+- Handle dynamic article insertion
+- Article filtering and categorization
+
+==============================================================================
+10. CRITICAL FUNCTIONAL BEHAVIORS
+==============================================================================
+
+10.1 State Persistence
+- Loading screen shown state in sessionStorage (key: 'loadingShown')
+- Language preference in localStorage (key: 'language')
+
+10.2 Event Listeners Required
+Window events:
+- load (for loading screen fade-out)
+- scroll (for navbar and section highlighting)
+- DOMContentLoaded (initialize components)
+
+Element-specific:
+- Hamburger click (toggle mobile menu)
+- Nav links click (close mobile menu, smooth scroll for hashes)
+
+10.3 Performance Considerations
+- Loading screen check must be inline and immediate (prevent flash)
+- Scroll events should not cause layout thrashing
+- LocalStorage reads/writes batched appropriately
+
+10.4 Accessibility Requirements
+- All links have meaningful text or aria-labels
+- Buttons have clear purposes
+- Images have alt text
+- Icons should have title attributes or screen reader text
+- Form inputs (if any) properly labeled
+
+10.5 Error Handling
+- Try-catch around localStorage operations (quota exceeded)
+- Try-catch around Ballpit initialization
+- Graceful degradation if JavaScript disabled
+
+==============================================================================
+11. EXTERNAL DEPENDENCIES & APIs
+==============================================================================
+
+11.1 Required External Libraries
+- Three.js v0.170.0 (via CDN with importmap)
+- Font Awesome 6.5.1
+- Google Fonts (Inter family)
+
+11.2 Custom Modules Required
+- Ballpit.js: Creates animated 3D ball physics simulation
+  * Export: createBallpit(canvas, options)
+  * Must use Three.js for 3D rendering
+  * Must handle physics simulation and cursor interaction
+
+11.3 Custom Scripts Required
+- script.js: Main site interactions
+- admin-auth.js: Authentication system
+- medium-integration.js: Article loading system
+
+==============================================================================
+12. FUNCTION SPECIFICATIONS
+==============================================================================
+
+12.1 Navigation Functions
+
+Mobile menu toggle:
+- Toggle 'active' class on hamburger
+- Toggle 'active' class on nav-menu
+
+Close mobile menu on link click:
+- Remove 'active' from hamburger and nav-menu
+
+Smooth scroll for hash links:
+- Prevent default
+- Find target element
+- Call scrollIntoView with smooth behavior
+
+Navbar scroll handler:
+- Check scroll position
+- Update navbar styles based on scroll
+
+Active page highlighter:
+- Parse current URL
+- Match against nav link hrefs
+- Add 'active' class to current page
+
+Active section highlighter:
+- Get scroll position
+- Find visible section
+- Update hash link active states
+
+==============================================================================
+13. CSS CLASS NAMES AND IDs USED
+==============================================================================
+
+IDs:
+- loading-screen
+- ballpit-canvas
+- nav-menu
+- hamburger
+- home, writings, technical, about (section IDs)
+- homeWritingsGrid
+
+Classes:
+- navbar, nav-container, nav-logo, nav-menu, nav-link
+- hamburger, bar (for hamburger icon)
+- hero, hero-container, hero-content, hero-title, hero-subtitle, hero-description
+- hero-buttons, btn, btn-primary, btn-secondary
+- social-links, social-link
+- section, section-title, section-subtitle, section-alt, section-footer
+- container
+- writings-grid, writing-card, static-article
+- card-meta, date, category, card-title, card-excerpt, read-more
+- papers-grid, paper-card, paper-icon, paper-content
+- paper-title, paper-authors, paper-venue, paper-abstract
+- paper-links, paper-link
+- about-content, about-text, about-paragraph, about-highlights, about-image
+- highlight-item, image-caption
+- footer, footer-content, footer-section, footer-links, footer-link, footer-bottom
+- sphere, meridian, latitude, axis
+- ballpit-background
+- hidden (for loading screen)
+- active (for navigation)
+- visible (for scroll animations)
+
+==============================================================================
+14. BROWSER COMPATIBILITY & FEATURES USED
+==============================================================================
+
+JavaScript Features:
+- ES6 modules (import/export)
+- Arrow functions
+- Template literals
+- Destructuring
+- Spread operator
+- Array methods (forEach, map, filter, some)
+- Object methods
+- Async/await (if used in imported modules)
+
+Browser APIs:
+- localStorage
+- sessionStorage
+- querySelector/querySelectorAll
+- addEventListener
+- classList (add, remove, toggle, contains)
+- scrollIntoView
+- IntersectionObserver
+- window.scrollY
+- dataset attributes
+- Custom elements/events (if any)
+
+CSS Features:
+- CSS Grid
+- Flexbox
+- CSS transforms (2D and 3D)
+- CSS animations/transitions
+- Backdrop-filter
+- Custom properties (CSS variables)
+- Media queries
+- Pseudo-classes and pseudo-elements
+
+==============================================================================
+15. CONTENT REQUIREMENTS
+==============================================================================
+
+All text content must match exactly as specified in sections above.
+All links must point to correct URLs.
+All icon classes must use Font Awesome 6.5.1 icon names.
+All image paths must be correct relative paths.
+All social media links must be complete URLs with https://.
+All external links should have target="_blank" and rel="noopener noreferrer".
+
+==============================================================================
+END OF FUNCTIONAL REQUIREMENTS DOCUMENT
+==============================================================================
+
+NOTES FOR IMPLEMENTATION:
+1. This document covers FUNCTIONALITY ONLY
+2. Visual design (colors, fonts, spacing, animations) is NOT specified here
+3. CSS variable names are mentioned but values are not specified
+4. Layout structure (flex, grid) is mentioned but specific styling is not
+5. Implementer must create styles.css with appropriate visual design
+6. All functional behaviors must work regardless of visual styling choices
+7. State persistence (localStorage, sessionStorage) is critical functionality
+8. All event handlers must be properly attached
+9. Error handling should be implemented for all external dependencies

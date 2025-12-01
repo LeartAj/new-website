@@ -1,0 +1,52 @@
+Layout & Structure
+
+Full-width viewport layout with centered content
+Navigation bar positioned at the top center of the page
+Small dotted pattern background covering the entire viewport
+
+Color Scheme (Light Mode)
+
+Background: Off-white or light cream (#FAFAFA or similar)
+Dots: Very light gray (#E0E0E0 or similar) for subtle texture
+Navigation pills: White background (#FFFFFF)
+Active/selected navigation item: Black background (#000000) with white text
+Inactive navigation items: Black text (#000000) on white background
+Logo: Black (#000000)
+
+Color Scheme (Dark Mode)
+
+Background: Near-black or dark gray (#1A1A1A or similar)
+Dots: Dark gray (#404040 or similar)
+Navigation pills: Dark gray background (#2A2A2A)
+Active/selected navigation item: White background (#FFFFFF) with black text
+Inactive navigation items: White text (#FFFFFF) on dark gray background
+Logo: White (#FFFFFF)
+
+Typography
+
+Navigation text: Clean, modern sans-serif font (likely system font stack or similar)
+Font weight: Medium (500) for navigation items
+Text should be clearly legible with adequate contrast
+
+Dotted Pattern
+
+Small circular dots arranged in a regular grid pattern
+Spacing: Approximately 30-40px between dot centers
+Dot size: 1-2px diameter
+Pattern covers entire background seamlessly
+Pattern should be subtle and not interfere with readability
+
+Navigation Component (PillNav)
+
+Items: Home, Writings, Technical, Recommendations, About
+Rounded pill-shaped buttons with consistent padding
+Smooth hover transitions
+Clear visual distinction between active and inactive states
+Logo positioned to the left of navigation items
+Logo should be circular (use something default)
+
+Spacing & Alignment
+
+Navigation bar: 20-30px padding from top of viewport
+Horizontal centering of navigation group
+Consistent internal padding within navigation pills (approximately 12-16px vertical, 20-24px horizontal)
