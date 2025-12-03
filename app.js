@@ -447,9 +447,10 @@ class DarkModeToggle {
   updatePillNavColors() {
     const nav = document.querySelector('.pill-nav');
     const mobileMenuPopover = document.querySelector('.mobile-menu-popover');
+    const logoImg = document.getElementById('logo-img');
 
     if (this.isDarkMode) {
-      // Dark mode: white background, black pills
+      // Dark mode: white background, black pills, black logo
       if (nav) {
         nav.style.setProperty('--base', '#fff');
         nav.style.setProperty('--pill-bg', '#000');
@@ -462,8 +463,11 @@ class DarkModeToggle {
         mobileMenuPopover.style.setProperty('--hover-text', '#000');
         mobileMenuPopover.style.setProperty('--pill-text', '#fff');
       }
+      if (logoImg) {
+        logoImg.src = 'logo2black.svg';
+      }
     } else {
-      // Light mode: black background, white pills
+      // Light mode: black background, white pills, white logo
       if (nav) {
         nav.style.setProperty('--base', '#000');
         nav.style.setProperty('--pill-bg', '#fff');
@@ -475,6 +479,9 @@ class DarkModeToggle {
         mobileMenuPopover.style.setProperty('--pill-bg', '#fff');
         mobileMenuPopover.style.setProperty('--hover-text', '#fff');
         mobileMenuPopover.style.setProperty('--pill-text', '#000');
+      }
+      if (logoImg) {
+        logoImg.src = 'logo2white.svg';
       }
     }
   }
