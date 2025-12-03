@@ -406,13 +406,31 @@ function setupScrollSpy() {
 class DarkModeToggle {
   constructor() {
     this.toggleButton = document.getElementById('dark-mode-toggle');
-    this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+    // Check if user has a saved preference
+    const savedPreference = localStorage.getItem('darkMode');
+
+    if (savedPreference !== null) {
+      // Use saved preference
+      this.isDarkMode = savedPreference === 'true';
+    } else {
+      // No saved preference - default based on time of day
+      this.isDarkMode = this.isNightTime();
+    }
 
     this.init();
   }
 
+  isNightTime() {
+    // Get current hour (0-23)
+    const hour = new Date().getHours();
+
+    // Consider night time as 6 PM (18:00) to 6 AM (06:00)
+    return hour >= 18 || hour < 6;
+  }
+
   init() {
-    // Apply saved preference
+    // Apply saved preference or time-based default
     if (this.isDarkMode) {
       document.body.classList.add('dark-mode');
     }
