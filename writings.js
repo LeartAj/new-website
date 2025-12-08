@@ -63,15 +63,6 @@ function getStaticArticles() {
             isStatic: true
         },
         {
-            title: "Understanding Neural Network Optimization: A Geometric Perspective",
-            displayDate: "March 15, 2024",
-            category: "machine-learning",
-            categoryDisplay: "Machine Learning",
-            excerpt: "An exploration of the geometry of neural network loss landscapes and how it influences training dynamics. Discover why certain optimization techniques work better than others through the lens of geometric analysis.",
-            href: "article.html",
-            isStatic: true
-        },
-        {
             title: "Ata që vallëzojnë mbi varre",
             displayDate: "January 22, 2024",
             category: "politics",

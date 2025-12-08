@@ -713,15 +713,6 @@ function getStaticArticles() {
             excerpt: "Në zemër të Ballkanit, ku historia pëshpëritë përmes maleve të lashtë dhe lumenjve të thyer kishte rënë një mort i zi. Brenda kësaj toke të gjallë, të vendosur ndërmjet kodrave dhe luginave.",
             href: "ura-e-pamundur.html",
             isStatic: true
-        },
-        {
-            title: "Understanding Neural Network Optimization: A Geometric Perspective",
-            displayDate: "March 15, 2024",
-            category: "machine-learning",
-            categoryDisplay: "Machine Learning",
-            excerpt: "An exploration of the geometry of neural network loss landscapes and how it influences training dynamics. Discover why certain optimization techniques work better than others through the lens of geometric analysis.",
-            href: "article.html",
-            isStatic: true
         }
     ];
 }
