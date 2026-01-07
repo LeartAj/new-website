@@ -18,6 +18,15 @@ function init() {
 function getStaticArticles() {
     return [
         {
+            title: "Paradigma e Patriotizmit Performativ",
+            displayDate: "December 27, 2025",
+            category: "politics",
+            categoryDisplay: "Politics",
+            excerpt: "Disa virtyte janë vështirë të falsifikueshme. Guximi është një prej tyre. Të jesh i guximshëm do të thotë të dalësh para turmës së tërbuar, duke ditur plotësisht pasojat personale, dhe të thuash atë që beson, ta shohësh xhindosjen e masës pasi ua baltosë tempullin e shenjtë dhe të mos ia mbathësh. Guxim nuk është ngjitja në vagonin e njëqindegjashtëmbëdhjetë të trenit delirioz me biletë njëdrejtimëshe për humnerë.",
+            href: "paradigma-e-patriotizmit-performativ.html",
+            isStatic: true
+        },
+        {
             title: "Heronjtë i bën qëllimi",
             displayDate: "June 15, 2025",
             category: "politics",

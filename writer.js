@@ -42,6 +42,7 @@ function generateHTML() {
     const category = document.getElementById('articleCategory').value;
     const excerpt = document.getElementById('articleExcerpt').value.trim();
     const content = quill.root.innerHTML;
+    const featuredOnHome = document.getElementById('featuredOnHome').checked;
 
     if (!title) {
         alert('Please enter an article title');
@@ -358,10 +359,21 @@ function generateHTML() {
 </body>
 </html>`;
 
-    // Show modal with generated HTML
+    // Generate updated writings.js
+    const updatedWritingsJs = generateUpdatedWritingsJs(title, formattedDate, category, excerpt, filename);
+
+    // Show modal with generated HTML and writings.js
     document.getElementById('htmlOutput').value = htmlTemplate;
     document.getElementById('suggestedFilename').textContent = filename;
+    document.getElementById('writingsJsOutput').value = updatedWritingsJs;
     document.getElementById('htmlModal').style.display = 'flex';
+
+    // Store for download
+    window.currentArticleData = {
+        htmlTemplate,
+        filename,
+        updatedWritingsJs
+    };
 }
 
 // Preview article
@@ -411,14 +423,7 @@ function copyHTML() {
     htmlOutput.select();
     document.execCommand('copy');
 
-    // Show toast
-    const toast = document.getElementById('successToast');
-    document.getElementById('toastMessage').textContent = 'HTML copied to clipboard!';
-    toast.classList.add('show');
-
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
+    showToast('HTML copied to clipboard!');
 }
 
 // Close modals when clicking outside
@@ -432,4 +437,239 @@ window.onclick = function(event) {
     if (event.target === htmlModal) {
         closeHTMLModal();
     }
+}
+
+// Generate updated writings.js with new article
+function generateUpdatedWritingsJs(title, formattedDate, category, excerpt, filename) {
+    // Get the category value for data attribute (lowercase, hyphenated)
+    const categoryValue = category.toLowerCase().replace(/\s+/g, '-');
+
+    const newArticle = {
+        title: title,
+        displayDate: formattedDate,
+        category: categoryValue,
+        categoryDisplay: category,
+        excerpt: excerpt,
+        href: filename,
+        isStatic: true
+    };
+
+    // Get existing articles
+    const existingArticles = getStaticArticles();
+
+    // Add new article at the beginning (most recent)
+    const allArticles = [newArticle, ...existingArticles];
+
+    // Generate the writings.js file content
+    const writingsJsContent = `// Writings page functionality
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+});
+
+function init() {
+    // Load all articles
+    loadArticles();
+
+    // Setup filtering
+    setupFiltering();
+
+    // Setup search
+    setupSearch();
+}
+
+// Static articles data
+function getStaticArticles() {
+    return ${JSON.stringify(allArticles, null, 8)};
+}
+
+// Load and display articles
+function loadArticles() {
+    const writingsGrid = document.getElementById('writings-grid');
+    if (!writingsGrid) return;
+
+    const staticArticles = getStaticArticles();
+
+    // Sort by date (most recent first)
+    const sortedArticles = staticArticles.sort((a, b) => {
+        const dateA = parseDate(a.displayDate);
+        const dateB = parseDate(b.displayDate);
+        return dateB - dateA;
+    });
+
+    // Clear grid
+    writingsGrid.innerHTML = '';
+
+    // Add articles
+    sortedArticles.forEach(article => {
+        const articleCard = createArticleCard(article);
+        writingsGrid.appendChild(articleCard);
+    });
+}
+
+// Parse date string to Date object
+function parseDate(dateStr) {
+    if (!dateStr) return new Date(0);
+    const parsed = new Date(dateStr);
+    if (!isNaN(parsed.getTime())) {
+        return parsed;
+    }
+    return new Date(0);
+}
+
+// Create article card element
+function createArticleCard(article) {
+    const card = document.createElement('article');
+    card.className = 'writing-card';
+    card.setAttribute('data-category', article.category || 'personal');
+
+    card.innerHTML = \\\`
+        <div class="card-meta">
+            <span class="date">\\\${article.displayDate}</span>
+            <span class="category">\\\${article.categoryDisplay}</span>
+        </div>
+        <h3 class="card-title">
+            <a href="\\\${article.href}">\\\${article.title}</a>
+        </h3>
+        <p class="card-excerpt">
+            \\\${article.excerpt}
+        </p>
+        <a href="\\\${article.href}" class="read-more">Read More</a>
+    \\\`;
+
+    return card;
+}
+
+// Setup filter functionality
+function setupFiltering() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filterValue = this.getAttribute('data-filter');
+
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // Filter cards
+            filterArticles(filterValue);
+        });
+    });
+}
+
+// Filter articles by category
+function filterArticles(category) {
+    const writingCards = document.querySelectorAll('.writing-card');
+
+    writingCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+
+        if (category === 'all' || cardCategory === category) {
+            card.style.display = 'flex';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 10);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Setup search functionality
+function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        searchArticles(searchTerm);
+    });
+}
+
+// Search articles
+function searchArticles(searchTerm) {
+    const writingCards = document.querySelectorAll('.writing-card');
+
+    writingCards.forEach(card => {
+        const title = card.querySelector('.card-title a')?.textContent.toLowerCase() || '';
+        const excerpt = card.querySelector('.card-excerpt')?.textContent.toLowerCase() || '';
+        const category = card.querySelector('.category')?.textContent.toLowerCase() || '';
+
+        if (title.includes(searchTerm) || excerpt.includes(searchTerm) || category.includes(searchTerm)) {
+            card.style.display = 'flex';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 10);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+`;
+
+    return writingsJsContent;
+}
+
+// Download HTML file
+function downloadHTML() {
+    if (!window.currentArticleData) return;
+
+    const blob = new Blob([window.currentArticleData.htmlTemplate], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = window.currentArticleData.filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast('HTML file downloaded!');
+}
+
+// Download writings.js file
+function downloadWritingsJs() {
+    if (!window.currentArticleData) return;
+
+    const blob = new Blob([window.currentArticleData.updatedWritingsJs], { type: 'text/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'writings.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast('writings.js downloaded!');
+}
+
+// Copy writings.js to clipboard
+function copyWritingsJs() {
+    const writingsJsOutput = document.getElementById('writingsJsOutput');
+    writingsJsOutput.select();
+    document.execCommand('copy');
+
+    showToast('writings.js copied to clipboard!');
+}
+
+// Show toast notification
+function showToast(message) {
+    const toast = document.getElementById('successToast');
+    document.getElementById('toastMessage').textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
